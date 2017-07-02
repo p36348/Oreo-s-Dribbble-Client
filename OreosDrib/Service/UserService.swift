@@ -34,8 +34,6 @@ private struct API {
     
     static let following: String = "/users/:user/following"
     
-    static let authorizeToken: String = "https://dribbble.com/oauth/token"
-    
 }
 
 private let currentUIDKey: String = "user_service_current_uid_key"
@@ -50,11 +48,12 @@ class UserService {
     
     var (userInfoSignal, userInfoObserver) = Signal<User, NoError>.pipe()
     
-    var (authorizeSignal, authorizeObserver) = Signal<Bool, NoError>.pipe()
-    
     private var signInRequest: DataRequest?
     
     private init(){
+        // 加载本地数据
+        loadUserFromDataBase()
+        
         /**
          * 响应用户数据更新,缓存数据到本地
          */
@@ -117,31 +116,16 @@ class UserService {
         return ReactiveNetwork.shared.get(url: API.followers.replace(user: user))
     }
     
-    func authorizeToken(code: String) -> NetworkResponse {
-        let params: Parameters = ["code": code, "client_id": GlobalConstant.Client.id, "client_secret": GlobalConstant.Client.secret]
-        
-        let response: NetworkResponse = ReactiveNetwork.shared.post(url: API.authorizeToken, parameters: params)
-        
-        response.signal.observeResult { (result) in
-            
-            guard let _value = result.value else { return }
-            
-            UserService.shared.currentUser.accessToken = _value["access_token"].stringValue
-            
-            self.authorizeObserver.sendCompleted()
-        }
-        
-        return response
-    }
-    
     func signOut() {
-        
+        currentUser.setDefault()
     }
 }
+
 
 /**
  * 通过UserDefault存放唯一登录的uid, uid为加载对应数据库的依据, user数据存于对应的数据库当中
  */
+
 // MARK: - User数据本地化处理
 extension UserService {
     func updateCurrentUser(with json: JSON) {

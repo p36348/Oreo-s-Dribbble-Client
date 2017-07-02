@@ -11,8 +11,6 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
 
-private let defaultAccessToken: String = GlobalConstant.Client.accessToken
-
 private let defaultUID: String = "default_uid"
 
 class User: Object {
@@ -43,9 +41,7 @@ class User: Object {
     var creatDate: Date? {
         return Date.dribbbleDate(string: createdAt)
     }
-    
-    var accessToken: String = defaultAccessToken
-    
+        
     func setDefault() {
         id = defaultUID
         name = ""
@@ -54,7 +50,7 @@ class User: Object {
         location = ""
         html = ""
         bio  = ""
-        accessToken = defaultAccessToken
+        createdAt = ""
     }
 }
 

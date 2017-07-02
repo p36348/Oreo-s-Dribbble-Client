@@ -20,6 +20,8 @@ class UserInfoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureSubviews()
+        
         bindViewModel()
     }
     
@@ -34,6 +36,10 @@ class UserInfoController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func configureSubviews() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "sign out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(UserInfoController.clickSignOut(sender:)))
+    }
+    
     private func bindViewModel() {
         
         viewModel.updateSignal.observeValues { [weak self] (user) in
@@ -42,6 +48,11 @@ class UserInfoController: UIViewController {
             
             _self.tableView.reloadData()
         }
+    }
+    
+    dynamic func clickSignOut(sender: UIBarButtonItem) {
+        OAuthService.shared.resetToken()
+        UserService.shared.signOut()
     }
     
 }

@@ -31,6 +31,8 @@ class OAuthController: UIViewController {
 
         configureSubview()
         
+        cleanCache()
+        
         loadPage()
         
     }
@@ -84,6 +86,17 @@ class OAuthController: UIViewController {
         webView.load(request)
     }
     
+    private func cleanCache(){
+        let libraryDir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.allLibrariesDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)[0]
+        let bundleId   = Bundle.main.bundleIdentifier!
+        let webkitFolderInLib = libraryDir + "/WebKit"
+        let webKitFolderInCaches = libraryDir + "/Caches/" + bundleId + "/WebKit"
+        
+        _ = try? FileManager.default.removeItem(atPath: webkitFolderInLib)
+        _ = try? FileManager.default.removeItem(atPath: webKitFolderInCaches)
+    }
+    
+    
     dynamic private func dismiss() {
         dismiss(animated: true, completion: nil)
     }
@@ -96,7 +109,7 @@ extension OAuthController: WKNavigationDelegate {
         guard isOauthCallBack else { return decisionHandler(WKNavigationActionPolicy.allow) }
         
         if let code = navigationAction.request.url?.query?.components(separatedBy: "=").last {
-            let _ = UserService.shared.authorizeToken(code: code)
+            let _ = OAuthService.shared.authorizeToken(code: code)
         }
         
         decisionHandler(WKNavigationActionPolicy.cancel)

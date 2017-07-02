@@ -118,10 +118,9 @@ class ShotsController: UIViewController, ListContainer {
             _self.collectionView.performBatchUpdates(updates, completion: completion)
         }
         
-        UserService.shared.authorizeSignal.observeValues { [weak self] (_) in
+        OAuthService.shared.authorizeTokenSignal.observeResult({ [weak self] (result) in
             self?.viewModel.loadFirstPageData()
-        }
-        
+        })
     }
 }
 

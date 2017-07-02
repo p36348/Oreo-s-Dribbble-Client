@@ -31,7 +31,7 @@ class TabBarController: UITabBarController {
     }
     
     dynamic private func clickLeftItem(sender: UIBarButtonItem) {
-        let isAuth = UserService.shared.currentUser.accessToken != GlobalConstant.Client.accessToken
+        let isAuth = OAuthService.shared.accessToken != GlobalConstant.Client.accessToken
         
         if isAuth {
             navigationController?.pushViewController(UserInfoController(), animated: true)
@@ -41,8 +41,18 @@ class TabBarController: UITabBarController {
     }
     
     private func bindViewModel() {
-        UserService.shared.authorizeSignal.observeCompleted {
+        OAuthService.shared.authorizeTokenSignal.observeResult({ (result) in
+            guard let _value = result.value else { return }
+            
+            self.handle(authorized: _value == .authorized)
+        })
+    }
+    
+    private func handle(authorized: Bool) {
+        if authorized {
             self.presentedViewController?.dismiss(animated: true, completion: nil)
+        }else {
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
 }
