@@ -2,4 +2,70 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/OAuthSwift/Sources/OAuth2Swift.swift"
+            timestampString = "520678844.919767"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "authorize(withCallbackURL:scope:state:parameters:headers:success:failure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/OAuthSwift/Sources/OAuth2Swift.swift"
+            timestampString = "520678895.55001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "authorize(withCallbackURL:scope:state:parameters:headers:success:failure:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OAuthSwift.OAuth2Swift.authorize (withCallbackURL : Foundation.URL, scope : Swift.String, state : Swift.String, parameters : Swift.Dictionary&lt;Swift.String, Any&gt;, headers : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, success : (OAuthSwift.OAuthSwiftCredential, Swift.Optional&lt;OAuthSwift.OAuthSwiftResponse&gt;, Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; (), failure : Swift.Optional&lt;(OAuthSwift.OAuthSwiftError) -&gt; ()&gt;) -&gt; Swift.Optional&lt;OAuthSwift.OAuthSwiftRequestHandle&gt;"
+                  moduleName = "OAuthSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/p36348/Documents/OreosDrib/Pods/OAuthSwift/Sources/OAuth2Swift.swift"
+                  timestampString = "520684106.952639"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OAuthSwift.OAuth2Swift.(authorize (withCallbackURL : Foundation.URL, scope : Swift.String, state : Swift.String, parameters : Swift.Dictionary&lt;Swift.String, Any&gt;, headers : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, success : (OAuthSwift.OAuthSwiftCredential, Swift.Optional&lt;OAuthSwift.OAuthSwiftResponse&gt;, Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; (), failure : Swift.Optional&lt;(OAuthSwift.OAuthSwiftError) -&gt; ()&gt;) -&gt; Swift.Optional&lt;OAuthSwift.OAuthSwiftRequestHandle&gt;).(closure #1)"
+                  moduleName = "OAuthSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/p36348/Documents/OreosDrib/Pods/OAuthSwift/Sources/OAuth2Swift.swift"
+                  timestampString = "520684106.954455"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

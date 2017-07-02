@@ -152,6 +152,9 @@
 		955355001EE80960006AB961 /* ShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955354FF1EE80960006AB961 /* ShotService.swift */; };
 		955355011EE80960006AB961 /* ShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955354FF1EE80960006AB961 /* ShotService.swift */; };
 		955355021EE80960006AB961 /* ShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955354FF1EE80960006AB961 /* ShotService.swift */; };
+		957B1DEF1F08AAEC0047FBEE /* Date+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */; };
+		957B1DF01F08AAEC0047FBEE /* Date+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */; };
+		957B1DF11F08AAEC0047FBEE /* Date+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */; };
 		95AACABD1EE9C3F800FB7FB5 /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AACABC1EE9C3F800FB7FB5 /* ChatListController.swift */; };
 		95AACABE1EE9C3F800FB7FB5 /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AACABC1EE9C3F800FB7FB5 /* ChatListController.swift */; };
 		95AACABF1EE9C3F800FB7FB5 /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AACABC1EE9C3F800FB7FB5 /* ChatListController.swift */; };
@@ -262,6 +265,7 @@
 		955354F71EE6C5E5006AB961 /* APIHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandle.swift; sourceTree = "<group>"; };
 		955354FB1EE80118006AB961 /* JobService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobService.swift; sourceTree = "<group>"; };
 		955354FF1EE80960006AB961 /* ShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotService.swift; sourceTree = "<group>"; };
+		957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Handle.swift"; sourceTree = "<group>"; };
 		95AACABC1EE9C3F800FB7FB5 /* ChatListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
 		95AACAC01EE9C41300FB7FB5 /* ChatDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailController.swift; sourceTree = "<group>"; };
 		95AE77601EFB6FF1007B387E /* CoreTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreTextView.swift; sourceTree = "<group>"; };
@@ -394,6 +398,7 @@
 				953C32E01F00E78A009759D2 /* ListController */,
 				3B0B47E91EE6A3B9006288FA /* String+Handle.swift */,
 				952C533C1EF88C6A006FC712 /* Dictionary+Handle.swift */,
+				957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */,
 				952C53421EF88C6A006FC712 /* SystemInfo.swift */,
 				954070101EFB23F000F7195F /* Image+Handle.swift */,
 				955354F71EE6C5E5006AB961 /* APIHandle.swift */,
@@ -930,6 +935,7 @@
 				955355001EE80960006AB961 /* ShotService.swift in Sources */,
 				3B0B48051EE6A3B9006288FA /* String+Handle.swift in Sources */,
 				952C53471EF88C6A006FC712 /* ReactiveError.swift in Sources */,
+				957B1DEF1F08AAEC0047FBEE /* Date+Handle.swift in Sources */,
 				953C33191F03D696009759D2 /* ShotDetailController.swift in Sources */,
 				953C32F11F023060009759D2 /* UIImageView+Kf.swift in Sources */,
 				953C337E1F050090009759D2 /* ESPullToRefresh.swift in Sources */,
@@ -985,6 +991,7 @@
 				952C53691EF892CE006FC712 /* Animation.swift in Sources */,
 				3B0B48121EE6A3B9006288FA /* WaterFallCell.swift in Sources */,
 				952C53771EF8C904006FC712 /* runtime+UIControl.swift in Sources */,
+				957B1DF01F08AAEC0047FBEE /* Date+Handle.swift in Sources */,
 				952C536D1EF8BA33006FC712 /* UIFont+Extension.swift in Sources */,
 				952C53451EF88C6A006FC712 /* Dictionary+Handle.swift in Sources */,
 				953C32E51F00E971009759D2 /* WaterFallController.swift in Sources */,
@@ -1043,6 +1050,7 @@
 				952C536A1EF892CE006FC712 /* Animation.swift in Sources */,
 				3B0B48131EE6A3B9006288FA /* WaterFallCell.swift in Sources */,
 				952C53781EF8C904006FC712 /* runtime+UIControl.swift in Sources */,
+				957B1DF11F08AAEC0047FBEE /* Date+Handle.swift in Sources */,
 				952C536E1EF8BA33006FC712 /* UIFont+Extension.swift in Sources */,
 				952C53461EF88C6A006FC712 /* Dictionary+Handle.swift in Sources */,
 				953C32E61F00E971009759D2 /* WaterFallController.swift in Sources */,

@@ -13,21 +13,18 @@ import RealmSwift
 
 private let defaultAccessToken: String = GlobalConstant.Client.accessToken
 
-private var dateFormatter: DateFormatter = {
-    let _dateFormatter = DateFormatter()
-    
-    _dateFormatter.dateFormat = "yyyy-MM-ddThh:mm:ssz"
-    
-    return _dateFormatter
-}()
+private let defaultUID: String = "default_uid"
 
-class User {
+class User: Object {
     
-    static let current: User =  User()
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+    override class func ignoredProperties() -> [String] {
+        return ["creatDate"]
+    }
     
-    init(){}
-    
-    var id:   String = ""
+    var id:   String = defaultUID
     
     var name: String = ""
     
@@ -44,17 +41,13 @@ class User {
     var createdAt: String = ""
     
     var creatDate: Date? {
-        return dateFormatter.date(from: createdAt)
+        return Date.dribbbleDate(string: createdAt)
     }
     
     var accessToken: String = defaultAccessToken
     
-    init(json: JSON) {
-        self.configureData(with: json)
-    }
-    
     func setDefault() {
-        id = ""
+        id = defaultUID
         name = ""
         userName = ""
         avator = ""
@@ -63,6 +56,25 @@ class User {
         bio  = ""
         accessToken = defaultAccessToken
     }
+}
+
+// MARK: - data base
+extension Realm {
+    func add(user: User) {
+        do {
+            try write {
+                add(user, update: true)
+            }
+        } catch let error {
+            print("fail add user", error)
+        }
+    }
+    
+    var sharedUser: User? {
+        return objects(User.self).first
+    }
+    
+    
 }
 
 extension User {

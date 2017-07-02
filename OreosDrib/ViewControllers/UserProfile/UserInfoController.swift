@@ -164,7 +164,7 @@ extension UserInfoController {
         
         var (updateSignal, updateObserver) = Signal<User, NoError>.pipe()
         
-        var sectionHeaderViewModel: SectionHeader.ViewModel = SectionHeader.ViewModel(with: User.current)
+        var sectionHeaderViewModel: SectionHeader.ViewModel = SectionHeader.ViewModel(with: UserService.shared.currentUser)
         
         var cellViewModels: [TableCellViewModel] = []
         

@@ -9,7 +9,9 @@
 import UIKit
 import WebKit
 
-private let redirect_uri = "oreosdrib://oauth-callback"
+private let redirect_uri = "OreosDrib://oauth-callback/dribbble"
+
+private let host: String = "oauth-callback"
 
 private func finalUrl(scope: String) -> URL? {
     return URL(string: "https://dribbble.com/oauth/authorize?client_id=\(GlobalConstant.Client.id)&scope=\(scope)")
@@ -17,6 +19,8 @@ private func finalUrl(scope: String) -> URL? {
 
 
 class OAuthController: UIViewController {
+    
+    fileprivate let dismissButton: UIButton = UIButton(type: UIButtonType.custom)
     
     fileprivate let progressView: UIProgressView = UIProgressView()
     
@@ -42,9 +46,15 @@ class OAuthController: UIViewController {
         
         webView.uiDelegate = self
         
+        dismissButton.addTarget(self, action: NSSelectorFromString("dismiss"), for: UIControlEvents.touchUpInside)
+        
+        dismissButton.setImage(#imageLiteral(resourceName: "DismissButton"), for: .normal)
+        
         view.addSubview(webView)
         
         view.addSubview(progressView)
+        
+        view.addSubview(dismissButton)
         
         webView.snp.makeConstraints { (make) in
             make.edges.equalTo(UIEdgeInsets.zero)
@@ -52,6 +62,14 @@ class OAuthController: UIViewController {
     
         progressView.snp.makeConstraints { (make) in
             make.leading.trailing.top.equalTo(view)
+        }
+        
+        dismissButton.snp.makeConstraints { (make) in
+            make.leading.equalTo(view).offset(20)
+            
+            make.centerY.equalTo(view.snp.top).offset(44)
+            
+            make.size.equalTo(CGSize(width: 44, height: 44))
         }
     }
     
@@ -65,11 +83,15 @@ class OAuthController: UIViewController {
         
         webView.load(request)
     }
+    
+    dynamic private func dismiss() {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension OAuthController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        let isOauthCallBack: Bool = navigationAction.request.url?.absoluteString.hasPrefix(redirect_uri) == true
+        let isOauthCallBack: Bool = navigationAction.request.url?.host == host
         
         guard isOauthCallBack else { return decisionHandler(WKNavigationActionPolicy.allow) }
         

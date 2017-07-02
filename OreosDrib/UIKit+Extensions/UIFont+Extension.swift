@@ -16,6 +16,7 @@ private let ArialMT: String = "ArialMT"
 
 private let ArialBoldMT: String = "Arial-BoldMT"
 
+// MARK: - theme
 extension UIFont {
     
     static var title: UIFont {
@@ -34,4 +35,21 @@ extension UIFont {
         return UIFont(name: ArialMT, size: 17)!
     }
     
+}
+
+// MARK: - caculate
+extension UIFont {
+    func size(of string: String, maxWidth: CGFloat) -> CGSize {
+        return NSString(string: string).boundingRect(with: CGSize(width: Double(maxWidth), height: Double.greatestFiniteMagnitude),
+                                                     options: NSStringDrawingOptions.usesLineFragmentOrigin,
+                                                     attributes: [NSFontAttributeName: self],
+                                                     context: nil).size
+    }
+    
+    func size(of string: String, maxHeight: CGFloat) -> CGSize {
+        return NSString(string: string).boundingRect(with: CGSize(width: Double.greatestFiniteMagnitude, height: Double(maxHeight)),
+                                                     options: NSStringDrawingOptions.usesFontLeading,
+                                                     attributes: [NSFontAttributeName: self],
+                                                     context: nil).size
+    }
 }

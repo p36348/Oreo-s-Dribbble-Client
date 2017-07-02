@@ -10,6 +10,9 @@ import Foundation
 import RealmSwift
 import SwiftyJSON
 
+/**
+ * 数据管理, 每个user单独一个realm, 每个realm只会存一个对应user
+ */
 struct RealmManager {
     static var shared: RealmManager = RealmManager()
     private init() {}

@@ -10,6 +10,7 @@ import Foundation
 
 extension NSObject {
     
+    /// 全部属性名称
     static var propertyNames: [String] {
         var outCount = UInt32(0)
         let properties = class_copyPropertyList(self.classForCoder(), &outCount)
@@ -21,6 +22,7 @@ extension NSObject {
         return _propertyNames
     }
     
+    /// 全部函数名称
     static var functionNames: [String] {
         var outCount = UInt32(0)
         let functions = class_copyMethodList(self.classForCoder(), &outCount)

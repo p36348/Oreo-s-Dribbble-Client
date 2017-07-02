@@ -25,11 +25,13 @@ class TabBarController: UITabBarController {
     
     private func configureSubviews() {
         
+        view.backgroundColor = .white
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.organize, target: self, action: #selector(clickLeftItem(sender:)))
     }
     
     dynamic private func clickLeftItem(sender: UIBarButtonItem) {
-        let isAuth = User.current.accessToken != GlobalConstant.Client.accessToken
+        let isAuth = UserService.shared.currentUser.accessToken != GlobalConstant.Client.accessToken
         
         if isAuth {
             navigationController?.pushViewController(UserInfoController(), animated: true)
@@ -39,7 +41,7 @@ class TabBarController: UITabBarController {
     }
     
     private func bindViewModel() {
-        UserService.shared.authorizeSignal.observeValues { (_) in
+        UserService.shared.authorizeSignal.observeCompleted {
             self.presentedViewController?.dismiss(animated: true, completion: nil)
         }
     }

@@ -25,7 +25,7 @@
 			<string>dribbbleCallback</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>oreosdrib://oauth-callback</string>
+				<string>OreosDrib</string>
 			</array>
 		</dict>
 	</array>

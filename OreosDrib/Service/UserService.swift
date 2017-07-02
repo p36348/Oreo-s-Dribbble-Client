@@ -11,6 +11,7 @@ import SwiftyJSON
 import ReactiveSwift
 import Alamofire
 import Result
+import RealmSwift
 
 /// 接口 -http://developer.dribbble.com/v1/users/
 private struct API {
@@ -33,13 +34,19 @@ private struct API {
     
     static let following: String = "/users/:user/following"
     
-    static let authorize: String = "https://dribbble.com/oauth/token"
+    static let authorizeToken: String = "https://dribbble.com/oauth/token"
     
 }
+
+private let currentUIDKey: String = "user_service_current_uid_key"
 
 class UserService {
     
     static let shared: UserService = UserService()
+    
+    var currentUser: User { return _currentUser }
+    
+    fileprivate var _currentUser: User = User()
     
     var (userInfoSignal, userInfoObserver) = Signal<User, NoError>.pipe()
     
@@ -47,7 +54,14 @@ class UserService {
     
     private var signInRequest: DataRequest?
     
-    private init(){}
+    private init(){
+        /**
+         * 响应用户数据更新,缓存数据到本地
+         */
+        userInfoSignal.observeValues { (user) in
+            self.saveUserToDataBase(user: user)
+        }
+    }
     
     func sign(userName: String, password: String) -> NetworkResponse {
         
@@ -60,7 +74,7 @@ class UserService {
             /*
              更新User模型数据
              */
-            User.current.configureData(with: _result)
+            self.currentUser.configureData(with: _result)
         }
         
         signInRequest = response.request
@@ -80,12 +94,11 @@ class UserService {
     func getCurrent() -> NetworkResponse {
         let response: NetworkResponse = ReactiveNetwork.shared.get(url: API.authenticatedUser)
         response.signal.observeResult { (result) in
-            guard let _result = result.value else { return }
+            guard let _json = result.value else { return }
             /*
              更新User模型数据
              */
-            User.current.configureData(with: _result)
-            self.userInfoObserver.send(value: User.current)
+            self.updateCurrentUser(with: _json)
         }
         return response
     }
@@ -107,18 +120,52 @@ class UserService {
     func authorizeToken(code: String) -> NetworkResponse {
         let params: Parameters = ["code": code, "client_id": GlobalConstant.Client.id, "client_secret": GlobalConstant.Client.secret]
         
-        let response: NetworkResponse = ReactiveNetwork.shared.post(url: API.authorize, parameters: params)
+        let response: NetworkResponse = ReactiveNetwork.shared.post(url: API.authorizeToken, parameters: params)
         
         response.signal.observeResult { (result) in
             
             guard let _value = result.value else { return }
             
-            User.current.accessToken = _value["access_token"].stringValue
+            UserService.shared.currentUser.accessToken = _value["access_token"].stringValue
             
-            self.authorizeObserver.send(value: true)
+            self.authorizeObserver.sendCompleted()
         }
         
         return response
+    }
+    
+    func signOut() {
+        
+    }
+}
+
+/**
+ * 通过UserDefault存放唯一登录的uid, uid为加载对应数据库的依据, user数据存于对应的数据库当中
+ */
+// MARK: - User数据本地化处理
+extension UserService {
+    func updateCurrentUser(with json: JSON) {
+        self.currentUser.configureData(with: json)
+        
+        UserDefaults.standard.set(currentUser.id, forKey: currentUIDKey)
+        
+        UserDefaults.standard.synchronize()
+        
+        self.userInfoObserver.send(value: currentUser)
+    }
+    
+    func loadUserFromDataBase() {
+        guard let _uid = UserDefaults.standard.string(forKey: currentUIDKey) else { return }
+        
+        guard let _user = RealmManager.shared.dataBase(of: _uid).sharedUser else { return }
+        
+        _currentUser = _user
+    }
+    
+    func saveUserToDataBase(user: User) {
+        let realm = RealmManager.shared.dataBase(of: user.id)
+        
+        realm.add(user: user)
     }
 }
 

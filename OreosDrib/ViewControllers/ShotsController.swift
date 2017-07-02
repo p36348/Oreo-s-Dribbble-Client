@@ -40,6 +40,8 @@ class ShotsController: UIViewController, ListContainer {
     }
     
     private func configureViews() {
+        
+        view.backgroundColor = UIColor.white
 
         collectionView.dataSource = self
         
@@ -162,10 +164,6 @@ struct ItemInfo {
     static var width: CGFloat {
         return (SystemInfo.screenSize.width - 30) / 2
     }
-    
-    static var size: CGSize {
-        return CGSize(width: ItemInfo.width, height: ItemInfo.width)
-    }
 }
 
 extension ShotsController {
@@ -199,7 +197,7 @@ extension ShotsController {
                     
                     _self.cellViewModels = result.value!.shots.map({ (shot) -> WaterFallCell.ViewModel in
                         
-                        return WaterFallCell.ViewModel(size: ItemInfo.size, shot: shot)
+                        return WaterFallCell.ViewModel(width: ItemInfo.width, shot: shot)
                     })
                     
                     DispatchQueue.main.sync {
@@ -222,7 +220,7 @@ extension ShotsController {
                         let originCount: Int = _self.cellViewModels.count
                         
                         let newViewModels: [WaterFallCell.ViewModel] = result.value!.shots.map({ (shot) -> WaterFallCell.ViewModel in
-                            return WaterFallCell.ViewModel(size: ItemInfo.size, shot: shot)
+                            return WaterFallCell.ViewModel(width: ItemInfo.width, shot: shot)
                         })
                         
                         var indexPaths: [IndexPath] = []

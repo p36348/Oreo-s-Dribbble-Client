@@ -11,7 +11,7 @@ pod 'Socket.IO-Client-Swift', '~> 10.0.0'
 pod 'RealmSwift'
 pod 'Kingfisher'
 pod 'Reveal-iOS-SDK', :configurations => ['Debug']
-#pod 'OAuthSwift'
+pod 'OAuthSwift', '~> 1.1.0'
 target 'OreosDrib' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!

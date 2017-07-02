@@ -97,7 +97,7 @@ extension ReactiveNetwork {
     
     /// 约定通用信息
     static var header: HTTPHeaders {
-        return ["Authorization": "Bearer " + User.current.accessToken]
+        return ["Authorization": "Bearer " + UserService.shared.currentUser.accessToken]
     }
     
     /// 约定通用参数

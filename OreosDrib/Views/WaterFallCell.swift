@@ -20,6 +20,8 @@ class WaterFallCell: UICollectionViewCell {
     
     let descriptionLabel: UILabel = UILabel()
     
+    let autherLabel: UILabel = UILabel()
+    
     let corners = makeCorners()
 
     override init(frame: CGRect) {
@@ -31,9 +33,21 @@ class WaterFallCell: UICollectionViewCell {
         
         imageView.runLoopMode = .defaultRunLoopMode
         
+        descriptionLabel.font = UIFont.contentNormal
+        
+        descriptionLabel.numberOfLines = 0
+        
+        autherLabel.font = UIFont.contentNormal
+        
+        autherLabel.textAlignment = .right
+        
+        autherLabel.numberOfLines = 0
+        
         contentView.addSubview(descriptionLabel)
         
         contentView.addSubview(imageView)
+        
+        contentView.addSubview(autherLabel)
         
         imageView.addSubview(corners.bottomLeft)
         
@@ -72,6 +86,10 @@ class WaterFallCell: UICollectionViewCell {
         descriptionLabel.text = _viewModel.descriptionContent
         
         descriptionLabel.frame = _viewModel.descriptionLabelFrame
+        
+//        autherLabel.text = _viewModel.autherContent
+//        
+//        autherLabel.frame = _viewModel.autherFrame
     }
     
     override func endUpdate() {
@@ -79,6 +97,10 @@ class WaterFallCell: UICollectionViewCell {
     }
 
 }
+
+private let hPadding: CGFloat = 5
+
+private let vPadding: CGFloat = 10
 
 extension WaterFallCell {
     
@@ -96,15 +118,28 @@ extension WaterFallCell {
         
         var descriptionLabelFrame: CGRect = .zero
         
-        init(size: CGSize, shot: Shot) {
-            self.size = size
+        var autherContent: String = ""
+        
+        var autherFrame: CGRect = .zero
+        
+        init(width: CGFloat, shot: Shot) {
             imageUrl = shot.images?.normal ?? ""
             
-            imageViewFrame = CGRect(x: 0, y: 0, width: size.width, height: size.width * 3 / 4)
+            imageViewFrame = CGRect(x: 0, y: 0, width: width, height: width * 3 / 4)
             
             descriptionContent = shot.title
             
-            descriptionLabelFrame = CGRect(x: 10, y: imageViewFrame.maxY + 10, width: size.width - 20, height: 25)
+            let descSize: CGSize = UIFont.contentNormal.size(of: shot.title, maxWidth: width - hPadding * 2)
+            
+            descriptionLabelFrame = CGRect(x: hPadding, y: imageViewFrame.maxY + vPadding, width: descSize.width, height: descSize.height)
+            
+//            autherContent = "by " + shot.user.name
+//            
+//            let authSize: CGSize = UIFont.contentNormal.size(of: autherContent, maxWidth: width - hPadding * 2)
+//            
+//            autherFrame = CGRect(x: hPadding + (width - hPadding - authSize.width), y: descriptionLabelFrame.maxY + vPadding, width: authSize.width, height: authSize.height)
+            
+            size = CGSize(width: width, height: descriptionLabelFrame.maxY + vPadding)
         }
     }
     
