@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="x8m-Yg-NEj">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Shots-->
+        <scene sceneID="05l-3n-9Ub">
+            <objects>
+                <navigationController id="p3x-z7-aCk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Shots" id="DOu-AD-sfC"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nVc-Yo-0QW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="B9l-vm-RNZ" kind="relationship" relationship="rootViewController" id="AHM-Ce-zdn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DAJ-Df-8KU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-210" y="1073"/>
+        </scene>
+        <!--Shots-->
+        <scene sceneID="i37-Lc-NLY">
+            <objects>
+                <viewController id="B9l-vm-RNZ" customClass="ShotsController" customModule="OreosDrib" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tu0-TT-Scd"/>
+                        <viewControllerLayoutGuide type="bottom" id="shg-04-BuQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2VH-ab-4YL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Shots" id="IpM-xs-VnL"/>
+                    <navigationItem key="navigationItem" id="v9b-qG-CQD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5iT-xw-CME" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="799" y="1094"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0Ac-Sp-DeC">
+            <objects>
+                <navigationController id="x8m-Yg-NEj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wXj-3r-320">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="49e-Tb-3d3" kind="relationship" relationship="rootViewController" id="gxm-L2-Yz9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZH6-Gh-Pb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1126" y="35"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" customClass="TabBarController" customModule="OreosDrib" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="9Wy-SZ-3sJ"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="p3x-z7-aCk" kind="relationship" relationship="viewControllers" id="nOr-78-47F"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-193" y="9"/>
+        </scene>
+    </scenes>
+</document>
