@@ -10,23 +10,6 @@
     </dependencies>
     <scenes>
         <!--Shots-->
-        <scene sceneID="05l-3n-9Ub">
-            <objects>
-                <navigationController id="p3x-z7-aCk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Shots" id="DOu-AD-sfC"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nVc-Yo-0QW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="B9l-vm-RNZ" kind="relationship" relationship="rootViewController" id="AHM-Ce-zdn"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DAJ-Df-8KU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-210" y="1073"/>
-        </scene>
-        <!--Shots-->
         <scene sceneID="i37-Lc-NLY">
             <objects>
                 <viewController id="B9l-vm-RNZ" customClass="ShotsController" customModule="OreosDrib" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,25 +18,49 @@
                         <viewControllerLayoutGuide type="bottom" id="shg-04-BuQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2VH-ab-4YL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Shots" id="IpM-xs-VnL"/>
+                    <tabBarItem key="tabBarItem" title="Shots" image="TabBarIndex" id="IpM-xs-VnL"/>
                     <navigationItem key="navigationItem" id="v9b-qG-CQD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5iT-xw-CME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="1094"/>
+            <point key="canvasLocation" x="-166" y="740"/>
+        </scene>
+        <!--Popular-->
+        <scene sceneID="uRK-7W-sUc">
+            <objects>
+                <viewController id="N4Q-ah-yDp" customClass="FollowingController" customModule="OreosDrib" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1ns-HV-GcC"/>
+                        <viewControllerLayoutGuide type="bottom" id="8vz-5y-W8m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jvu-5X-eDq">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Popular" image="TabBarPopular" id="Hmh-pl-1ak"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8il-fV-vIn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="847" y="482"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Ac-Sp-DeC">
             <objects>
                 <navigationController id="x8m-Yg-NEj" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wXj-3r-320">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="wXj-3r-320">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="G7X-23-rKU">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="49e-Tb-3d3" kind="relationship" relationship="rootViewController" id="gxm-L2-Yz9"/>
                     </connections>
@@ -74,7 +81,8 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="p3x-z7-aCk" kind="relationship" relationship="viewControllers" id="nOr-78-47F"/>
+                        <segue destination="B9l-vm-RNZ" kind="relationship" relationship="viewControllers" id="7NX-md-LkI"/>
+                        <segue destination="N4Q-ah-yDp" kind="relationship" relationship="viewControllers" id="Lwv-iM-p2R"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -82,4 +90,8 @@
             <point key="canvasLocation" x="-193" y="9"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TabBarIndex" width="27" height="27"/>
+        <image name="TabBarPopular" width="30" height="30"/>
+    </resources>
 </document>

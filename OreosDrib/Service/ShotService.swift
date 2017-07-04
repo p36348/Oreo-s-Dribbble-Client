@@ -35,7 +35,7 @@ struct ShotService {
     }()
     
     
-    func getList(list: ShotService.List = .all, timeframe: Timeframe = .ever, sort: Sort = .recent, page: Int = 1, date: Date) -> NetworkResponse {
+    func getList(list: ShotService.List, timeframe: Timeframe, sort: Sort, page: Int = 1, date: Date) -> NetworkResponse {
         
         var _parameters: Parameters = ["date": dateFormatter.string(from: date) ,"sort": sort.rawValue, "page": page]
         
@@ -64,10 +64,10 @@ extension ShotService {
         case animated = "animated", attachments = "attachments", debuts = "debuts", playoffs = "playoffs", rebounds = "rebounds", teams = "teams", all = ""
     }
     enum Sort: String {
-        case comments = "comments", recent = "recent", views = "views"
+        case comments = "comments", recent = "recent", views = "views", popularity = ""
     }
     enum Timeframe: String {
-        case week = "week", month = "month", year = "year", ever = "ever"
+        case week = "week", month = "month", year = "year", ever = "ever", now = ""
     }
 }
 

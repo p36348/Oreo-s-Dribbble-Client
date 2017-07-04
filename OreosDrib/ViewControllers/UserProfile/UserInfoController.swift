@@ -37,7 +37,7 @@ class UserInfoController: UIViewController {
     }
     
     private func configureSubviews() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "sign out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(UserInfoController.clickSignOut(sender:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "sign out", style: UIBarButtonItemStyle.done, target: self, action: #selector(UserInfoController.clickSignOut(sender:)))
     }
     
     private func bindViewModel() {

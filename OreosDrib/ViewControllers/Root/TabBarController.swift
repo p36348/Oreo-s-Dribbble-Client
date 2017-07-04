@@ -27,10 +27,18 @@ class TabBarController: UITabBarController {
         
         view.backgroundColor = .white
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.organize, target: self, action: #selector(clickLeftItem(sender:)))
+        navigationController?.navigationBar.barStyle = .black
+        
+        navigationController?.navigationBar.tintColor = .white
+        
+        navigationItem.leftBarButtonItem  = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.organize, target: self, action: #selector(clickLeftItem(sender:)))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(clickRightItem(sender:)))
+        
+        tabBar.tintColor = UIColor.Dribbble.pink
     }
     
-    dynamic private func clickLeftItem(sender: UIBarButtonItem) {
+    func clickLeftItem(sender: UIBarButtonItem) {
         let isAuth = OAuthService.shared.accessToken != GlobalConstant.Client.accessToken
         
         if isAuth {
@@ -38,6 +46,10 @@ class TabBarController: UITabBarController {
         }else {
             present(OAuthController(), animated: true, completion: nil)
         }
+    }
+    
+    func clickRightItem(sender: UIBarButtonItem) {
+        navigationController?.pushViewController(SearchController(), animated: true)
     }
     
     private func bindViewModel() {

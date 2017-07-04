@@ -12,6 +12,8 @@ import Result
 import ReactiveSwift
 import CHTCollectionViewWaterfallLayout
 
+
+/// 基础控制器 有待封装
 class ShotsController: UIViewController, ListContainer {
     
     var listView: UIScrollView { return self.collectionView }
@@ -172,9 +174,9 @@ extension ShotsController {
         
         var listType: ShotService.List = .all
         
-        var timeFrame: ShotService.Timeframe = .ever
+        var timeFrame: ShotService.Timeframe = .now
         
-        var sort: ShotService.Sort = .recent
+        var sort: ShotService.Sort = .popularity
         
         var date: Date = Date()
         
