@@ -87,13 +87,25 @@ class OAuthController: UIViewController {
     }
     
     private func cleanCache(){
-        let libraryDir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.allLibrariesDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)[0]
-        let bundleId   = Bundle.main.bundleIdentifier!
-        let webkitFolderInLib = libraryDir + "/WebKit"
-        let webKitFolderInCaches = libraryDir + "/Caches/" + bundleId + "/WebKit"
+        if #available(iOS 9, *) {
+            WKWebsiteDataStore.default().removeData(ofTypes: Set(arrayLiteral: WKWebsiteDataTypeCookies), modifiedSince: Date(timeIntervalSince1970: 0)) {
+                //TODO: handle
+            }
+        }else {
+            let libraryDir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.allLibrariesDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)[0]
+            let bundleId   = Bundle.main.bundleIdentifier!
+            let webkitFolderInLib = libraryDir + "/WebKit"
+            let webKitFolderInCaches = libraryDir + "/Caches/" + bundleId + "/WebKit"
+            
+            _ = try? FileManager.default.removeItem(atPath: webkitFolderInLib)
+            _ = try? FileManager.default.removeItem(atPath: webKitFolderInCaches)
+        }
+    }
+    
+    private func clear() {
         
-        _ = try? FileManager.default.removeItem(atPath: webkitFolderInLib)
-        _ = try? FileManager.default.removeItem(atPath: webKitFolderInCaches)
+        
+        
     }
     
     

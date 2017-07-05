@@ -51,15 +51,10 @@ class UserService {
     private var signInRequest: DataRequest?
     
     private init(){
-        // 加载本地数据
-        loadUserFromDataBase()
-        
         /**
-         * 响应用户数据更新,缓存数据到本地
+         * 加载本地数据
          */
-        userInfoSignal.observeValues { (user) in
-            self.saveUserToDataBase(user: user)
-        }
+        loadUserFromDataBase()
     }
     
     func sign(userName: String, password: String) -> NetworkResponse {
@@ -90,7 +85,7 @@ class UserService {
         return ReactiveNetwork.shared.get(url: API.singleUser.replace(user: user))
     }
     
-    func getCurrent() -> NetworkResponse {
+    func getCurrentUser() -> NetworkResponse {
         let response: NetworkResponse = ReactiveNetwork.shared.get(url: API.authenticatedUser)
         response.signal.observeResult { (result) in
             guard let _json = result.value else { return }
@@ -117,7 +112,7 @@ class UserService {
     }
     
     func logOut() {
-        currentUser.setDefault()
+        _currentUser = User()
     }
 }
 
@@ -129,13 +124,24 @@ class UserService {
 // MARK: - User数据本地化处理
 extension UserService {
     func updateCurrentUser(with json: JSON) {
-        self.currentUser.configureData(with: json)
         
-        UserDefaults.standard.set(currentUser.id, forKey: currentUIDKey)
+        let _id = json["id"].stringValue
         
-        UserDefaults.standard.synchronize()
+        let realm = RealmManager.shared.dataBase(of: _id)
         
-        self.userInfoObserver.send(value: currentUser)
+        do {
+            try realm.write {
+                self.currentUser.configureData(with: json)
+                
+                UserDefaults.standard.set(currentUser.id, forKey: currentUIDKey)
+                
+                UserDefaults.standard.synchronize()
+                
+                self.userInfoObserver.send(value: currentUser)
+            }
+        }catch let error {
+            print(error)
+        }
     }
     
     func loadUserFromDataBase() {
@@ -144,12 +150,6 @@ extension UserService {
         guard let _user = RealmManager.shared.dataBase(of: _uid).sharedUser else { return }
         
         _currentUser = _user
-    }
-    
-    func saveUserToDataBase(user: User) {
-        let realm = RealmManager.shared.dataBase(of: user.id)
-        
-        realm.add(user: user)
     }
 }
 

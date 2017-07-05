@@ -15,7 +15,7 @@ class UserInfoController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate var viewModel: ViewModel = ViewModel()
+    fileprivate var viewModel: ViewModel = ViewModel(userService: UserService.shared)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +38,7 @@ class UserInfoController: UIViewController {
     
     private func bindViewModel() {
         
-        viewModel.updateSignal.observeValues { [weak self] (user) in
-            
+        viewModel.updateSignal.observeCompleted { [weak self] in
             guard let _self = self else { return }
             
             _self.tableView.reloadData()
@@ -169,7 +168,10 @@ fileprivate class SectionHeader: UITableViewHeaderFooterView {
         var imageUrl: String = ""
         
         init(with user: User) {
-            
+            self.update(with: user)
+        }
+        
+        func update(with user: User) {
             imageUrl = user.avator
             
             name    = user.name
@@ -192,36 +194,41 @@ extension UserInfoController {
         
         var (updateSignal, updateObserver) = Signal<User, NoError>.pipe()
         
-        var sectionHeaderViewModel: SectionHeader.ViewModel = SectionHeader.ViewModel(with: UserService.shared.currentUser)
+        var sectionHeaderViewModel: SectionHeader.ViewModel 
         
-        var cellViewModels: [CellModel] = [CellModel(title: "Likes", detail: "\(UserService.shared.currentUser.likesCount)"),
-                                           CellModel(title: "Following", detail: "\(UserService.shared.currentUser.followingsCount)")]
+        var cellViewModels: [CellModel]
         
-        init() {
-            avatorSignal = UserService.shared.userInfoSignal.map({ (user) -> String in
+        init(userService: UserService) {
+            avatorSignal = userService.userInfoSignal.map({ (user) -> String in
                 return user.avator
             })
             
-            nameSignal = UserService.shared.userInfoSignal.map({ (user) -> String? in
+            nameSignal = userService.userInfoSignal.map({ (user) -> String? in
                 return user.name
             })
             
-            UserService.shared.userInfoSignal.observeValues { [weak self] (user) in
+            sectionHeaderViewModel = SectionHeader.ViewModel(with: userService.currentUser)
+            
+            cellViewModels = [CellModel(title: "Likes", detail: "\(userService.currentUser.likesCount)"),
+                              CellModel(title: "Following", detail: "\(userService.currentUser.followingsCount)")]
+            
+            userService.userInfoSignal.observeValues { [weak self] (user) in
                 
                 guard let _self = self else { return }
                 
-                _self.sectionHeaderViewModel = SectionHeader.ViewModel(with: user)
+                _self.sectionHeaderViewModel.update(with: user)
                 
                 _self.cellViewModels[0].detail = "\(user.likesCount)"
                 
                 _self.cellViewModels[1].detail = "\(user.followingsCount)"
                 
-                _self.updateObserver.send(value: user)
+                _self.updateObserver.sendCompleted()
             }
         }
         
         func loadUserInfo() {
-            let _ = UserService.shared.getCurrent()
+        
+            let _ = UserService.shared.getCurrentUser()
         }
         
         func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

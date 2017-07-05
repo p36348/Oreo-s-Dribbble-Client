@@ -16,7 +16,7 @@ class WaterFallCell: UICollectionViewCell {
     
     // views
     
-    let imageView: AnimatedImageView = AnimatedImageView()
+    let imageView: UIImageView = UIImageView()
     
     let descriptionLabel: UILabel = UILabel()
     
@@ -31,13 +31,13 @@ class WaterFallCell: UICollectionViewCell {
         
         imageView.kf.indicatorType = .activity
         
-        imageView.runLoopMode = .defaultRunLoopMode
-        
         descriptionLabel.textColor = UIColor.Dribbble.charcoal
         
         descriptionLabel.font = UIFont.contentNormal
         
         descriptionLabel.numberOfLines = 0
+        
+        autherLabel.textColor = UIColor.Dribbble.slate
         
         autherLabel.font = UIFont.contentNormal
         
@@ -89,9 +89,9 @@ class WaterFallCell: UICollectionViewCell {
         
         descriptionLabel.frame = _viewModel.descriptionLabelFrame
         
-//        autherLabel.text = _viewModel.autherContent
-//        
-//        autherLabel.frame = _viewModel.autherFrame
+        autherLabel.text = _viewModel.autherContent
+        
+        autherLabel.frame = _viewModel.autherFrame
     }
     
     override func endUpdate() {
@@ -135,13 +135,13 @@ extension WaterFallCell {
             
             descriptionLabelFrame = CGRect(x: hPadding, y: imageViewFrame.maxY + vPadding, width: descSize.width, height: descSize.height)
             
-//            autherContent = "by " + shot.user.name
-//            
-//            let authSize: CGSize = UIFont.contentNormal.size(of: autherContent, maxWidth: width - hPadding * 2)
-//            
-//            autherFrame = CGRect(x: hPadding + (width - hPadding - authSize.width), y: descriptionLabelFrame.maxY + vPadding, width: authSize.width, height: authSize.height)
+            autherContent = shot.user.name
             
-            size = CGSize(width: width, height: descriptionLabelFrame.maxY + vPadding)
+            let authSize: CGSize = UIFont.contentNormal.size(of: autherContent, maxWidth: width - hPadding * 2)
+            
+            autherFrame = CGRect(x: hPadding + (width - hPadding - authSize.width), y: descriptionLabelFrame.maxY + vPadding, width: authSize.width, height: authSize.height)
+            
+            size = CGSize(width: width, height: autherFrame.maxY + vPadding)
         }
     }
     

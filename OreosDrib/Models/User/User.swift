@@ -15,48 +15,32 @@ private let defaultUID: String = "default_uid"
 
 class User: Object {
     
-    override class func primaryKey() -> String? {
-        return "id"
-    }
     override class func ignoredProperties() -> [String] {
         return ["creatDate"]
     }
     
-    var id:   String = defaultUID
+    dynamic var id:   String = defaultUID
     
-    var name: String = ""
+    dynamic var name: String = ""
     
-    var userName: String = ""
+    dynamic var userName: String = ""
     
-    var avator:   String = ""
+    dynamic var avator:   String = ""
     
-    var location: String = ""
+    dynamic var location: String = ""
     
-    var html: String = ""
+    dynamic var html: String = ""
     
-    var bio: String = ""
+    dynamic var bio: String = ""
     
-    var createdAt: String = ""
+    dynamic var createdAt: String = ""
     
-    var likesCount: Int = 0
+    dynamic var likesCount: Int = 0
     
-    var followingsCount: Int = 0
+    dynamic var followingsCount: Int = 0
     
     var creatDate: Date? {
         return Date.dribbbleDate(string: createdAt)
-    }
-        
-    func setDefault() {
-        id = defaultUID
-        name = ""
-        userName = ""
-        avator = ""
-        location = ""
-        html = ""
-        bio  = ""
-        createdAt = ""
-        likesCount = 0
-        followingsCount = 0
     }
 }
 
@@ -65,7 +49,7 @@ extension Realm {
     func add(user: User) {
         do {
             try write {
-                add(user, update: true)
+                add(user, update: false)
             }
         } catch let error {
             print("fail add user", error)
@@ -73,7 +57,7 @@ extension Realm {
     }
     
     var sharedUser: User? {
-        return objects(User.self).first
+        return Array<User>(objects(User.self)).first
     }
     
     
@@ -95,20 +79,6 @@ extension User {
         followingsCount = json["followings_count"].intValue
     }
 }
-/**
- {
- "id" : 1,
- "name" : "Dan Cederholm",
- "username" : "simplebits",
- "html_url" : "https://dribbble.com/simplebits",
- "avatar_url" : "https://d13yacurqjgara.cloudfront.net/users/1/avatars/normal/dc.jpg?1371679243",
- "bio" : "Co-founder &amp; designer of <a href=\"https://dribbble.com/dribbble\">@Dribbble</a>. Principal of SimpleBits. Aspiring clawhammer banjoist.",
- "location" : "Salem, MA",
- "links" : {
- "web" : "http://simplebits.com",
- "twitter" : "https://twitter.com/simplebits"
- },
- */
 
 
 /**
