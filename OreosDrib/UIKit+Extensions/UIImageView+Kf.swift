@@ -1,5 +1,5 @@
 //
-//  UIImageView+Kf.swift
+//  UIImageView+kf.swift
 //  OreosDrib
 //
 //  Created by P36348 on 27/6/2017.
@@ -8,10 +8,12 @@
 
 import Foundation
 import UIKit
-
+import Kingfisher
 extension UIImageView {
-    func setImage(urlString: String) {
+    
+    func setImage(urlString: String, placeholder: UIImage? = nil) {
         guard let _url = URL(string: urlString) else {return}
-        self.kf.setImage(with: _url)
+        
+        self.kf.setImage(with: _url, placeholder: placeholder)
     }
 }

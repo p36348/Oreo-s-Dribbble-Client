@@ -30,18 +30,22 @@ struct ShotService {
     
     private let dateFormatter: DateFormatter = {
         let _formatter: DateFormatter = DateFormatter()
+        
         _formatter.dateFormat = "YYYY-MM-dd"
+        
+        _formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return _formatter
     }()
     
     
-    func getList(list: ShotService.List, timeframe: Timeframe, sort: Sort, page: Int = 1, date: Date) -> NetworkResponse {
+    func getList(page: Int = 1, list: ShotService.List, timeframe: Timeframe, sort: Sort, date: Date) -> NetworkResponse {
         
-        var _parameters: Parameters = ["date": dateFormatter.string(from: date) ,"sort": sort.rawValue, "page": page]
+        let _parameters: Parameters = ["date": dateFormatter.string(from: date),
+                                       "sort": sort.rawValue,
+                                       "page": page,
+                                       "list": list.rawValue,
+                                       "timeframe": timeframe.rawValue]
         
-        if list != .all { _parameters["list"] = list.rawValue }
-        
-        if sort != .recent {_parameters["timeframe"] = timeframe.rawValue}
         
         let response = ReactiveNetwork.shared.get(url: API.list, parameters: _parameters)
         

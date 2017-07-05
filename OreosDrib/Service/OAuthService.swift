@@ -84,6 +84,9 @@ class OAuthService {
         return response
     }
     
+    /**
+     * 重置token
+     */
     func resetToken() {
         accessToken = defaultAccessToken
         

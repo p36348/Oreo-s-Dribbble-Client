@@ -88,7 +88,7 @@ class ShotsController: UIViewController, ListContainer {
                 return
             }
             
-            _self.collectionView.reloadData()
+            _self.collectionView.reloadSections([0])
             
             _self.collectionView.es.stopPullToRefresh()
         }
@@ -172,7 +172,7 @@ extension ShotsController {
         
         var cellViewModels: [WaterFallCell.ViewModel] = []
         
-        var listType: ShotService.List = .all
+        var list: ShotService.List = .all
         
         var timeFrame: ShotService.Timeframe = .now
         
@@ -187,6 +187,9 @@ extension ShotsController {
         var (loadMoreDataSignal, loadMoreDataObserver) = Signal<[IndexPath], ReactiveError>.pipe()
         
         init() {
+            /**
+             * 第一页网络请求完成
+             */
             ShotService.shared.shotListSignal.filter { (result) -> Bool in
                 return result.page == 1
             }.observeResult { [weak self] (result) in
@@ -201,14 +204,23 @@ extension ShotsController {
                         return WaterFallCell.ViewModel(width: ItemInfo.width, shot: shot)
                     })
                     
+                    var indexPaths: [IndexPath] = []
+                    
+                    (0..<_self.cellViewModels.count).forEach { (index) in
+                        indexPaths.append(IndexPath(item: index, section: 0))
+                    }
+                    
                     DispatchQueue.main.sync {
-                        _self.firstPageObserver.send(value: [])
+                        _self.firstPageObserver.send(value: indexPaths)
                     }
                 }
                 
                 
             }
             
+            /**
+             * 翻页网络请求完成
+             */
             ShotService.shared.shotListSignal.filter {(result) -> Bool in
                 return result.page != 1
                 }.observeResult { [weak self] (result) in
@@ -258,7 +270,7 @@ extension ShotsController {
         }
         
         func fetchData() {
-            let _ = ShotService.shared.getList(list: listType, timeframe: timeFrame, sort: sort, page: currentPage, date: Date())
+            let _ = ShotService.shared.getList(page: currentPage, list: list, timeframe: timeFrame, sort: sort, date: self.date)
         }
     }
 }

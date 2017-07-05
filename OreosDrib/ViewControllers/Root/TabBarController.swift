@@ -30,8 +30,8 @@ class TabBarController: UITabBarController {
         navigationController?.navigationBar.barStyle = .black
         
         navigationController?.navigationBar.tintColor = .white
-        
-        navigationItem.leftBarButtonItem  = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.organize, target: self, action: #selector(clickLeftItem(sender:)))
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "SettingButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(clickLeftItem(sender:)))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(clickRightItem(sender:)))
         

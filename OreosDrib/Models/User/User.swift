@@ -38,6 +38,10 @@ class User: Object {
     
     var createdAt: String = ""
     
+    var likesCount: Int = 0
+    
+    var followingsCount: Int = 0
+    
     var creatDate: Date? {
         return Date.dribbbleDate(string: createdAt)
     }
@@ -51,6 +55,8 @@ class User: Object {
         html = ""
         bio  = ""
         createdAt = ""
+        likesCount = 0
+        followingsCount = 0
     }
 }
 
@@ -85,6 +91,8 @@ extension User {
         html = json["html_url"].stringValue
         bio = json["bio"].stringValue
         createdAt = json["created_at"].stringValue
+        likesCount = json["likes_count"].intValue
+        followingsCount = json["followings_count"].intValue
     }
 }
 /**

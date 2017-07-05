@@ -80,9 +80,9 @@
 		953C32ED1F00F9D3009759D2 /* ListContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32EC1F00F9D3009759D2 /* ListContainer.swift */; };
 		953C32EE1F00F9D3009759D2 /* ListContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32EC1F00F9D3009759D2 /* ListContainer.swift */; };
 		953C32EF1F00F9D3009759D2 /* ListContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32EC1F00F9D3009759D2 /* ListContainer.swift */; };
-		953C32F11F023060009759D2 /* UIImageView+Kf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32F01F023060009759D2 /* UIImageView+Kf.swift */; };
-		953C32F21F023060009759D2 /* UIImageView+Kf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32F01F023060009759D2 /* UIImageView+Kf.swift */; };
-		953C32F31F023060009759D2 /* UIImageView+Kf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32F01F023060009759D2 /* UIImageView+Kf.swift */; };
+		953C32F11F023060009759D2 /* UIImageView+kf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32F01F023060009759D2 /* UIImageView+kf.swift */; };
+		953C32F21F023060009759D2 /* UIImageView+kf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32F01F023060009759D2 /* UIImageView+kf.swift */; };
+		953C32F31F023060009759D2 /* UIImageView+kf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32F01F023060009759D2 /* UIImageView+kf.swift */; };
 		953C32F51F035D70009759D2 /* UIView+ReloadExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32F41F035D70009759D2 /* UIView+ReloadExtension.swift */; };
 		953C32F61F035D70009759D2 /* UIView+ReloadExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32F41F035D70009759D2 /* UIView+ReloadExtension.swift */; };
 		953C32F71F035D70009759D2 /* UIView+ReloadExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C32F41F035D70009759D2 /* UIView+ReloadExtension.swift */; };
@@ -245,7 +245,7 @@
 		953C32E31F00E971009759D2 /* WaterFallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFallController.swift; sourceTree = "<group>"; };
 		953C32E71F00EB2D009759D2 /* ViewModel+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewModel+Configuration.swift"; sourceTree = "<group>"; };
 		953C32EC1F00F9D3009759D2 /* ListContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListContainer.swift; sourceTree = "<group>"; };
-		953C32F01F023060009759D2 /* UIImageView+Kf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kf.swift"; sourceTree = "<group>"; };
+		953C32F01F023060009759D2 /* UIImageView+kf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+kf.swift"; sourceTree = "<group>"; };
 		953C32F41F035D70009759D2 /* UIView+ReloadExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ReloadExtension.swift"; sourceTree = "<group>"; };
 		953C33211F04DC59009759D2 /* UserInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoController.swift; sourceTree = "<group>"; };
 		953C33221F04DC59009759D2 /* UserInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoController.xib; sourceTree = "<group>"; };
@@ -404,13 +404,13 @@
 				952C53401EF88C6A006FC712 /* Socket */,
 				952C533D1EF88C6A006FC712 /* Reactive */,
 				953C32E01F00E78A009759D2 /* ListController */,
-				3B0B47E91EE6A3B9006288FA /* String+Handle.swift */,
-				952C533C1EF88C6A006FC712 /* Dictionary+Handle.swift */,
-				957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */,
-				952C53421EF88C6A006FC712 /* SystemInfo.swift */,
 				954070101EFB23F000F7195F /* Image+Handle.swift */,
-				955354F71EE6C5E5006AB961 /* APIHandle.swift */,
+				952C533C1EF88C6A006FC712 /* Dictionary+Handle.swift */,
+				3B0B47E91EE6A3B9006288FA /* String+Handle.swift */,
+				957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */,
 				95AE77681EFCA881007B387E /* WKWebView+Handle.swift */,
+				955354F71EE6C5E5006AB961 /* APIHandle.swift */,
+				952C53421EF88C6A006FC712 /* SystemInfo.swift */,
 				95AE777D1EFE82FB007B387E /* GlobalConstants.swift */,
 			);
 			path = Vendors;
@@ -510,7 +510,7 @@
 				952C53571EF88CB9006FC712 /* UIColor+Extension.swift */,
 				952C536B1EF8BA33006FC712 /* UIFont+Extension.swift */,
 				952C53591EF88CB9006FC712 /* UIView+RoundCorner.swift */,
-				953C32F01F023060009759D2 /* UIImageView+Kf.swift */,
+				953C32F01F023060009759D2 /* UIImageView+kf.swift */,
 			);
 			path = "UIKit+Extensions";
 			sourceTree = "<group>";
@@ -972,7 +972,7 @@
 				3B0B48051EE6A3B9006288FA /* String+Handle.swift in Sources */,
 				952C53471EF88C6A006FC712 /* ReactiveError.swift in Sources */,
 				957B1DEF1F08AAEC0047FBEE /* Date+Handle.swift in Sources */,
-				953C32F11F023060009759D2 /* UIImageView+Kf.swift in Sources */,
+				953C32F11F023060009759D2 /* UIImageView+kf.swift in Sources */,
 				953C337E1F050090009759D2 /* ESPullToRefresh.swift in Sources */,
 				952C53501EF88C6A006FC712 /* SystemInfo.swift in Sources */,
 				957B1E441F0943560047FBEE /* SignController.swift in Sources */,
@@ -1065,7 +1065,7 @@
 				957B1E3C1F0943560047FBEE /* TabBarController.swift in Sources */,
 				955355011EE80960006AB961 /* ShotService.swift in Sources */,
 				955354F91EE6C5E5006AB961 /* APIHandle.swift in Sources */,
-				953C32F21F023060009759D2 /* UIImageView+Kf.swift in Sources */,
+				953C32F21F023060009759D2 /* UIImageView+kf.swift in Sources */,
 				954070121EFB23F000F7195F /* Image+Handle.swift in Sources */,
 				957B1E311F093A4D0047FBEE /* SearchController.swift in Sources */,
 				95AE777F1EFE82FB007B387E /* GlobalConstants.swift in Sources */,
@@ -1126,7 +1126,7 @@
 				957B1E3D1F0943560047FBEE /* TabBarController.swift in Sources */,
 				955355021EE80960006AB961 /* ShotService.swift in Sources */,
 				955354FA1EE6C5E5006AB961 /* APIHandle.swift in Sources */,
-				953C32F31F023060009759D2 /* UIImageView+Kf.swift in Sources */,
+				953C32F31F023060009759D2 /* UIImageView+kf.swift in Sources */,
 				954070131EFB23F000F7195F /* Image+Handle.swift in Sources */,
 				957B1E321F093A4D0047FBEE /* SearchController.swift in Sources */,
 				95AE77801EFE82FB007B387E /* GlobalConstants.swift in Sources */,

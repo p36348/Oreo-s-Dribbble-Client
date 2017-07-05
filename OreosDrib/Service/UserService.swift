@@ -116,7 +116,7 @@ class UserService {
         return ReactiveNetwork.shared.get(url: API.followers.replace(user: user))
     }
     
-    func signOut() {
+    func logOut() {
         currentUser.setDefault()
     }
 }

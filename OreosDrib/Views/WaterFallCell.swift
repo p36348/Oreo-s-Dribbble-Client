@@ -33,6 +33,8 @@ class WaterFallCell: UICollectionViewCell {
         
         imageView.runLoopMode = .defaultRunLoopMode
         
+        descriptionLabel.textColor = UIColor.Dribbble.charcoal
+        
         descriptionLabel.font = UIFont.contentNormal
         
         descriptionLabel.numberOfLines = 0

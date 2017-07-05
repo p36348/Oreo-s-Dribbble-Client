@@ -23,10 +23,6 @@ class UserInfoController: UIViewController {
         configureSubviews()
         
         bindViewModel()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         viewModel.loadUserInfo()
     }
@@ -52,7 +48,8 @@ class UserInfoController: UIViewController {
     
     dynamic func clickSignOut(sender: UIBarButtonItem) {
         OAuthService.shared.resetToken()
-        UserService.shared.signOut()
+        
+        UserService.shared.logOut()
     }
     
 }
@@ -61,12 +58,25 @@ class UserInfoController: UIViewController {
 extension UserInfoController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 300
+        return 200
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return viewModel.tableView(tableView, viewForHeaderInSection: section)
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: UITableViewCell.description())
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension UserInfoController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -74,29 +84,30 @@ extension UserInfoController: UITableViewDataSource {
     }
     
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: UITableViewCell.description())
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.textLabel?.text = viewModel.cellViewModels[indexPath.row].title
+        
+        cell.detailTextLabel?.text = viewModel.cellViewModels[indexPath.row].detail
     }
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.cellViewModels.count
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-// MARK: - UITableViewDelegate
-extension UserInfoController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-}
+private let dateFormatter: DateFormatter = {
+    
+    let _formatter = DateFormatter()
+    
+    _formatter.dateFormat = "MMM d, yyyy"
+    
+    return _formatter
+}()
 
 fileprivate class SectionHeader: UITableViewHeaderFooterView {
     
-    let imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 160, height: 160))
+    let imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
     
     let nameLabel: UILabel = UILabel()
     
@@ -108,6 +119,10 @@ fileprivate class SectionHeader: UITableViewHeaderFooterView {
         imageView.layer.cornerRadius = imageView.bounds.size.width / 2
         
         imageView.layer.masksToBounds = true
+        
+        nameLabel.textColor = UIColor.Dribbble.charcoal
+        
+        dateLabel.textColor = UIColor.Dribbble.slate
         
         contentView.addSubview(imageView)
         
@@ -134,8 +149,8 @@ fileprivate class SectionHeader: UITableViewHeaderFooterView {
     
     override func update() {
         guard let _viewModel = viewModel as? ViewModel else { return }
-        
-        imageView.setImage(urlString: _viewModel.imageUrl)
+                
+        imageView.setImage(urlString: _viewModel.imageUrl, placeholder: #imageLiteral(resourceName: "DefaultAvator"))
         
         nameLabel.text = _viewModel.name
         
@@ -159,7 +174,9 @@ fileprivate class SectionHeader: UITableViewHeaderFooterView {
             
             name    = user.name
             
-            date    = user.createdAt
+            guard let _date = Date.dribbbleDate(string: user.createdAt)?.dateAtCurrentZone else { return }
+            
+            date    = "Member Since: " + dateFormatter.string(from: _date)
         }
     }
 }
@@ -177,7 +194,8 @@ extension UserInfoController {
         
         var sectionHeaderViewModel: SectionHeader.ViewModel = SectionHeader.ViewModel(with: UserService.shared.currentUser)
         
-        var cellViewModels: [TableCellViewModel] = []
+        var cellViewModels: [CellModel] = [CellModel(title: "Likes", detail: "\(UserService.shared.currentUser.likesCount)"),
+                                           CellModel(title: "Following", detail: "\(UserService.shared.currentUser.followingsCount)")]
         
         init() {
             avatorSignal = UserService.shared.userInfoSignal.map({ (user) -> String in
@@ -193,6 +211,10 @@ extension UserInfoController {
                 guard let _self = self else { return }
                 
                 _self.sectionHeaderViewModel = SectionHeader.ViewModel(with: user)
+                
+                _self.cellViewModels[0].detail = "\(user.likesCount)"
+                
+                _self.cellViewModels[1].detail = "\(user.followingsCount)"
                 
                 _self.updateObserver.send(value: user)
             }
@@ -221,5 +243,11 @@ extension UserInfoController {
             return header
         }
         
+    }
+    
+    struct CellModel {
+        var title: String = ""
+        
+        var detail: String = ""
     }
 }
