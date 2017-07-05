@@ -67,7 +67,7 @@ class OAuthController: UIViewController {
         }
         
         dismissButton.snp.makeConstraints { (make) in
-            make.leading.equalTo(view).offset(20)
+            make.leading.equalTo(view).offset(5)
             
             make.centerY.equalTo(view.snp.top).offset(44)
             
@@ -101,13 +101,6 @@ class OAuthController: UIViewController {
             _ = try? FileManager.default.removeItem(atPath: webKitFolderInCaches)
         }
     }
-    
-    private func clear() {
-        
-        
-        
-    }
-    
     
     dynamic private func dismiss() {
         dismiss(animated: true, completion: nil)

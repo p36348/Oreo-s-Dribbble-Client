@@ -70,7 +70,7 @@ extension UserInfoController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return viewModel.cellViewModels.count
     }
 }
 
@@ -227,7 +227,6 @@ extension UserInfoController {
         }
         
         func loadUserInfo() {
-        
             let _ = UserService.shared.getCurrentUser()
         }
         

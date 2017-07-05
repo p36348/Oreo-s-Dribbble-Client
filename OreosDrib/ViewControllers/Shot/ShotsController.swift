@@ -138,8 +138,13 @@ extension ShotsController: UICollectionViewDataSource {
 extension ShotsController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let _controller = ShotDetailController()
         
+        _controller.configure(with: viewModel.shots[indexPath.row])
+        
+        navigationController?.pushViewController(_controller, animated: true)
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.endUpdate()
@@ -170,6 +175,8 @@ struct ItemInfo {
 extension ShotsController {
     class ViewModel {
         
+        var shots: [Shot] = []
+        
         var cellViewModels: [WaterFallCell.ViewModel] = []
         
         var list: ShotService.List = .all
@@ -198,6 +205,8 @@ extension ShotsController {
                 if let _error = result.error { return _self.firstPageObserver.send(error: _error) }
                 
                 DispatchQueue.global(qos: .background).async {
+                    
+                    _self.shots = result.value!.shots
                     
                     _self.cellViewModels = result.value!.shots.map({ (shot) -> WaterFallCell.ViewModel in
                         
@@ -229,6 +238,8 @@ extension ShotsController {
                     if let _error = result.error { return _self.loadMoreDataObserver.send(error: _error) }
                     
                     DispatchQueue.global(qos: .background).async {
+                        
+                        _self.shots = _self.shots + result.value!.shots
                     
                         let originCount: Int = _self.cellViewModels.count
                         

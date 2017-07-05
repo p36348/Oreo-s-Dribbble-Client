@@ -16,7 +16,7 @@ class WaterFallCell: UICollectionViewCell {
     
     // views
     
-    let imageView: UIImageView = UIImageView()
+    let imageView: AnimatedImageView = AnimatedImageView()
     
     let descriptionLabel: UILabel = UILabel()
     
@@ -30,6 +30,10 @@ class WaterFallCell: UICollectionViewCell {
         contentView.backgroundColor = UIColor.white
         
         imageView.kf.indicatorType = .activity
+        
+        imageView.needsPrescaling = false
+        
+        imageView.runLoopMode = .defaultRunLoopMode
         
         descriptionLabel.textColor = UIColor.Dribbble.charcoal
         
