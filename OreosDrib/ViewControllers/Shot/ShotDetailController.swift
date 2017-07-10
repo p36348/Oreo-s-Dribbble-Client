@@ -67,6 +67,12 @@ class ShotDetailController: UIViewController {
             guard let _self = self else { return }
             
             _self.tableHeader.setImage(urlString: _self.viewModel.headerImageUrl)
+
+//            _self.tableHeader.kf.setImage(with: URL(string: _self.viewModel.headerImageUrl), placeholder: nil, options: nil, progressBlock: { (<#Int64#>, <#Int64#>) in
+//                <#code#>
+//            }, completionHandler: { (<#Image?#>, <#NSError?#>, <#CacheType#>, <#URL?#>) in
+//                <#code#>
+//            })
         }
     }
 }

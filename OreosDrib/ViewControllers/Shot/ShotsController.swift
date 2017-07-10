@@ -41,6 +41,14 @@ class ShotsController: UIViewController, ListContainer {
         // Dispose of any resources that can be recreated.
     }
     
+//    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+//
+//    }
+//    
+//    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+//        collectionViewLayout.columnCount = viewModel.columnCount(orientation: toInterfaceOrientation)
+//    }
+    
     private func configureViews() {
         
         view.backgroundColor = UIColor.white
@@ -120,6 +128,12 @@ class ShotsController: UIViewController, ListContainer {
             _self.collectionView.performBatchUpdates(updates, completion: completion)
         }
         
+        viewModel.reloadSignal.observeCompleted { [weak self] in
+            guard let _self = self else { return }
+            
+            _self.collectionView.reloadSections([0])
+        }
+        
         OAuthService.shared.authorizeTokenSignal.observeResult({ [weak self] (result) in
             self?.viewModel.loadFirstPageData()
         })
@@ -167,6 +181,10 @@ extension ShotsController: CHTCollectionViewDelegateWaterfallLayout {
 
 struct ItemInfo {
     
+    static var minimalWidth: CGFloat {
+        return 400
+    }
+    
     static var width: CGFloat {
         return (SystemInfo.screenSize.width - 30) / 2
     }
@@ -192,6 +210,8 @@ extension ShotsController {
         var (firstPageSignal, firstPageObserver) = Signal<[IndexPath], ReactiveError>.pipe()
 
         var (loadMoreDataSignal, loadMoreDataObserver) = Signal<[IndexPath], ReactiveError>.pipe()
+        
+        var (reloadSignal, reloadObserver) = Signal<String, NoError>.pipe()
         
         init() {
             /**
@@ -278,6 +298,24 @@ extension ShotsController {
         func loadMoreData() {
             self.currentPage += 1
             self.fetchData()
+        }
+        
+        func reloadCellViewModels() {
+            DispatchQueue.global(qos: .background).async {
+                self.cellViewModels.forEach({ (viewModel) in
+                    viewModel.size
+                })
+                
+                DispatchQueue.main.sync {
+                    self.reloadObserver.sendCompleted()
+                }
+            }
+        }
+        
+        func columnCount(orientation: UIInterfaceOrientation) -> Int {
+            var count: Int = 2
+            
+            return count
         }
         
         func fetchData() {

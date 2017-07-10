@@ -31,9 +31,15 @@ struct ShotService {
     private let dateFormatter: DateFormatter = {
         let _formatter: DateFormatter = DateFormatter()
         
+        /**
+         * 根据dribbble要求格式化
+         */
         _formatter.dateFormat = "YYYY-MM-dd"
         
-        _formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        /**
+         * 时区转换为西四区
+         */
+        _formatter.timeZone = TimeZone(secondsFromGMT: -4 * 60 * 60)
         return _formatter
     }()
     
