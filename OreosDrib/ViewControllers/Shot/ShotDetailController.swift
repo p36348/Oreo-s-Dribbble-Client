@@ -15,7 +15,7 @@ class ShotDetailController: UIViewController {
     
     fileprivate var viewModel: ViewModel!
     
-    fileprivate var tableHeader: AnimatedImageView = AnimatedImageView(frame: CGRect(x: 0, y: 0, width: SystemInfo.screenSize.width, height: SystemInfo.screenSize.width * 3 / 4))
+    fileprivate var tableHeader: AnimatedImageView = AnimatedImageView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth * 3 / 4))
     
     fileprivate let tableView: UITableView = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
     
@@ -69,12 +69,7 @@ class ShotDetailController: UIViewController {
             guard let _self = self else { return }
             
             _self.tableHeader.setImage(urlString: _self.viewModel.headerImageUrl)
-
-//            _self.tableHeader.kf.setImage(with: URL(string: _self.viewModel.headerImageUrl), placeholder: nil, options: nil, progressBlock: { (<#Int64#>, <#Int64#>) in
-//                <#code#>
-//            }, completionHandler: { (<#Image?#>, <#NSError?#>, <#CacheType#>, <#URL?#>) in
-//                <#code#>
-//            })
+            
         }
     }
 }
@@ -113,14 +108,20 @@ extension ShotDetailController: UITableViewDelegate {
 
 extension ShotDetailController {
     fileprivate class DescriptionCell: UITableViewCell {
-        let label: CoreTextView = CoreTextView()
+        let textView: UITextView = UITextView()
         
         override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             
-            contentView.addSubview(label)
+            textView.isEditable = false
             
-            label.snp.makeConstraints { (make) in
+            textView.isScrollEnabled = false
+            
+            textView.textContainerInset = .zero
+            
+            contentView.addSubview(textView)
+            
+            textView.snp.makeConstraints { (make) in
                 make.edges.equalTo(UIEdgeInsets.zero)
             }
         }
@@ -132,8 +133,7 @@ extension ShotDetailController {
         override func update() {
             guard let _viewModel = viewModel as? ViewModel else { return }
             
-            label.importAttrString(_viewModel.parser.attrString)
-            
+            textView.attributedText = _viewModel.parser.attrString
         }
         
         class ViewModel: TableCellViewModel {
@@ -145,6 +145,10 @@ extension ShotDetailController {
             
             init(string: String) {
                 parser.parse(html: string)
+                
+               
+                self.height = parser.attrString.boundingRect(with: CGSize(width: kScreenWidth, height: CGFloat(MAXFLOAT)), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).height
+                
             }
         }
     }

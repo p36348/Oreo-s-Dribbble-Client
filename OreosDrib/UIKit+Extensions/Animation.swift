@@ -34,7 +34,7 @@ extension CardDismissable where Self: UIViewController {
 }
 
 private let animationDuration: Double = 0.30
-private let dismissDestinationCenter: CGPoint = CGPoint(x: SystemInfo.screenSize.width/2, y: SystemInfo.screenSize.height + 64)
+private let dismissDestinationCenter: CGPoint = CGPoint(x: kScreenWidth/2, y: kScreenHeight + 64)
 
 private class PresentTransition: NSObject , UIViewControllerAnimatedTransitioning{
     
@@ -55,7 +55,7 @@ private class PresentTransition: NSObject , UIViewControllerAnimatedTransitionin
         
         containerView.addSubview(toView)
         
-        card.frame = CGRect(x: 0, y: SystemInfo.screenSize.height, width: card.bounds.size.width, height: card.bounds.size.height)
+        card.frame = CGRect(x: 0, y: kScreenHeight, width: card.bounds.size.width, height: card.bounds.size.height)
         card.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         card.alpha = 0
         toView.backgroundColor = UIColor.black.withAlphaComponent(0)

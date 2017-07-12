@@ -184,7 +184,7 @@ struct ItemInfo {
     }
     
     static var width: CGFloat {
-        return (SystemInfo.screenSize.width - 30) / 2
+        return (kScreenWidth - 30) / 2
     }
 }
 
