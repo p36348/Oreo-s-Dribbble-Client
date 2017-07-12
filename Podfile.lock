@@ -3,6 +3,7 @@ PODS:
   - CHTCollectionViewWaterfallLayout (0.9.6):
     - CHTCollectionViewWaterfallLayout/ObjC (= 0.9.6)
   - CHTCollectionViewWaterfallLayout/ObjC (0.9.6)
+  - Kanna (2.1.1)
   - Kingfisher (3.10.2)
   - OAuthSwift (1.1.2)
   - ReactiveCocoa (5.0.4):
@@ -24,6 +25,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - CHTCollectionViewWaterfallLayout
+  - Kanna (~> 2.1.0)
   - Kingfisher
   - OAuthSwift (~> 1.1.0)
   - ReactiveCocoa (~> 5.0)
@@ -38,6 +40,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   CHTCollectionViewWaterfallLayout: f4dab06db57b36dcf29e802594175acc76c56615
+  Kanna: 9b4b086c218703f2b94f5b21a466217dd2f9332e
   Kingfisher: 7297492bf8cec9b2e2dee3519f2219948580d98e
   OAuthSwift: 5aa5659984d3ca3206ba636a9e7a9c6626b2e8bd
   ReactiveCocoa: b31e754d15937811ede648fc83cd68f5de70a3d4
@@ -51,6 +54,6 @@ SPEC CHECKSUMS:
   SwiftHEXColors: 8f7e364df7929e32cff9f9eeb044bb215167d6be
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: c3162b00465b539a2e14aff3915428a5ecce71a2
+PODFILE CHECKSUM: c25ab5ff67ef012c941628fa5ff3b312266a88d7
 
 COCOAPODS: 1.2.0

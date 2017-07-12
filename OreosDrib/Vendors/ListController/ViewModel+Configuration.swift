@@ -64,15 +64,40 @@ protocol CollectionCellDelegate: class {
     
 }
 
-protocol CollectionCell: class {
+protocol Cell: class {
+    func update() -> Void
+    
+    func endUpdate() -> Void
+}
+
+protocol CollectionCell: Cell {
     
     var viewModel: CollectionCellViewModel? { get set }
     
     var delegate: CollectionCellDelegate? { get set }
+}
+
+protocol TableCell: Cell {
+    var viewModel: TableCellViewModel? { get set }
+}
+
+extension UITableViewCell: TableCell {
+    var viewModel: TableCellViewModel? {
+        get {
+            return objc_getAssociatedObject(self, &viewModelKey) as? TableCellViewModel
+        }
+        set {
+            objc_setAssociatedObject(self, &viewModelKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
     
-    func update() -> Void
+    func update() {
+        
+    }
     
-    func endUpdate() -> Void
+    func endUpdate() {
+        
+    }
 }
 
 private var viewModelKey: Int = 0

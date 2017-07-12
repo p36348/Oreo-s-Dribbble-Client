@@ -176,15 +176,21 @@
 		95AE77611EFB6FF1007B387E /* CoreTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77601EFB6FF1007B387E /* CoreTextView.swift */; };
 		95AE77621EFB6FF1007B387E /* CoreTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77601EFB6FF1007B387E /* CoreTextView.swift */; };
 		95AE77631EFB6FF1007B387E /* CoreTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77601EFB6FF1007B387E /* CoreTextView.swift */; };
-		95AE77651EFB7023007B387E /* MarupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77641EFB7023007B387E /* MarupParser.swift */; };
-		95AE77661EFB7023007B387E /* MarupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77641EFB7023007B387E /* MarupParser.swift */; };
-		95AE77671EFB7023007B387E /* MarupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77641EFB7023007B387E /* MarupParser.swift */; };
+		95AE77651EFB7023007B387E /* MarkupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77641EFB7023007B387E /* MarkupParser.swift */; };
+		95AE77661EFB7023007B387E /* MarkupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77641EFB7023007B387E /* MarkupParser.swift */; };
+		95AE77671EFB7023007B387E /* MarkupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77641EFB7023007B387E /* MarkupParser.swift */; };
 		95AE77691EFCA881007B387E /* WKWebView+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77681EFCA881007B387E /* WKWebView+Handle.swift */; };
 		95AE776A1EFCA881007B387E /* WKWebView+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77681EFCA881007B387E /* WKWebView+Handle.swift */; };
 		95AE776B1EFCA881007B387E /* WKWebView+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE77681EFCA881007B387E /* WKWebView+Handle.swift */; };
 		95AE777E1EFE82FB007B387E /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE777D1EFE82FB007B387E /* GlobalConstants.swift */; };
 		95AE777F1EFE82FB007B387E /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE777D1EFE82FB007B387E /* GlobalConstants.swift */; };
 		95AE77801EFE82FB007B387E /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE777D1EFE82FB007B387E /* GlobalConstants.swift */; };
+		95C0EA421F161CB200688114 /* CTSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EA411F161CB200688114 /* CTSettings.swift */; };
+		95C0EA431F161CB200688114 /* CTSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EA411F161CB200688114 /* CTSettings.swift */; };
+		95C0EA441F161CB200688114 /* CTSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EA411F161CB200688114 /* CTSettings.swift */; };
+		95C0EA461F1626F600688114 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EA451F1626F600688114 /* HTMLParser.swift */; };
+		95C0EA471F1626F600688114 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EA451F1626F600688114 /* HTMLParser.swift */; };
+		95C0EA481F1626F600688114 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EA451F1626F600688114 /* HTMLParser.swift */; };
 		FF47EE43A800396D2919AA9C /* Pods_OreosDrib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD986A565590B74C0982F9D /* Pods_OreosDrib.framework */; };
 /* End PBXBuildFile section */
 
@@ -279,9 +285,11 @@
 		957B1E471F0945D40047FBEE /* FollowingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingController.swift; sourceTree = "<group>"; };
 		957B1E4B1F0946D50047FBEE /* PopularShotsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularShotsController.swift; sourceTree = "<group>"; };
 		95AE77601EFB6FF1007B387E /* CoreTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreTextView.swift; sourceTree = "<group>"; };
-		95AE77641EFB7023007B387E /* MarupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarupParser.swift; sourceTree = "<group>"; };
+		95AE77641EFB7023007B387E /* MarkupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupParser.swift; sourceTree = "<group>"; };
 		95AE77681EFCA881007B387E /* WKWebView+Handle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+Handle.swift"; sourceTree = "<group>"; };
 		95AE777D1EFE82FB007B387E /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		95C0EA411F161CB200688114 /* CTSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTSettings.swift; sourceTree = "<group>"; };
+		95C0EA451F1626F600688114 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
 		9C13BFA301BE928A3270B15F /* Pods-OreosDrib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib.debug.xcconfig"; sourceTree = "<group>"; };
 		FC4536EEE9653AA8BF471214 /* Pods-OreosDrib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib.release.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib.release.xcconfig"; sourceTree = "<group>"; };
 		FDD7E57F494DA26CFB9E622A /* Pods-OreosDribUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDribUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDribUITests/Pods-OreosDribUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -657,7 +665,9 @@
 			isa = PBXGroup;
 			children = (
 				95AE77601EFB6FF1007B387E /* CoreTextView.swift */,
-				95AE77641EFB7023007B387E /* MarupParser.swift */,
+				95AE77641EFB7023007B387E /* MarkupParser.swift */,
+				95C0EA411F161CB200688114 /* CTSettings.swift */,
+				95C0EA451F1626F600688114 /* HTMLParser.swift */,
 			);
 			path = CoreTextView;
 			sourceTree = "<group>";
@@ -976,15 +986,17 @@
 				953C337E1F050090009759D2 /* ESPullToRefresh.swift in Sources */,
 				952C53501EF88C6A006FC712 /* SystemInfo.swift in Sources */,
 				957B1E441F0943560047FBEE /* SignController.swift in Sources */,
-				95AE77651EFB7023007B387E /* MarupParser.swift in Sources */,
+				95AE77651EFB7023007B387E /* MarkupParser.swift in Sources */,
 				3B0B481C1EE6A400006288FA /* User.swift in Sources */,
 				953C33231F04DC59009759D2 /* UserInfoController.swift in Sources */,
 				953C32D81EFF9A14009759D2 /* Shot.swift in Sources */,
 				952C53681EF892CE006FC712 /* Animation.swift in Sources */,
+				95C0EA461F1626F600688114 /* HTMLParser.swift in Sources */,
 				957B1E3E1F0943560047FBEE /* ChatDetailController.swift in Sources */,
 				955354FC1EE80118006AB961 /* JobService.swift in Sources */,
 				95AE777E1EFE82FB007B387E /* GlobalConstants.swift in Sources */,
 				951EEADE1EFA158B0029DE55 /* RealmManager.swift in Sources */,
+				95C0EA421F161CB200688114 /* CTSettings.swift in Sources */,
 				3B0B48161EE6A3CD006288FA /* AppDelegate.swift in Sources */,
 				95AE77611EFB6FF1007B387E /* CoreTextView.swift in Sources */,
 				952C53761EF8C904006FC712 /* runtime+UIControl.swift in Sources */,
@@ -1023,6 +1035,7 @@
 				957B1E491F0945D40047FBEE /* FollowingController.swift in Sources */,
 				953C32F61F035D70009759D2 /* UIView+ReloadExtension.swift in Sources */,
 				952C53621EF88CB9006FC712 /* UIView+RoundCorner.swift in Sources */,
+				95C0EA471F1626F600688114 /* HTMLParser.swift in Sources */,
 				952C53731EF8C111006FC712 /* runtime+Utils.swift in Sources */,
 				952C535C1EF88CB9006FC712 /* UIColor+Extension.swift in Sources */,
 				952C53691EF892CE006FC712 /* Animation.swift in Sources */,
@@ -1038,7 +1051,8 @@
 				95AE77621EFB6FF1007B387E /* CoreTextView.swift in Sources */,
 				95AE776A1EFCA881007B387E /* WKWebView+Handle.swift in Sources */,
 				953C33881F050090009759D2 /* ESRefreshProtocol.swift in Sources */,
-				95AE77661EFB7023007B387E /* MarupParser.swift in Sources */,
+				95AE77661EFB7023007B387E /* MarkupParser.swift in Sources */,
+				95C0EA431F161CB200688114 /* CTSettings.swift in Sources */,
 				3B0B48171EE6A3CD006288FA /* AppDelegate.swift in Sources */,
 				3B0B47F11EE6A3B9006288FA /* UserService.swift in Sources */,
 				3B0B47C41EE6A121006288FA /* OreosDribTests.swift in Sources */,
@@ -1084,6 +1098,7 @@
 				957B1E4A1F0945D40047FBEE /* FollowingController.swift in Sources */,
 				953C32F71F035D70009759D2 /* UIView+ReloadExtension.swift in Sources */,
 				952C53631EF88CB9006FC712 /* UIView+RoundCorner.swift in Sources */,
+				95C0EA481F1626F600688114 /* HTMLParser.swift in Sources */,
 				952C53741EF8C111006FC712 /* runtime+Utils.swift in Sources */,
 				952C535D1EF88CB9006FC712 /* UIColor+Extension.swift in Sources */,
 				952C536A1EF892CE006FC712 /* Animation.swift in Sources */,
@@ -1099,7 +1114,8 @@
 				95AE77631EFB6FF1007B387E /* CoreTextView.swift in Sources */,
 				95AE776B1EFCA881007B387E /* WKWebView+Handle.swift in Sources */,
 				953C33891F050090009759D2 /* ESRefreshProtocol.swift in Sources */,
-				95AE77671EFB7023007B387E /* MarupParser.swift in Sources */,
+				95AE77671EFB7023007B387E /* MarkupParser.swift in Sources */,
+				95C0EA441F161CB200688114 /* CTSettings.swift in Sources */,
 				3B0B48181EE6A3CD006288FA /* AppDelegate.swift in Sources */,
 				3B0B47F21EE6A3B9006288FA /* UserService.swift in Sources */,
 				3B0B47CF1EE6A121006288FA /* OreosDribUITests.swift in Sources */,

@@ -25,10 +25,10 @@ class ShotDetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        bindViewModel()
 
         configureSubview()
+        
+        bindViewModel()
         
         viewModel.loadData()
     }
@@ -50,6 +50,8 @@ class ShotDetailController: UIViewController {
         tableView.dataSource = self
         
         tableView.tableHeaderView = tableHeader
+        
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         view.addSubview(tableView)
         
@@ -79,17 +81,25 @@ class ShotDetailController: UIViewController {
 
 extension ShotDetailController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.cellViewModels.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return viewModel.cellViewModels[indexPath.row].height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: UITableViewCell.description())
+        let cell = DescriptionCell(style: UITableViewCellStyle.default, reuseIdentifier: DescriptionCell.description())
+        
+        cell.viewModel = viewModel.cellViewModels[indexPath.row]
+        
+        return cell
     }
 }
 
 extension ShotDetailController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.textLabel?.text = viewModel.shot.descriptionStr
+        cell.update()
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -98,6 +108,45 @@ extension ShotDetailController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         
+    }
+}
+
+extension ShotDetailController {
+    fileprivate class DescriptionCell: UITableViewCell {
+        let label: CoreTextView = CoreTextView()
+        
+        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+            
+            contentView.addSubview(label)
+            
+            label.snp.makeConstraints { (make) in
+                make.edges.equalTo(UIEdgeInsets.zero)
+            }
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        override func update() {
+            guard let _viewModel = viewModel as? ViewModel else { return }
+            
+            label.importAttrString(_viewModel.parser.attrString)
+            
+        }
+        
+        class ViewModel: TableCellViewModel {
+            var cellClass: AnyClass = DescriptionCell.self
+            
+            var height: CGFloat = 200
+            
+            var parser: HTMLParser = HTMLParser()
+            
+            init(string: String) {
+                parser.parse(html: string)
+            }
+        }
     }
 }
 
@@ -114,6 +163,8 @@ extension ShotDetailController {
         
         init(shot: Shot) {
             self.shot = shot
+            
+            cellViewModels.append(DescriptionCell.ViewModel(string: shot.descriptionStr))
         }
         
         func loadData() {

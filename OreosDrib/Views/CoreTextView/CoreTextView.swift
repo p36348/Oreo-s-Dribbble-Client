@@ -18,6 +18,16 @@ class CoreTextView: UIView {
     // MARK: - Properties
     var attrString: NSAttributedString = NSAttributedString()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = UIColor.white
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Internal
     func importAttrString(_ attrString: NSAttributedString) {
         self.attrString = attrString

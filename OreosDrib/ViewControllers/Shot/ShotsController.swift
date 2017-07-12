@@ -175,8 +175,6 @@ extension ShotsController: CHTCollectionViewDelegateWaterfallLayout {
 
         return viewModel.cellViewModels[indexPath.row].size
     }
-
-    
 }
 
 struct ItemInfo {
@@ -313,9 +311,13 @@ extension ShotsController {
         }
         
         func columnCount(orientation: UIInterfaceOrientation) -> Int {
-            var count: Int = 2
+            var columnCount: Int = 2
             
-            return count
+            if UIDevice.current.userInterfaceIdiom != .phone {
+                
+            }
+            
+            return columnCount
         }
         
         func fetchData() {
