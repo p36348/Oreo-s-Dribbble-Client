@@ -12,7 +12,6 @@ import Result
 import ReactiveSwift
 import CHTCollectionViewWaterfallLayout
 
-
 /// 基础控制器 有待封装
 class ShotsController: UIViewController, ListContainer {
     

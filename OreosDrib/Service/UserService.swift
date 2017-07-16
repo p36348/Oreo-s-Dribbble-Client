@@ -42,13 +42,13 @@ class UserService {
     
     static let shared: UserService = UserService()
     
-    var currentUser: User { return _currentUser }
+    /// 外部get 内部带set
+    public fileprivate(set) var currentUser: User = User()
     
-    fileprivate var _currentUser: User = User()
+    /// 当前用户信息更新信号
+    public fileprivate(set) var (userInfoSignal, userInfoObserver) = Signal<User, NoError>.pipe()
     
-    var (userInfoSignal, userInfoObserver) = Signal<User, NoError>.pipe()
-    
-    private var signInRequest: DataRequest?
+    public private(set) var signInRequest: DataRequest?
     
     private init(){
         /**
@@ -112,7 +112,7 @@ class UserService {
     }
     
     func logOut() {
-        _currentUser = User()
+        currentUser = User()
     }
 }
 
@@ -149,7 +149,7 @@ extension UserService {
         
         guard let _user = RealmManager.shared.dataBase(of: _uid).sharedUser else { return }
         
-        _currentUser = _user
+        currentUser = _user
     }
 }
 
