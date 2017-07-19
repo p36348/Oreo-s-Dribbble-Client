@@ -32,6 +32,9 @@ PODS:
     - Realm (= 2.8.3)
   - Result (3.2.3)
   - Reveal-iOS-SDK (1.6.2)
+  - RxCocoa (3.5.0):
+    - RxSwift (~> 3.4)
+  - RxSwift (3.5.0)
   - SnapKit (3.2.0)
   - Socket.IO-Client-Swift (10.0.1)
   - SwiftHEXColors (1.1.0)
@@ -54,6 +57,8 @@ DEPENDENCIES:
   - ReactiveSwift (~> 1.1)
   - RealmSwift
   - Reveal-iOS-SDK
+  - RxCocoa (~> 3.0)
+  - RxSwift (~> 3.0)
   - SnapKit
   - Socket.IO-Client-Swift (~> 10.0.0)
   - SwiftHEXColors
@@ -75,12 +80,14 @@ SPEC CHECKSUMS:
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+  RxCocoa: a0a09f45d0e5b48ecb6a4a7b4b4c89c88d3f633f
+  RxSwift: 18ee9d78b45edb3b0b7e79916b47a116e6dbc842
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Socket.IO-Client-Swift: f6553633ba6a01df8f1c8b583ec36560901e9de6
   SwiftHEXColors: 8f7e364df7929e32cff9f9eeb044bb215167d6be
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Texture: 8cf0872fe33328c20d7e6c1fcbf1f23a82162f2f
 
-PODFILE CHECKSUM: 79140f6fca2687f3ba09824972599b6bfc3c276d
+PODFILE CHECKSUM: 94ad7c0dd749ee935e368d0941242c790adb3599
 
 COCOAPODS: 1.2.0

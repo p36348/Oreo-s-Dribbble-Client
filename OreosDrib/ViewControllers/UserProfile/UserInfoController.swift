@@ -43,6 +43,7 @@ class UserInfoController: UIViewController {
             
             _self.tableView.reloadData()
         }
+        
     }
     
     dynamic func clickSignOut(sender: UIBarButtonItem) {

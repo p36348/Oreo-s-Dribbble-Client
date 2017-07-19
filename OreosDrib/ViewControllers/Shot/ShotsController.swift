@@ -11,6 +11,9 @@ import SnapKit
 import Result
 import ReactiveSwift
 import CHTCollectionViewWaterfallLayout
+import RxSwift
+import RxCocoa
+
 
 /// 基础控制器 有待封装
 class ShotsController: UIViewController, ListContainer {
@@ -39,19 +42,13 @@ class ShotsController: UIViewController, ListContainer {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-//
-//    }
-//    
-//    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-//        collectionViewLayout.columnCount = viewModel.columnCount(orientation: toInterfaceOrientation)
-//    }
-    
-    private func configureViews() {
+}
+
+extension ShotsController {
+    fileprivate func configureViews() {
         
         view.backgroundColor = UIColor.white
-
+        
         collectionView.dataSource = self
         
         collectionView.delegate   = self
@@ -71,7 +68,7 @@ class ShotsController: UIViewController, ListContainer {
         }
     }
     
-    private func bindViewModel() {
+    fileprivate func bindViewModel() {
         
         collectionView.es.addPullToRefresh { [weak self] in
             guard let _self = self else { return }
