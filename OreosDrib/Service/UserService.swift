@@ -45,7 +45,7 @@ class UserService {
     /// 外部get 内部带set
     public fileprivate(set) var currentUser: User = User()
     
-    /// 当前用户信息更新信号
+    /// 当前用户信息更新热信号
     public fileprivate(set) var (userInfoSignal, userInfoObserver) = Signal<User, NoError>.pipe()
     
     public private(set) var signInRequest: DataRequest?

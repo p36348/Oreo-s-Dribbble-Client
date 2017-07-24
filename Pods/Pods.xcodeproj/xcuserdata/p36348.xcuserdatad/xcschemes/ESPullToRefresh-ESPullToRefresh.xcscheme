@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '4EC310D8F4AC4B4EC309B07FC35F7E42'
-               BlueprintName = 'SnapKit'
+               BlueprintIdentifier = '10F0C3C80828CC88CE8154B17E6E0B8F'
+               BlueprintName = 'ESPullToRefresh-ESPullToRefresh'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SnapKit.framework'>
+               BuildableName = 'ESPullToRefresh.bundle'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -26,163 +26,161 @@
 import Foundation
 import UIKit
 
-private var kESRefreshHeaderKey: Void?
-private var kESRefreshFooterKey: Void?
+private var kESRefreshHeaderKey: String = ""
+private var kESRefreshFooterKey: String = ""
 
 public extension UIScrollView {
     
     /// Pull-to-refresh associated property
-    public var header: ESRefreshHeaderView? {
+    public var es_header: ESRefreshHeaderView? {
         get { return (objc_getAssociatedObject(self, &kESRefreshHeaderKey) as? ESRefreshHeaderView) }
         set(newValue) { objc_setAssociatedObject(self, &kESRefreshHeaderKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
     }
     
     /// Infinitiy scroll associated property
-    public var footer: ESRefreshFooterView? {
+    public var es_footer: ESRefreshFooterView? {
         get { return (objc_getAssociatedObject(self, &kESRefreshFooterKey) as? ESRefreshFooterView) }
         set(newValue) { objc_setAssociatedObject(self, &kESRefreshFooterKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
     }
-}
-
-public extension ES where Base: UIScrollView {
+    
     /// Add pull-to-refresh
     @discardableResult
-    public func addPullToRefresh(handler: @escaping ESRefreshHandler) -> ESRefreshHeaderView {
-        removeRefreshHeader()
+    public func es_addPullToRefresh(handler: @escaping ESRefreshHandler) -> ESRefreshHeaderView {
+        es_removeRefreshHeader()
         let header = ESRefreshHeaderView(frame: CGRect.zero, handler: handler)
         let headerH = header.animator.executeIncremental
-        header.frame = CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: self.base.bounds.size.width, height: headerH)
-        self.base.addSubview(header)
-        self.base.header = header
+        header.frame = CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: bounds.size.width, height: headerH)
+        addSubview(header)
+        es_header = header
         return header
     }
     
     @discardableResult
-    public func addPullToRefresh(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: @escaping ESRefreshHandler) -> ESRefreshHeaderView {
-        removeRefreshHeader()
+    public func es_addPullToRefresh(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: @escaping ESRefreshHandler) -> ESRefreshHeaderView {
+        es_removeRefreshHeader()
         let header = ESRefreshHeaderView(frame: CGRect.zero, handler: handler, animator: animator)
         let headerH = animator.executeIncremental
-        header.frame = CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: self.base.bounds.size.width, height: headerH)
-        self.base.addSubview(header)
-        self.base.header = header
+        header.frame = CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: bounds.size.width, height: headerH)
+        addSubview(header)
+        es_header = header
         return header
     }
     
     /// Add infinite-scrolling
     @discardableResult
-    public func addInfiniteScrolling(handler: @escaping ESRefreshHandler) -> ESRefreshFooterView {
-        removeRefreshFooter()
+    public func es_addInfiniteScrolling(handler: @escaping ESRefreshHandler) -> ESRefreshFooterView {
+        es_removeRefreshFooter()
         let footer = ESRefreshFooterView(frame: CGRect.zero, handler: handler)
         let footerH = footer.animator.executeIncremental
-        footer.frame = CGRect.init(x: 0.0, y: self.base.contentSize.height + self.base.contentInset.bottom, width: self.base.bounds.size.width, height: footerH)
-        self.base.addSubview(footer)
-        self.base.footer = footer
+        footer.frame = CGRect.init(x: 0.0, y: contentSize.height + contentInset.bottom, width: bounds.size.width, height: footerH)
+        addSubview(footer)
+        es_footer = footer
         return footer
     }
 
     @discardableResult
-    public func addInfiniteScrolling(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: @escaping ESRefreshHandler) -> ESRefreshFooterView {
-        removeRefreshFooter()
+    public func es_addInfiniteScrolling(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: @escaping ESRefreshHandler) -> ESRefreshFooterView {
+        es_removeRefreshFooter()
         let footer = ESRefreshFooterView(frame: CGRect.zero, handler: handler, animator: animator)
         let footerH = footer.animator.executeIncremental
-        footer.frame = CGRect.init(x: 0.0, y: self.base.contentSize.height + self.base.contentInset.bottom, width: self.base.bounds.size.width, height: footerH)
-        self.base.footer = footer
-        self.base.addSubview(footer)
+        footer.frame = CGRect.init(x: 0.0, y: contentSize.height + contentInset.bottom, width: bounds.size.width, height: footerH)
+        es_footer = footer
+        addSubview(footer)
         return footer
     }
     
     /// Remove
-    public func removeRefreshHeader() {
-        self.base.header?.stopRefreshing()
-        self.base.header?.removeFromSuperview()
-        self.base.header = nil
+    public func es_removeRefreshHeader() {
+        es_header?.stopRefreshing()
+        es_header?.removeFromSuperview()
+        es_header = nil
     }
     
-    public func removeRefreshFooter() {
-        self.base.footer?.stopRefreshing()
-        self.base.footer?.removeFromSuperview()
-        self.base.footer = nil
+    public func es_removeRefreshFooter() {
+        es_footer?.stopRefreshing()
+        es_footer?.removeFromSuperview()
+        es_footer = nil
     }
     
     /// Manual refresh
-    public func startPullToRefresh() {
-        DispatchQueue.main.async { [weak base] in
-            guard let weakSelf = base else {
+    public func es_startPullToRefresh() {
+        DispatchQueue.main.async { [weak self] in
+            guard let weakSelf = self else {
                 return
             }
-            weakSelf.header?.startRefreshing(isAuto: false)
+            weakSelf.es_header?.startRefreshing(isAuto: false)
         }
     }
     
-    /// Auto refresh if expired.
-    public func autoPullToRefresh() {
-        if self.base.expired == true {
-            DispatchQueue.main.async { [weak base] in
-                guard let weakSelf = base else {
+    /// Auto refresh if expried.
+    public func es_autoPullToRefresh() {
+        if self.expried == true {
+            DispatchQueue.main.async { [weak self] in
+                guard let weakSelf = self else {
                     return
                 }
-                weakSelf.header?.startRefreshing(isAuto: true)
+                weakSelf.es_header?.startRefreshing(isAuto: true)
             }
         }
     }
     
     /// Stop pull to refresh
-    public func stopPullToRefresh(ignoreDate: Bool = false, ignoreFooter: Bool = false) {
-        self.base.header?.stopRefreshing()
+    public func es_stopPullToRefresh(ignoreDate: Bool = false, ignoreFooter: Bool = false) {
+        es_header?.stopRefreshing()
         if ignoreDate == false {
-            if let key = self.base.header?.refreshIdentifier {
+            if let key = es_header?.refreshIdentifier {
                 ESRefreshDataManager.sharedManager.setDate(Date(), forKey: key)
             }
-            self.base.footer?.resetNoMoreData()
+            es_footer?.resetNoMoreData()
         }
-        self.base.footer?.isHidden = ignoreFooter
+        es_footer?.isHidden = ignoreFooter
     }
     
     /// Footer notice method
-    public func  noticeNoMoreData() {
-        self.base.footer?.stopRefreshing()
-        self.base.footer?.noMoreData = true
+    public func  es_noticeNoMoreData() {
+        es_footer?.stopRefreshing()
+        es_footer?.noMoreData = true
     }
     
-    public func resetNoMoreData() {
-        self.base.footer?.noMoreData = false
+    public func es_resetNoMoreData() {
+        es_footer?.noMoreData = false
     }
     
-    public func stopLoadingMore() {
-        self.base.footer?.stopRefreshing()
+    public func es_stopLoadingMore() {
+        es_footer?.stopRefreshing()
     }
     
 }
 
 public extension UIScrollView /* Date Manager */ {
     
-    /// Identifier for cache expired timeinterval and last refresh date.
+    /// Identifier for cache expried timeinterval and last refresh date.
     public var refreshIdentifier: String? {
-        get { return self.header?.refreshIdentifier }
-        set { self.header?.refreshIdentifier = newValue }
+        get { return self.es_header?.refreshIdentifier }
+        set { self.es_header?.refreshIdentifier = newValue }
     }
     
-    /// If you setted refreshIdentifier and expiredTimeInterval, return nearest refresh expired or not. Default is false.
-    public var expired: Bool {
+    /// If you setted refreshIdentifier and expriedTimeInterval, return nearest refresh expried or not. Default is false.
+    public var expried: Bool {
         get {
-            if let key = self.header?.refreshIdentifier {
-                return ESRefreshDataManager.sharedManager.isExpired(forKey: key)
+            if let key = self.es_header?.refreshIdentifier {
+                return ESRefreshDataManager.sharedManager.isExpried(forKey: key)
             }
             return false
         }
     }
     
-    public var expiredTimeInterval: TimeInterval? {
+    public var expriedTimeInterval: TimeInterval? {
         get {
-            if let key = self.header?.refreshIdentifier {
-                let interval = ESRefreshDataManager.sharedManager.expiredTimeInterval(forKey: key)
+            if let key = self.es_header?.refreshIdentifier {
+                let interval = ESRefreshDataManager.sharedManager.expriedTimeInterval(forKey: key)
                 return interval
             }
             return nil
         }
         set {
-            if let key = self.header?.refreshIdentifier {
-                ESRefreshDataManager.sharedManager.setExpiredTimeInterval(newValue, forKey: key)
+            if let key = self.es_header?.refreshIdentifier {
+                ESRefreshDataManager.sharedManager.setExpriedTimeInterval(newValue, forKey: key)
             }
         }
     }
@@ -190,7 +188,7 @@ public extension UIScrollView /* Date Manager */ {
     /// Auto cached last refresh date when you setted refreshIdentifier.
     public var lastRefreshDate: Date? {
         get {
-            if let key = self.header?.refreshIdentifier {
+            if let key = self.es_header?.refreshIdentifier {
                 return ESRefreshDataManager.sharedManager.date(forKey: key)
             }
             return nil
@@ -315,10 +313,10 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         insets.top += animator.executeIncremental
         
         // We need to restore previous offset because we will animate scroll view insets and regular scroll view animating is not applied then.
-        scrollView.contentInset = insets
         scrollView.contentOffset.y = previousOffset
-        previousOffset -= animator.executeIncremental
+
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveLinear, animations: {
+            scrollView.contentInset = insets
             scrollView.contentOffset.y = -insets.top
         }, completion: { (finished) in
             self.handler?()
@@ -340,15 +338,12 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         self.animator.refreshAnimationEnd(view: self)
         
         // Back state
-        scrollView.contentInset.top = self.scrollViewInsets.top
-        scrollView.contentOffset.y =  self.scrollViewInsets.top + self.previousOffset
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-            scrollView.contentOffset.y = -self.scrollViewInsets.top
+            scrollView.contentInset.top = self.scrollViewInsets.top
             }, completion: { (finished) in
                 self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
                 super.stop()
                 scrollView.contentInset.top = self.scrollViewInsets.top
-                self.previousOffset = scrollView.contentOffset.y
                 // un-ignore observer
                 self.ignoreObserver(false)
         })

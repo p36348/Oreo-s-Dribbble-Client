@@ -13,7 +13,7 @@ import ReactiveSwift
 import CHTCollectionViewWaterfallLayout
 import RxSwift
 import RxCocoa
-
+import ESPullToRefresh
 
 /// 基础控制器 有待封装
 class ShotsController: UIViewController, ListContainer {
@@ -69,14 +69,13 @@ extension ShotsController {
     }
     
     fileprivate func bindViewModel() {
-        
-        collectionView.es.addPullToRefresh { [weak self] in
+        collectionView.es_addPullToRefresh { [weak self] in
             guard let _self = self else { return }
             
             _self.viewModel.loadFirstPageData()
         }
         
-        collectionView.es.addInfiniteScrolling { [weak self] in
+        collectionView.es_addInfiniteScrolling { [weak self] in
             guard let _self = self else { return }
             
             _self.viewModel.loadMoreData()
@@ -94,7 +93,7 @@ extension ShotsController {
             
             _self.collectionView.reloadSections([0])
             
-            _self.collectionView.es.stopPullToRefresh()
+            _self.collectionView.es_stopPullToRefresh()
         }
         
         viewModel.loadMoreDataSignal.observeResult { [weak self] (result) in
@@ -109,7 +108,7 @@ extension ShotsController {
             /**
              * 停止加载动画
              */
-            _self.collectionView.es.stopLoadingMore()
+            _self.collectionView.es_stopLoadingMore()
             /**
              * 数据更新
              */

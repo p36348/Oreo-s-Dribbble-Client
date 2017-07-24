@@ -92,36 +92,6 @@
 		953C33261F04DC59009759D2 /* UserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953C33221F04DC59009759D2 /* UserInfoController.xib */; };
 		953C33271F04DC59009759D2 /* UserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953C33221F04DC59009759D2 /* UserInfoController.xib */; };
 		953C33281F04DC59009759D2 /* UserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953C33221F04DC59009759D2 /* UserInfoController.xib */; };
-		953C336C1F050090009759D2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 953C335F1F050090009759D2 /* Localizable.strings */; };
-		953C336D1F050090009759D2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 953C335F1F050090009759D2 /* Localizable.strings */; };
-		953C336E1F050090009759D2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 953C335F1F050090009759D2 /* Localizable.strings */; };
-		953C336F1F050090009759D2 /* ESRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33611F050090009759D2 /* ESRefreshFooterAnimator.swift */; };
-		953C33701F050090009759D2 /* ESRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33611F050090009759D2 /* ESRefreshFooterAnimator.swift */; };
-		953C33711F050090009759D2 /* ESRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33611F050090009759D2 /* ESRefreshFooterAnimator.swift */; };
-		953C33721F050090009759D2 /* ESRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33621F050090009759D2 /* ESRefreshHeaderAnimator.swift */; };
-		953C33731F050090009759D2 /* ESRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33621F050090009759D2 /* ESRefreshHeaderAnimator.swift */; };
-		953C33741F050090009759D2 /* ESRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33621F050090009759D2 /* ESRefreshHeaderAnimator.swift */; };
-		953C33751F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 953C33631F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png */; };
-		953C33761F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 953C33631F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png */; };
-		953C33771F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 953C33631F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png */; };
-		953C33781F050090009759D2 /* ES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33661F050090009759D2 /* ES.swift */; };
-		953C33791F050090009759D2 /* ES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33661F050090009759D2 /* ES.swift */; };
-		953C337A1F050090009759D2 /* ES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33661F050090009759D2 /* ES.swift */; };
-		953C337B1F050090009759D2 /* ESPullToRefresh+Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33671F050090009759D2 /* ESPullToRefresh+Manager.swift */; };
-		953C337C1F050090009759D2 /* ESPullToRefresh+Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33671F050090009759D2 /* ESPullToRefresh+Manager.swift */; };
-		953C337D1F050090009759D2 /* ESPullToRefresh+Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33671F050090009759D2 /* ESPullToRefresh+Manager.swift */; };
-		953C337E1F050090009759D2 /* ESPullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33681F050090009759D2 /* ESPullToRefresh.swift */; };
-		953C337F1F050090009759D2 /* ESPullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33681F050090009759D2 /* ESPullToRefresh.swift */; };
-		953C33801F050090009759D2 /* ESPullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33681F050090009759D2 /* ESPullToRefresh.swift */; };
-		953C33811F050090009759D2 /* ESRefreshAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33691F050090009759D2 /* ESRefreshAnimator.swift */; };
-		953C33821F050090009759D2 /* ESRefreshAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33691F050090009759D2 /* ESRefreshAnimator.swift */; };
-		953C33831F050090009759D2 /* ESRefreshAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33691F050090009759D2 /* ESRefreshAnimator.swift */; };
-		953C33841F050090009759D2 /* ESRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C336A1F050090009759D2 /* ESRefreshComponent.swift */; };
-		953C33851F050090009759D2 /* ESRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C336A1F050090009759D2 /* ESRefreshComponent.swift */; };
-		953C33861F050090009759D2 /* ESRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C336A1F050090009759D2 /* ESRefreshComponent.swift */; };
-		953C33871F050090009759D2 /* ESRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C336B1F050090009759D2 /* ESRefreshProtocol.swift */; };
-		953C33881F050090009759D2 /* ESRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C336B1F050090009759D2 /* ESRefreshProtocol.swift */; };
-		953C33891F050090009759D2 /* ESRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C336B1F050090009759D2 /* ESRefreshProtocol.swift */; };
 		953C33951F06499B009759D2 /* OAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33931F06499B009759D2 /* OAuthController.swift */; };
 		953C33961F06499B009759D2 /* OAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33931F06499B009759D2 /* OAuthController.swift */; };
 		953C33971F06499B009759D2 /* OAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C33931F06499B009759D2 /* OAuthController.swift */; };
@@ -255,18 +225,6 @@
 		953C32F41F035D70009759D2 /* UIView+ReloadExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ReloadExtension.swift"; sourceTree = "<group>"; };
 		953C33211F04DC59009759D2 /* UserInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoController.swift; sourceTree = "<group>"; };
 		953C33221F04DC59009759D2 /* UserInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoController.xib; sourceTree = "<group>"; };
-		953C33601F050090009759D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		953C33611F050090009759D2 /* ESRefreshFooterAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshFooterAnimator.swift; sourceTree = "<group>"; };
-		953C33621F050090009759D2 /* ESRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
-		953C33631F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pull_to_refresh_arrow@2x.png"; sourceTree = "<group>"; };
-		953C33641F050090009759D2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		953C33651F050090009759D2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		953C33661F050090009759D2 /* ES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ES.swift; sourceTree = "<group>"; };
-		953C33671F050090009759D2 /* ESPullToRefresh+Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ESPullToRefresh+Manager.swift"; sourceTree = "<group>"; };
-		953C33681F050090009759D2 /* ESPullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESPullToRefresh.swift; sourceTree = "<group>"; };
-		953C33691F050090009759D2 /* ESRefreshAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshAnimator.swift; sourceTree = "<group>"; };
-		953C336A1F050090009759D2 /* ESRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshComponent.swift; sourceTree = "<group>"; };
-		953C336B1F050090009759D2 /* ESRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshProtocol.swift; sourceTree = "<group>"; };
 		953C33931F06499B009759D2 /* OAuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthController.swift; sourceTree = "<group>"; };
 		953C339B1F078C62009759D2 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
 		954070101EFB23F000F7195F /* Image+Handle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Handle.swift"; sourceTree = "<group>"; };
@@ -405,7 +363,6 @@
 		3B0B47E71EE6A3B9006288FA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				953C335D1F050090009759D2 /* ESPullToRefresh */,
 				953C32EB1F00F9BA009759D2 /* ListContainer */,
 				951EEADC1EFA15730029DE55 /* DataBase */,
 				952C53701EF8C0B1006FC712 /* Runtime */,
@@ -590,31 +547,6 @@
 			path = UserProfile;
 			sourceTree = "<group>";
 		};
-		953C335D1F050090009759D2 /* ESPullToRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				953C335E1F050090009759D2 /* Animator */,
-				953C33661F050090009759D2 /* ES.swift */,
-				953C33671F050090009759D2 /* ESPullToRefresh+Manager.swift */,
-				953C33681F050090009759D2 /* ESPullToRefresh.swift */,
-				953C33691F050090009759D2 /* ESRefreshAnimator.swift */,
-				953C336A1F050090009759D2 /* ESRefreshComponent.swift */,
-				953C336B1F050090009759D2 /* ESRefreshProtocol.swift */,
-			);
-			path = ESPullToRefresh;
-			sourceTree = "<group>";
-		};
-		953C335E1F050090009759D2 /* Animator */ = {
-			isa = PBXGroup;
-			children = (
-				953C335F1F050090009759D2 /* Localizable.strings */,
-				953C33611F050090009759D2 /* ESRefreshFooterAnimator.swift */,
-				953C33621F050090009759D2 /* ESRefreshHeaderAnimator.swift */,
-				953C33631F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png */,
-			);
-			path = Animator;
-			sourceTree = "<group>";
-		};
 		953C338A1F06490F009759D2 /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,9 +723,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				953C33751F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png in Resources */,
 				3B0B47B91EE6A121006288FA /* LaunchScreen.storyboard in Resources */,
-				953C336C1F050090009759D2 /* Localizable.strings in Resources */,
 				953C33261F04DC59009759D2 /* UserInfoController.xib in Resources */,
 				3B0B47B61EE6A121006288FA /* Assets.xcassets in Resources */,
 				3B0B47B41EE6A121006288FA /* Main.storyboard in Resources */,
@@ -806,8 +736,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				953C33271F04DC59009759D2 /* UserInfoController.xib in Resources */,
-				953C336D1F050090009759D2 /* Localizable.strings in Resources */,
-				953C33761F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png in Resources */,
 				957B1E331F093A520047FBEE /* SearchController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -817,8 +745,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				953C33281F04DC59009759D2 /* UserInfoController.xib in Resources */,
-				953C336E1F050090009759D2 /* Localizable.strings in Resources */,
-				953C33771F050090009759D2 /* icon_pull_to_refresh_arrow@2x.png in Resources */,
 				957B1E341F093A520047FBEE /* SearchController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -968,7 +894,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				953C33841F050090009759D2 /* ESRefreshComponent.swift in Sources */,
 				957B1E481F0945D40047FBEE /* FollowingController.swift in Sources */,
 				957B1E291F093A380047FBEE /* SearchController.swift in Sources */,
 				957B1E2B1F093A380047FBEE /* ShotDetailController.swift in Sources */,
@@ -983,7 +908,6 @@
 				952C53471EF88C6A006FC712 /* ReactiveError.swift in Sources */,
 				957B1DEF1F08AAEC0047FBEE /* Date+Handle.swift in Sources */,
 				953C32F11F023060009759D2 /* UIImageView+kf.swift in Sources */,
-				953C337E1F050090009759D2 /* ESPullToRefresh.swift in Sources */,
 				952C53501EF88C6A006FC712 /* SystemInfo.swift in Sources */,
 				957B1E441F0943560047FBEE /* SignController.swift in Sources */,
 				95AE77651EFB7023007B387E /* MarkupParser.swift in Sources */,
@@ -1003,21 +927,15 @@
 				957B1E2C1F093A380047FBEE /* ShotsController.swift in Sources */,
 				952C53611EF88CB9006FC712 /* UIView+RoundCorner.swift in Sources */,
 				957B1E4C1F0946D50047FBEE /* PopularShotsController.swift in Sources */,
-				953C336F1F050090009759D2 /* ESRefreshFooterAnimator.swift in Sources */,
-				953C33871F050090009759D2 /* ESRefreshProtocol.swift in Sources */,
 				952C536C1EF8BA33006FC712 /* UIFont+Extension.swift in Sources */,
 				955354F81EE6C5E5006AB961 /* APIHandle.swift in Sources */,
 				957B1E3B1F0943560047FBEE /* TabBarController.swift in Sources */,
 				954070111EFB23F000F7195F /* Image+Handle.swift in Sources */,
 				953C32E41F00E971009759D2 /* WaterFallController.swift in Sources */,
 				953C32F51F035D70009759D2 /* UIView+ReloadExtension.swift in Sources */,
-				953C33811F050090009759D2 /* ESRefreshAnimator.swift in Sources */,
 				957B1E411F0943560047FBEE /* ChatListController.swift in Sources */,
 				3B0B48111EE6A3B9006288FA /* WaterFallCell.swift in Sources */,
 				953C32E81F00EB2D009759D2 /* ViewModel+Configuration.swift in Sources */,
-				953C337B1F050090009759D2 /* ESPullToRefresh+Manager.swift in Sources */,
-				953C33781F050090009759D2 /* ES.swift in Sources */,
-				953C33721F050090009759D2 /* ESRefreshHeaderAnimator.swift in Sources */,
 				953C32ED1F00F9D3009759D2 /* ListContainer.swift in Sources */,
 				95AE77691EFCA881007B387E /* WKWebView+Handle.swift in Sources */,
 				953C339C1F078C62009759D2 /* OAuthService.swift in Sources */,
@@ -1047,10 +965,8 @@
 				953C32E51F00E971009759D2 /* WaterFallController.swift in Sources */,
 				957B1E3F1F0943560047FBEE /* ChatDetailController.swift in Sources */,
 				953C32E91F00EB2D009759D2 /* ViewModel+Configuration.swift in Sources */,
-				953C33851F050090009759D2 /* ESRefreshComponent.swift in Sources */,
 				95AE77621EFB6FF1007B387E /* CoreTextView.swift in Sources */,
 				95AE776A1EFCA881007B387E /* WKWebView+Handle.swift in Sources */,
-				953C33881F050090009759D2 /* ESRefreshProtocol.swift in Sources */,
 				95AE77661EFB7023007B387E /* MarkupParser.swift in Sources */,
 				95C0EA431F161CB200688114 /* CTSettings.swift in Sources */,
 				3B0B48171EE6A3CD006288FA /* AppDelegate.swift in Sources */,
@@ -1059,19 +975,14 @@
 				951EEADF1EFA158B0029DE55 /* RealmManager.swift in Sources */,
 				957B1E4D1F0946D50047FBEE /* PopularShotsController.swift in Sources */,
 				953C33241F04DC59009759D2 /* UserInfoController.swift in Sources */,
-				953C33701F050090009759D2 /* ESRefreshFooterAnimator.swift in Sources */,
 				3B0B481D1EE6A400006288FA /* User.swift in Sources */,
 				953C32D91EFF9A14009759D2 /* Shot.swift in Sources */,
-				953C337F1F050090009759D2 /* ESPullToRefresh.swift in Sources */,
 				953C32EE1F00F9D3009759D2 /* ListContainer.swift in Sources */,
 				952C53511EF88C6A006FC712 /* SystemInfo.swift in Sources */,
-				953C337C1F050090009759D2 /* ESPullToRefresh+Manager.swift in Sources */,
 				953C339D1F078C62009759D2 /* OAuthService.swift in Sources */,
 				953C32DE1EFF9EA1009759D2 /* Team.swift in Sources */,
-				953C33821F050090009759D2 /* ESRefreshAnimator.swift in Sources */,
 				957B1E421F0943560047FBEE /* ChatListController.swift in Sources */,
 				957B1E2D1F093A430047FBEE /* ShotsController.swift in Sources */,
-				953C33731F050090009759D2 /* ESRefreshHeaderAnimator.swift in Sources */,
 				3B0B48061EE6A3B9006288FA /* String+Handle.swift in Sources */,
 				955354FD1EE80118006AB961 /* JobService.swift in Sources */,
 				953C33961F06499B009759D2 /* OAuthController.swift in Sources */,
@@ -1085,7 +996,6 @@
 				95AE777F1EFE82FB007B387E /* GlobalConstants.swift in Sources */,
 				952C53481EF88C6A006FC712 /* ReactiveError.swift in Sources */,
 				957B1E2F1F093A470047FBEE /* ShotDetailController.swift in Sources */,
-				953C33791F050090009759D2 /* ES.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,10 +1020,8 @@
 				953C32E61F00E971009759D2 /* WaterFallController.swift in Sources */,
 				957B1E401F0943560047FBEE /* ChatDetailController.swift in Sources */,
 				953C32EA1F00EB2D009759D2 /* ViewModel+Configuration.swift in Sources */,
-				953C33861F050090009759D2 /* ESRefreshComponent.swift in Sources */,
 				95AE77631EFB6FF1007B387E /* CoreTextView.swift in Sources */,
 				95AE776B1EFCA881007B387E /* WKWebView+Handle.swift in Sources */,
-				953C33891F050090009759D2 /* ESRefreshProtocol.swift in Sources */,
 				95AE77671EFB7023007B387E /* MarkupParser.swift in Sources */,
 				95C0EA441F161CB200688114 /* CTSettings.swift in Sources */,
 				3B0B48181EE6A3CD006288FA /* AppDelegate.swift in Sources */,
@@ -1122,19 +1030,14 @@
 				951EEAE01EFA158B0029DE55 /* RealmManager.swift in Sources */,
 				957B1E4E1F0946D50047FBEE /* PopularShotsController.swift in Sources */,
 				953C33251F04DC59009759D2 /* UserInfoController.swift in Sources */,
-				953C33711F050090009759D2 /* ESRefreshFooterAnimator.swift in Sources */,
 				3B0B481E1EE6A400006288FA /* User.swift in Sources */,
 				953C32DA1EFF9A14009759D2 /* Shot.swift in Sources */,
-				953C33801F050090009759D2 /* ESPullToRefresh.swift in Sources */,
 				953C32EF1F00F9D3009759D2 /* ListContainer.swift in Sources */,
 				952C53521EF88C6A006FC712 /* SystemInfo.swift in Sources */,
-				953C337D1F050090009759D2 /* ESPullToRefresh+Manager.swift in Sources */,
 				953C339E1F078C62009759D2 /* OAuthService.swift in Sources */,
 				953C32DF1EFF9EA1009759D2 /* Team.swift in Sources */,
-				953C33831F050090009759D2 /* ESRefreshAnimator.swift in Sources */,
 				957B1E431F0943560047FBEE /* ChatListController.swift in Sources */,
 				957B1E2E1F093A440047FBEE /* ShotsController.swift in Sources */,
-				953C33741F050090009759D2 /* ESRefreshHeaderAnimator.swift in Sources */,
 				3B0B48071EE6A3B9006288FA /* String+Handle.swift in Sources */,
 				955354FE1EE80118006AB961 /* JobService.swift in Sources */,
 				953C33971F06499B009759D2 /* OAuthController.swift in Sources */,
@@ -1148,7 +1051,6 @@
 				95AE77801EFE82FB007B387E /* GlobalConstants.swift in Sources */,
 				952C53491EF88C6A006FC712 /* ReactiveError.swift in Sources */,
 				957B1E301F093A470047FBEE /* ShotDetailController.swift in Sources */,
-				953C337A1F050090009759D2 /* ES.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1182,16 +1084,6 @@
 				3B0B47B81EE6A121006288FA /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		953C335F1F050090009759D2 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				953C33601F050090009759D2 /* Base */,
-				953C33641F050090009759D2 /* zh-Hans */,
-				953C33651F050090009759D2 /* zh-Hant */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
