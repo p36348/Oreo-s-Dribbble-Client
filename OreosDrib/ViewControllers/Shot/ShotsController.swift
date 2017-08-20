@@ -11,8 +11,6 @@ import SnapKit
 import Result
 import ReactiveSwift
 import CHTCollectionViewWaterfallLayout
-import RxSwift
-import RxCocoa
 import ESPullToRefresh
 
 /// 基础控制器 有待封装
@@ -68,6 +66,9 @@ extension ShotsController {
         }
     }
     
+    /**
+     绑定事件
+     */
     fileprivate func bindViewModel() {
         collectionView.es_addPullToRefresh { [weak self] in
             guard let _self = self else { return }
@@ -86,10 +87,7 @@ extension ShotsController {
             /**
              * 错误处理
              */
-            if let _error = result.error {
-                _self.alert(errorMsg: _error.message)
-                return
-            }
+            if let _error = result.error { return _self.alert(errorMsg: _error.message) }
             
             _self.collectionView.reloadSections([0])
             
@@ -101,10 +99,7 @@ extension ShotsController {
             /**
              * 错误处理
              */
-            if let _error = result.error {
-                _self.alert(errorMsg: _error.message)
-                return
-            }
+            if let _error = result.error { return _self.alert(errorMsg: _error.message) }
             /**
              * 停止加载动画
              */
@@ -291,28 +286,6 @@ extension ShotsController {
         func loadMoreData() {
             self.currentPage += 1
             self.fetchData()
-        }
-        
-        func reloadCellViewModels() {
-            DispatchQueue.global(qos: .background).async {
-                self.cellViewModels.forEach({ (viewModel) in
-                    viewModel.size
-                })
-                
-                DispatchQueue.main.sync {
-                    self.reloadObserver.sendCompleted()
-                }
-            }
-        }
-        
-        func columnCount(orientation: UIInterfaceOrientation) -> Int {
-            var columnCount: Int = 2
-            
-            if UIDevice.current.userInterfaceIdiom != .phone {
-                
-            }
-            
-            return columnCount
         }
         
         func fetchData() {

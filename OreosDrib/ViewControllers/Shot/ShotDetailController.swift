@@ -45,6 +45,10 @@ class ShotDetailController: UIViewController {
         
         tableHeader.needsPrescaling = false
         
+        tableHeader.kf.indicatorType = .activity
+        
+        tableHeader.runLoopMode = .defaultRunLoopMode
+        
         tableView.delegate = self
         
         tableView.dataSource = self
@@ -52,6 +56,10 @@ class ShotDetailController: UIViewController {
         tableView.tableHeaderView = tableHeader
         
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
+        tableView.register(AuthorInfoCell.self, forCellReuseIdentifier: AuthorInfoCell.description())
+        
+        tableView.register(DescriptionCell.self, forCellReuseIdentifier: DescriptionCell.description())
         
         view.addSubview(tableView)
         
@@ -62,6 +70,10 @@ class ShotDetailController: UIViewController {
     
     dynamic private func clickRightItem(sender: UIBarButtonItem){
         
+        let shareAction: ()->Void = {
+            
+        }
+        alertActionSheet(sheetTitles: ["Share"], sheetActions: [shareAction])
     }
     
     private func bindViewModel() {
@@ -84,7 +96,8 @@ extension ShotDetailController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = DescriptionCell(style: UITableViewCellStyle.default, reuseIdentifier: DescriptionCell.description())
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.cellViewModels[indexPath.row].cellClass.description(), for: indexPath)
         
         cell.viewModel = viewModel.cellViewModels[indexPath.row]
         
@@ -106,53 +119,7 @@ extension ShotDetailController: UITableViewDelegate {
     }
 }
 
-extension ShotDetailController {
-    fileprivate class DescriptionCell: UITableViewCell {
-        let textView: UITextView = UITextView()
-        
-        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
-            
-            textView.isEditable = false
-            
-            textView.isScrollEnabled = false
-            
-            textView.textContainerInset = .zero
-            
-            contentView.addSubview(textView)
-            
-            textView.snp.makeConstraints { (make) in
-                make.edges.equalTo(UIEdgeInsets.zero)
-            }
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        override func update() {
-            guard let _viewModel = viewModel as? ViewModel else { return }
-            
-            textView.attributedText = _viewModel.parser.attrString
-        }
-        
-        class ViewModel: TableCellViewModel {
-            var cellClass: AnyClass = DescriptionCell.self
-            
-            var height: CGFloat = 200
-            
-            var parser: HTMLParser = HTMLParser()
-            
-            init(string: String) {
-                parser.parse(html: string)
-                
-               
-                self.height = parser.attrString.boundingRect(with: CGSize(width: kScreenWidth, height: CGFloat(MAXFLOAT)), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).height
-                
-            }
-        }
-    }
-}
+
 
 extension ShotDetailController {
     class ViewModel {
@@ -168,11 +135,13 @@ extension ShotDetailController {
         init(shot: Shot) {
             self.shot = shot
             
+            cellViewModels.append(AuthorInfoCell.ViewModel(shot: shot))
             cellViewModels.append(DescriptionCell.ViewModel(string: shot.descriptionStr))
         }
         
         func loadData() {
-            headerImageUrl = shot.images?.hidpi ?? (shot.images?.normal ?? "")
+            
+            headerImageUrl = shot.images?.hidpi ?? (shot.images?.normal ?? (shot.images?.teaser ?? ""))
             
             updateObserver.sendCompleted()
         }

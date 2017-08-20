@@ -16,23 +16,38 @@ private let ArialMT: String = "ArialMT"
 
 private let ArialBoldMT: String = "Arial-BoldMT"
 
+private let PingFang: String = "PingFangSC-Regular"
+
+private let PingFangBold: String = "PingFangSC-Medium"
+
 // MARK: - theme
 extension UIFont {
     
     static var title: UIFont {
-        return UIFont(name: ArialMT, size: 17)!
+        return UIFont(name: PingFang, size: 17)!
+    }
+    
+    static var subTitle: UIFont {
+        return UIFont(name: PingFang, size: 13)!
+    }
+    static var subTitleBold: UIFont {
+        return UIFont(name: PingFangBold, size: 13)!
     }
     
     static var contentNormal: UIFont {
-        return UIFont(name: ArialMT, size: 15)!
+        return UIFont(name: PingFang, size: 15)!
     }
     
     static var contentBold: UIFont {
-        return UIFont(name: ArialBoldMT, size: 15)!
+        return UIFont(name: PingFangBold, size: 15)!
     }
     
     static var button: UIFont {
-        return UIFont(name: ArialMT, size: 17)!
+        return UIFont(name: PingFang, size: 17)!
+    }
+    
+    static var link: UIFont {
+        return UIFont(name: PingFangBold, size: 15)!
     }
     
 }

@@ -70,6 +70,12 @@ struct ShotService {
 }
 
 extension ShotService {
+    fileprivate func cacheFirstPage() {
+    
+    }
+}
+
+extension ShotService {
     enum List: String {
         case animated = "animated", attachments = "attachments", debuts = "debuts", playoffs = "playoffs", rebounds = "rebounds", teams = "teams", all = ""
     }

@@ -45,15 +45,15 @@ class Shot {
 
 extension Shot {
     struct ImageInfo {
-        var hidpi:  String = ""
-        var normal: String = ""
-        var teaser: String = ""
+        var hidpi:  String?
+        var normal: String?
+        var teaser: String?
         init(with json: JSON) {
-            hidpi = json["hidpi"].stringValue
+            hidpi = json["hidpi"].string
             
-            normal = json["normal"].stringValue
+            normal = json["normal"].string
             
-            teaser = json["teaser"].stringValue
+            teaser = json["teaser"].string
         }
     }
 }

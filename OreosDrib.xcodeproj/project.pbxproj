@@ -32,6 +32,13 @@
 		951EEADE1EFA158B0029DE55 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951EEADD1EFA158B0029DE55 /* RealmManager.swift */; };
 		951EEADF1EFA158B0029DE55 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951EEADD1EFA158B0029DE55 /* RealmManager.swift */; };
 		951EEAE01EFA158B0029DE55 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951EEADD1EFA158B0029DE55 /* RealmManager.swift */; };
+		952178F71F46739700E5A0B1 /* ShotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952178F61F46739700E5A0B1 /* ShotCell.swift */; };
+		952178F91F4711D700E5A0B1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952178F81F4711D700E5A0B1 /* UIViewController+Alert.swift */; };
+		952178FA1F47132500E5A0B1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952178F81F4711D700E5A0B1 /* UIViewController+Alert.swift */; };
+		952178FB1F47132500E5A0B1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952178F81F4711D700E5A0B1 /* UIViewController+Alert.swift */; };
+		952178FF1F4716B900E5A0B1 /* ShotDetailController+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952178FE1F4716B900E5A0B1 /* ShotDetailController+Cell.swift */; };
+		952179001F4716C100E5A0B1 /* ShotDetailController+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952178FE1F4716B900E5A0B1 /* ShotDetailController+Cell.swift */; };
+		952179011F4716C100E5A0B1 /* ShotDetailController+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952178FE1F4716B900E5A0B1 /* ShotDetailController+Cell.swift */; };
 		952C53441EF88C6A006FC712 /* Dictionary+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952C533C1EF88C6A006FC712 /* Dictionary+Handle.swift */; };
 		952C53451EF88C6A006FC712 /* Dictionary+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952C533C1EF88C6A006FC712 /* Dictionary+Handle.swift */; };
 		952C53461EF88C6A006FC712 /* Dictionary+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952C533C1EF88C6A006FC712 /* Dictionary+Handle.swift */; };
@@ -205,6 +212,9 @@
 		636A4BB6342026267E0983CF /* Pods-OreosDribTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDribTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDribTests/Pods-OreosDribTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8AAAD44F0BE3038A82B20F77 /* Pods_OreosDribTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OreosDribTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		951EEADD1EFA158B0029DE55 /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		952178F61F46739700E5A0B1 /* ShotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotCell.swift; sourceTree = "<group>"; };
+		952178F81F4711D700E5A0B1 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		952178FE1F4716B900E5A0B1 /* ShotDetailController+Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShotDetailController+Cell.swift"; sourceTree = "<group>"; };
 		952C533C1EF88C6A006FC712 /* Dictionary+Handle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Handle.swift"; sourceTree = "<group>"; };
 		952C533E1EF88C6A006FC712 /* ReactiveError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveError.swift; sourceTree = "<group>"; };
 		952C533F1EF88C6A006FC712 /* ReactiveNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveNetwork.swift; sourceTree = "<group>"; };
@@ -399,6 +409,7 @@
 			children = (
 				95AE775F1EFB6FF1007B387E /* CoreTextView */,
 				3B0B47EF1EE6A3B9006288FA /* WaterFallCell.swift */,
+				952178F61F46739700E5A0B1 /* ShotCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -475,6 +486,7 @@
 				952C53571EF88CB9006FC712 /* UIColor+Extension.swift */,
 				952C536B1EF8BA33006FC712 /* UIFont+Extension.swift */,
 				952C53591EF88CB9006FC712 /* UIView+RoundCorner.swift */,
+				952178F81F4711D700E5A0B1 /* UIViewController+Alert.swift */,
 				953C32F01F023060009759D2 /* UIImageView+kf.swift */,
 			);
 			path = "UIKit+Extensions";
@@ -569,6 +581,7 @@
 			children = (
 				957B1E281F093A380047FBEE /* ShotsController.swift */,
 				957B1E271F093A380047FBEE /* ShotDetailController.swift */,
+				952178FE1F4716B900E5A0B1 /* ShotDetailController+Cell.swift */,
 			);
 			path = Shot;
 			sourceTree = "<group>";
@@ -803,13 +816,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OreosDribUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7B122C914E9756C39F56384 /* [CP] Embed Pods Frameworks */ = {
@@ -818,9 +834,48 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftHEXColors/SwiftHEXColors.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHTCollectionViewWaterfallLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHEXColors.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -833,13 +888,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OreosDrib-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E089B74E35CFA484F8071227 /* [CP] Embed Pods Frameworks */ = {
@@ -863,13 +921,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OreosDribTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EFA7838456749DBB5493AFEB /* [CP] Embed Pods Frameworks */ = {
@@ -901,11 +962,13 @@
 				3B0B47F01EE6A3B9006288FA /* UserService.swift in Sources */,
 				952C53721EF8C111006FC712 /* runtime+Utils.swift in Sources */,
 				953C33951F06499B009759D2 /* OAuthController.swift in Sources */,
+				952178F71F46739700E5A0B1 /* ShotCell.swift in Sources */,
 				952C53441EF88C6A006FC712 /* Dictionary+Handle.swift in Sources */,
 				952C534D1EF88C6A006FC712 /* SocketManager.swift in Sources */,
 				955355001EE80960006AB961 /* ShotService.swift in Sources */,
 				3B0B48051EE6A3B9006288FA /* String+Handle.swift in Sources */,
 				952C53471EF88C6A006FC712 /* ReactiveError.swift in Sources */,
+				952178F91F4711D700E5A0B1 /* UIViewController+Alert.swift in Sources */,
 				957B1DEF1F08AAEC0047FBEE /* Date+Handle.swift in Sources */,
 				953C32F11F023060009759D2 /* UIImageView+kf.swift in Sources */,
 				952C53501EF88C6A006FC712 /* SystemInfo.swift in Sources */,
@@ -936,6 +999,7 @@
 				957B1E411F0943560047FBEE /* ChatListController.swift in Sources */,
 				3B0B48111EE6A3B9006288FA /* WaterFallCell.swift in Sources */,
 				953C32E81F00EB2D009759D2 /* ViewModel+Configuration.swift in Sources */,
+				952178FF1F4716B900E5A0B1 /* ShotDetailController+Cell.swift in Sources */,
 				953C32ED1F00F9D3009759D2 /* ListContainer.swift in Sources */,
 				95AE77691EFCA881007B387E /* WKWebView+Handle.swift in Sources */,
 				953C339C1F078C62009759D2 /* OAuthService.swift in Sources */,
@@ -961,6 +1025,7 @@
 				952C53771EF8C904006FC712 /* runtime+UIControl.swift in Sources */,
 				957B1DF01F08AAEC0047FBEE /* Date+Handle.swift in Sources */,
 				952C536D1EF8BA33006FC712 /* UIFont+Extension.swift in Sources */,
+				952178FA1F47132500E5A0B1 /* UIViewController+Alert.swift in Sources */,
 				952C53451EF88C6A006FC712 /* Dictionary+Handle.swift in Sources */,
 				953C32E51F00E971009759D2 /* WaterFallController.swift in Sources */,
 				957B1E3F1F0943560047FBEE /* ChatDetailController.swift in Sources */,
@@ -991,6 +1056,7 @@
 				955355011EE80960006AB961 /* ShotService.swift in Sources */,
 				955354F91EE6C5E5006AB961 /* APIHandle.swift in Sources */,
 				953C32F21F023060009759D2 /* UIImageView+kf.swift in Sources */,
+				952179011F4716C100E5A0B1 /* ShotDetailController+Cell.swift in Sources */,
 				954070121EFB23F000F7195F /* Image+Handle.swift in Sources */,
 				957B1E311F093A4D0047FBEE /* SearchController.swift in Sources */,
 				95AE777F1EFE82FB007B387E /* GlobalConstants.swift in Sources */,
@@ -1016,6 +1082,7 @@
 				952C53781EF8C904006FC712 /* runtime+UIControl.swift in Sources */,
 				957B1DF11F08AAEC0047FBEE /* Date+Handle.swift in Sources */,
 				952C536E1EF8BA33006FC712 /* UIFont+Extension.swift in Sources */,
+				952178FB1F47132500E5A0B1 /* UIViewController+Alert.swift in Sources */,
 				952C53461EF88C6A006FC712 /* Dictionary+Handle.swift in Sources */,
 				953C32E61F00E971009759D2 /* WaterFallController.swift in Sources */,
 				957B1E401F0943560047FBEE /* ChatDetailController.swift in Sources */,
@@ -1046,6 +1113,7 @@
 				955355021EE80960006AB961 /* ShotService.swift in Sources */,
 				955354FA1EE6C5E5006AB961 /* APIHandle.swift in Sources */,
 				953C32F31F023060009759D2 /* UIImageView+kf.swift in Sources */,
+				952179001F4716C100E5A0B1 /* ShotDetailController+Cell.swift in Sources */,
 				954070131EFB23F000F7195F /* Image+Handle.swift in Sources */,
 				957B1E321F093A4D0047FBEE /* SearchController.swift in Sources */,
 				95AE77801EFE82FB007B387E /* GlobalConstants.swift in Sources */,

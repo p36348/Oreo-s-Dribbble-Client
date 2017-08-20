@@ -32,16 +32,20 @@ class WaterFallCell: UICollectionViewCell {
         imageView.kf.indicatorType = .activity
         
         imageView.needsPrescaling = false
-        
+
         imageView.runLoopMode = .defaultRunLoopMode
         
         descriptionLabel.textColor = UIColor.Dribbble.charcoal
+        
+//        descriptionLabel.backgroundColor = UIColor.white
         
         descriptionLabel.font = UIFont.contentNormal
         
         descriptionLabel.numberOfLines = 0
         
         autherLabel.textColor = UIColor.Dribbble.slate
+        
+//        autherLabel.backgroundColor = UIColor.white
         
         autherLabel.font = UIFont.contentNormal
         
@@ -82,12 +86,19 @@ class WaterFallCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepare() {
+        imageView.kf.cancelDownloadTask()
+        imageView.image = nil
+        autherLabel.text = nil
+        descriptionLabel.text = nil
+    }
+    
     override func update() {
         guard let _viewModel = viewModel as? ViewModel else { return }
         
         imageView.setImage(urlString: _viewModel.imageUrl)
         
-        imageView.frame = _viewModel.imageViewFrame
+        if _viewModel.imageViewFrame != imageView.frame { imageView.frame = _viewModel.imageViewFrame }
         
         descriptionLabel.text = _viewModel.descriptionContent
         

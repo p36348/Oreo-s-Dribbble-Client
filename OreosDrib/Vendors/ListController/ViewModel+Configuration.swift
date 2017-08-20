@@ -65,6 +65,8 @@ protocol CollectionCellDelegate: class {
 }
 
 protocol Cell: class {
+    func prepare() -> Void
+    
     func update() -> Void
     
     func endUpdate() -> Void
@@ -82,6 +84,7 @@ protocol TableCell: Cell {
 }
 
 extension UITableViewCell: TableCell {
+    
     var viewModel: TableCellViewModel? {
         get {
             return objc_getAssociatedObject(self, &viewModelKey) as? TableCellViewModel
@@ -91,13 +94,11 @@ extension UITableViewCell: TableCell {
         }
     }
     
-    func update() {
-        
-    }
+    func prepare() {}
     
-    func endUpdate() {
-        
-    }
+    func update() {}
+    
+    func endUpdate() {}
 }
 
 private var viewModelKey: Int = 0
@@ -114,7 +115,6 @@ extension UICollectionViewCell: CollectionCell {
             objc_setAssociatedObject(self, &delegateKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
-    
 
     var viewModel: CollectionCellViewModel? {
         get {
@@ -125,13 +125,9 @@ extension UICollectionViewCell: CollectionCell {
         }
     }
     
+    func prepare() {}
     
-    func update() {
-        
-    }
+    func update() {}
     
-    
-    func endUpdate() {
-        
-    }
+    func endUpdate() {}
 }
