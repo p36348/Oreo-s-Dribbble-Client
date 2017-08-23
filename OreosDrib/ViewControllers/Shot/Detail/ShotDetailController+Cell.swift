@@ -17,6 +17,8 @@ extension ShotDetailController {
         override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             
+            contentView.backgroundColor = UIColor.white
+            
             textView.isEditable = false
             
             textView.isScrollEnabled = false
@@ -36,14 +38,10 @@ extension ShotDetailController {
             fatalError("init(coder:) has not been implemented")
         }
         
-        override func update() {
-            guard let _viewModel = viewModel as? ViewModel else { return }
+        class ViewModel: ReusableViewModel {
+            var viewClass: AnyClass = DescriptionCell.self
             
-            textView.attributedText = _viewModel.parser.attrString
-        }
-        
-        class ViewModel: TableCellViewModel {
-            var cellClass: AnyClass = DescriptionCell.self
+            var identifier: String = DescriptionCell.description()
             
             var height: CGFloat = 0
             
@@ -56,6 +54,11 @@ extension ShotDetailController {
                                                              options: [.usesLineFragmentOrigin, .usesFontLeading],
                                                              context: nil).height
                 
+            }
+            func update(reusableView: UIView) {
+                guard let _cell = reusableView as? DescriptionCell else { return }
+                
+                _cell.textView.attributedText = self.parser.attrString
             }
         }
     }
@@ -79,24 +82,14 @@ extension ShotDetailController {
             avatorNode.clipsToBounds = true
         }
         
-        override func update() {
-            guard let _viewModel = viewModel as? ViewModel else { return }
-            
-            avatorNode.url = _viewModel.avatorURL
-            
-            titleNode.backgroundColor = .white
-            
-            titleNode.attributedText = _viewModel.attributeString
-            
-            titleNode.frame = _viewModel.textFrame
-        }
-        
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
         
-        class ViewModel: TableCellViewModel {
-            var cellClass: AnyClass = AuthorInfoCell.self
+        class ViewModel: ReusableViewModel {
+            var viewClass: AnyClass = AuthorInfoCell.self
+            
+            var identifier: String = AuthorInfoCell.description()
             
             var height: CGFloat = 100
             
@@ -147,6 +140,18 @@ extension ShotDetailController {
                 self.textFrame = CGRect(origin: CGPoint(x: ViewModel.avatorFrame.maxX + 10, y: ViewModel.avatorFrame.origin.y), size: _size)
                 
                 self.height = max(self.textFrame.height, ViewModel.avatorFrame.width) + 20
+            }
+            
+            func update(reusableView: UIView) {
+                guard let _cell = reusableView as? AuthorInfoCell else { return }
+                
+                _cell.avatorNode.url = self.avatorURL
+                
+                _cell.titleNode.backgroundColor = .white
+                
+                _cell.titleNode.attributedText = self.attributeString
+                
+                _cell.titleNode.frame = self.textFrame
             }
         }
     }

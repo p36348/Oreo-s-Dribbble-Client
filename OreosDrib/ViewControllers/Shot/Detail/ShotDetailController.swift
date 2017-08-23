@@ -13,7 +13,7 @@ import Result
 
 class ShotDetailController: UIViewController {
     
-    fileprivate var viewModel: ViewModel!
+    public fileprivate(set) var viewModel: ViewModel!
     
     fileprivate var tableHeader: AnimatedImageView = AnimatedImageView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth * 3 / 4))
     
@@ -73,7 +73,7 @@ class ShotDetailController: UIViewController {
         let shareAction: ()->Void = {
             
         }
-        alertActionSheet(sheetTitles: ["Share"], sheetActions: [shareAction])
+        self.oAlert.alertActionSheet(sheetTitles: ["Share"], sheetActions: [shareAction])
     }
     
     private func bindViewModel() {
@@ -82,6 +82,7 @@ class ShotDetailController: UIViewController {
             
             _self.tableHeader.setImage(urlString: _self.viewModel.headerImageUrl)
             
+            _self.tableView.reloadSections([0], with: UITableViewRowAnimation.automatic)
         }
     }
 }
@@ -92,22 +93,22 @@ extension ShotDetailController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.cellViewModels[indexPath.row].height
+        return viewModel.cellViewModels[indexPath]!.height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.cellViewModels[indexPath.row].cellClass.description(), for: indexPath)
-        
-        cell.viewModel = viewModel.cellViewModels[indexPath.row]
-        
-        return cell
+        return tableView.dequeueReusableCell(withIdentifier: viewModel.cellViewModels[indexPath]!.identifier, for: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return self.viewModel.tableView(tableView, viewForHeaderInSection: section)
     }
 }
 
 extension ShotDetailController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.update()
+        
+        self.viewModel.cellViewModels[indexPath]?.update(reusableView: cell)
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -128,22 +129,39 @@ extension ShotDetailController {
         
         var headerImageUrl: String = ""
         
-        var cellViewModels: [TableCellViewModel] = []
+        var sectionViewModels: [Int: UIView]?
+        
+        var cellViewModels: [IndexPath: ReusableViewModel] = [:]
         
         var (updateSignal, updateObserver) = Signal<Shot, NoError>.pipe()
         
         init(shot: Shot) {
             self.shot = shot
-            
-            cellViewModels.append(AuthorInfoCell.ViewModel(shot: shot))
-            cellViewModels.append(DescriptionCell.ViewModel(string: shot.descriptionStr))
         }
         
         func loadData() {
             
-            headerImageUrl = shot.images?.hidpi ?? (shot.images?.normal ?? (shot.images?.teaser ?? ""))
+            DispatchQueue.global().async { [weak self] in
+                guard let _self = self else {return}
+                
+                _self.cellViewModels = [IndexPath(item: 0, section: 0): AuthorInfoCell.ViewModel(shot: _self.shot),
+                                        IndexPath(item: 1, section: 0): DescriptionCell.ViewModel(string: _self.shot.descriptionStr)]
+                
+                _self.headerImageUrl = _self.shot.images?.hidpi ?? (_self.shot.images?.normal ?? (_self.shot.images?.teaser ?? ""))
+                
+                DispatchQueue.main.sync {
+                    _self.updateObserver.sendCompleted()
+                }
+            }
+        }
+        
+        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             
-            updateObserver.sendCompleted()
+//            if let _viewModel = sectionViewModels?[section] {
+//                return _viewModel
+//            }
+            
+            return nil
         }
     }
 }

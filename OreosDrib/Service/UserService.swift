@@ -32,7 +32,7 @@ private struct API {
     
     static let followers: String = "/users/:user/followers".dribbbleFullUrl
     
-    static let following: String = "/users/:user/following"
+    static let following: String = "/users/:user/following".dribbbleFullUrl
     
 }
 

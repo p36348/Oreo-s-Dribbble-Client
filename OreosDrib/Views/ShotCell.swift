@@ -7,18 +7,32 @@
 //
 
 import UIKit
-import AsyncDisplayKit
+import Kingfisher
+
+private let kContentPadding: CGFloat = 5
 
 class ShotCell: UICollectionViewCell {
     
-    private let imageNode: ASNetworkImageNode = ASNetworkImageNode()
+    private let imageView: AnimatedImageView = AnimatedImageView()
+    
+    private let animatedTag: CALayer = CALayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        imageNode.shouldCacheImage = false
+        contentView.backgroundColor = UIColor.white
         
-        contentView.addSubnode(imageNode)
+        animatedTag.isHidden = true
+        
+        imageView.kf.indicatorType = .activity
+        
+        imageView.needsPrescaling = false
+        
+        imageView.runLoopMode = .defaultRunLoopMode
+        
+        contentView.addSubview(imageView)
+        
+        contentView.layer.addSublayer(animatedTag)
         
     }
     
@@ -26,26 +40,45 @@ class ShotCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func update() {
+    class ViewModel: ReusableViewModel {
+        var viewClass: AnyClass = ShotCell.self
         
-        guard let _viewModel = viewModel as? ViewModel else {return}
-        
-        imageNode.setURL(_viewModel.imageURL, resetToDefault: false)
-        
-        imageNode.frame = _viewModel.imageFrame
-    }
-    
-    class ViewModel: CollectionCellViewModel {
-        var cellClass: AnyClass = ShotCell.self
+        var identifier: String = ShotCell.description()
         
         var size: CGSize = CGSize.zero
         
-        var imageURL: URL?
+        var hidesAnimated: Bool = false
+        
+        var imageURL: String = ""
         
         var imageFrame: CGRect = .zero
         
-        init(shot: Shot) {
+        init(width: CGFloat,shot: Shot) {
+            self.hidesAnimated = !shot.animated
             
+            self.imageURL = shot.images?.normal ?? ""
+            
+            let imageWidth: CGFloat = width - kContentPadding * 2
+            
+            self.imageFrame = CGRect(x: kContentPadding, y: kContentPadding, width: imageWidth, height: imageWidth * 3 / 4)
+            
+            self.size = CGSize(width: width, height: self.imageFrame.size.height + kContentPadding * 2)
+        }
+        
+        func update(reusableView: UIView) {
+            guard let _cell = reusableView as? ShotCell else { return }
+            
+            _cell.animatedTag.isHidden = self.hidesAnimated
+            
+            _cell.imageView.setImage(urlString: self.imageURL)
+            
+            _cell.imageView.frame = self.imageFrame
+        }
+        
+        func endUpdate(reusableView: UIView) {
+            guard let _cell = reusableView as? ShotCell else { return }
+            
+            _cell.imageView.kf.cancelDownloadTask()
         }
     }
 }

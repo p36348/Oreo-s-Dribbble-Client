@@ -14,9 +14,8 @@ import CHTCollectionViewWaterfallLayout
 import ESPullToRefresh
 
 /// 基础控制器 有待封装
-class ShotsController: UIViewController, ListContainer {
+class ShotsController: UIViewController {
     
-    var listView: UIScrollView { return self.collectionView }
     
     fileprivate let viewModel: ViewModel = ViewModel()
     
@@ -51,7 +50,7 @@ extension ShotsController {
         
         collectionView.delegate   = self
         
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor.Dribbble.charcoal
         
         collectionViewLayout.minimumColumnSpacing = 10
         
@@ -87,7 +86,7 @@ extension ShotsController {
             /**
              * 错误处理
              */
-            if let _error = result.error { return _self.alert(errorMsg: _error.message) }
+            if let _error = result.error { return _self.oAlert.alert(errorMsg: _error.message) }
             
             _self.collectionView.reloadSections([0])
             
@@ -99,7 +98,7 @@ extension ShotsController {
             /**
              * 错误处理
              */
-            if let _error = result.error { return _self.alert(errorMsg: _error.message) }
+            if let _error = result.error { return _self.oAlert.alert(errorMsg: _error.message) }
             /**
              * 停止加载动画
              */
@@ -137,6 +136,11 @@ extension ShotsController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return viewModel.collectionView(collectionView, cellForItemAt: indexPath)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        return self.viewModel.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
+    }
 }
 
 extension ShotsController: UICollectionViewDelegate {
@@ -151,12 +155,12 @@ extension ShotsController: UICollectionViewDelegate {
     
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.endUpdate()
+        self.viewModel.cellViewModels[indexPath.row].endUpdate(reusableView: cell)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.update()
+        self.viewModel.cellViewModels[indexPath.row].update(reusableView: cell)
     }
 }
 
@@ -183,7 +187,7 @@ extension ShotsController {
         
         var shots: [Shot] = []
         
-        var cellViewModels: [WaterFallCell.ViewModel] = []
+        var cellViewModels: [ShotCell.ViewModel] = []
         
         var list: ShotService.List = .all
         
@@ -216,9 +220,9 @@ extension ShotsController {
                     
                     _self.shots = result.value!.shots
                     
-                    _self.cellViewModels = result.value!.shots.map({ (shot) -> WaterFallCell.ViewModel in
+                    _self.cellViewModels = result.value!.shots.map({ (shot) -> ShotCell.ViewModel in
                         
-                        return WaterFallCell.ViewModel(width: ItemInfo.width, shot: shot)
+                        return ShotCell.ViewModel(width: ItemInfo.width, shot: shot)
                     })
                     
                     var indexPaths: [IndexPath] = []
@@ -251,8 +255,8 @@ extension ShotsController {
                     
                         let originCount: Int = _self.cellViewModels.count
                         
-                        let newViewModels: [WaterFallCell.ViewModel] = result.value!.shots.map({ (shot) -> WaterFallCell.ViewModel in
-                            return WaterFallCell.ViewModel(width: ItemInfo.width, shot: shot)
+                        let newViewModels: [ShotCell.ViewModel] = result.value!.shots.map({ (shot) -> ShotCell.ViewModel in
+                            return ShotCell.ViewModel(width: ItemInfo.width, shot: shot)
                         })
                         
                         var indexPaths: [IndexPath] = []
@@ -271,11 +275,17 @@ extension ShotsController {
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             if collectionView.cellForItem(at: indexPath) == nil {
-                collectionView.register(cellViewModels[indexPath.row].cellClass, forCellWithReuseIdentifier: cellViewModels[indexPath.row].cellClass.description())
+                collectionView.register(cellViewModels[indexPath.row].viewClass, forCellWithReuseIdentifier: cellViewModels[indexPath.row].identifier)
             }
-            let _cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellViewModels[indexPath.row].cellClass.description(), for: indexPath)
-            _cell.viewModel = cellViewModels[indexPath.row]
-            return _cell
+            return collectionView.dequeueReusableCell(withReuseIdentifier: cellViewModels[indexPath.row].identifier, for: indexPath)
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView  {
+            
+            
+            let _view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "", for: indexPath)
+            
+            return _view
         }
         
         func loadFirstPageData() {

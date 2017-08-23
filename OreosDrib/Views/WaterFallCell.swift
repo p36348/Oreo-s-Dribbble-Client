@@ -86,32 +86,32 @@ class WaterFallCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepare() {
-        imageView.kf.cancelDownloadTask()
-        imageView.image = nil
-        autherLabel.text = nil
-        descriptionLabel.text = nil
-    }
-    
-    override func update() {
-        guard let _viewModel = viewModel as? ViewModel else { return }
-        
-        imageView.setImage(urlString: _viewModel.imageUrl)
-        
-        if _viewModel.imageViewFrame != imageView.frame { imageView.frame = _viewModel.imageViewFrame }
-        
-        descriptionLabel.text = _viewModel.descriptionContent
-        
-        descriptionLabel.frame = _viewModel.descriptionLabelFrame
-        
-        autherLabel.text = _viewModel.autherContent
-        
-        autherLabel.frame = _viewModel.autherFrame
-    }
-    
-    override func endUpdate() {
-        imageView.kf.cancelDownloadTask()
-    }
+//    override func prepare() {
+//        imageView.kf.cancelDownloadTask()
+//        imageView.image = nil
+//        autherLabel.text = nil
+//        descriptionLabel.text = nil
+//    }
+//    
+//    override func update() {
+//        guard let _viewModel = viewModel as? ViewModel else { return }
+//        
+//        imageView.setImage(urlString: _viewModel.imageUrl)
+//        
+//        if _viewModel.imageViewFrame != imageView.frame { imageView.frame = _viewModel.imageViewFrame }
+//        
+//        descriptionLabel.text = _viewModel.descriptionContent
+//        
+//        descriptionLabel.frame = _viewModel.descriptionLabelFrame
+//        
+//        autherLabel.text = _viewModel.autherContent
+//        
+//        autherLabel.frame = _viewModel.autherFrame
+//    }
+//    
+//    override func endUpdate() {
+//        imageView.kf.cancelDownloadTask()
+//    }
 
 }
 
@@ -121,11 +121,12 @@ private let vPadding: CGFloat = 10
 
 extension WaterFallCell {
     
-    class ViewModel: CollectionCellViewModel {
+    class ViewModel: ReusableViewModel {
         
         var size: CGSize = .zero
         
-        var cellClass: AnyClass { return WaterFallCell.self }
+        var viewClass: AnyClass { return WaterFallCell.self }
+        var identifier: String = WaterFallCell.description()
         
         var imageUrl: String = ""
         

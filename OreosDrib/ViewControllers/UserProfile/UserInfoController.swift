@@ -80,7 +80,8 @@ extension UserInfoController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        (view as? UITableViewHeaderFooterView)?.update()
+//        (view as? UITableViewHeaderFooterView)?.update()
+        viewModel.sectionHeaderViewModel.update(reusableView: view)
     }
     
     
@@ -147,21 +148,26 @@ fileprivate class SectionHeader: UITableViewHeaderFooterView {
         }
     }
     
-    override func update() {
-        guard let _viewModel = viewModel as? ViewModel else { return }
-                
-        imageView.setImage(urlString: _viewModel.imageUrl, placeholder: #imageLiteral(resourceName: "DefaultAvator"))
-        
-        nameLabel.text = _viewModel.name
-        
-        dateLabel.text = _viewModel.date
-    }
+//    override func update() {
+//        guard let _viewModel = viewModel as? ViewModel else { return }
+//                
+//        imageView.setImage(urlString: _viewModel.imageUrl, placeholder: #imageLiteral(resourceName: "DefaultAvator"))
+//        
+//        nameLabel.text = _viewModel.name
+//        
+//        dateLabel.text = _viewModel.date
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    class ViewModel: SectionHeaderFooterViewModel {
+    class ViewModel: ReusableViewModel {
+        
+        var viewClass: AnyClass = SectionHeader.self
+        
+        var identifier: String = SectionHeader.description()
+        
         var date: String = ""
         
         var name: String = ""
@@ -245,7 +251,7 @@ extension UserInfoController {
                 header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeader.description()) as? SectionHeader
             }
             
-            header?.viewModel = sectionHeaderViewModel
+//            header?.viewModel = sectionHeaderViewModel
             
             return header
         }

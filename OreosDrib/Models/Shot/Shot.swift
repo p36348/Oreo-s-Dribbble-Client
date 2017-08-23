@@ -16,6 +16,10 @@ class Shot {
     var descriptionStr: String = ""
     var width: CGFloat = 0
     var height: CGFloat = 0
+    
+    var animated: Bool = false
+    
+    
     var images: ImageInfo?
     var views: UInt = 0
     var likes: UInt = 0
@@ -30,6 +34,7 @@ class Shot {
         descriptionStr = json["description"].stringValue
         width = CGFloat(json["width"].floatValue)
         height = CGFloat(json["height"].floatValue)
+        animated = json["animated"].boolValue
         images = ImageInfo(with: json["images"])
         views = json["views"].uIntValue
         likes = json["likes"].uIntValue
