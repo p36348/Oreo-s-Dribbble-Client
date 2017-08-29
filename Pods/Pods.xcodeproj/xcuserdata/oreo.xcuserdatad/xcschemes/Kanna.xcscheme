@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '63FD2F0B253D1AD3A991E3DBB3826F0F'
-               BlueprintName = 'PromiseKit'
+               BlueprintIdentifier = '4D10E4FF5A483B852B47CCA0B994E340'
+               BlueprintName = 'Kanna'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'PromiseKit.framework'>
+               BuildableName = 'Kanna.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
