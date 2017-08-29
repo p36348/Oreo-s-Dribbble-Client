@@ -9,18 +9,18 @@
 import UIKit
 import ReactiveSwift
 import Result
-import Kingfisher
+import AsyncDisplayKit
 
 class WaterFallCell: UICollectionViewCell {
     
     
     // views
     
-    let imageView: AnimatedImageView = AnimatedImageView()
+    var imageNode: ASNetworkImageNode?
     
-    let descriptionLabel: UILabel = UILabel()
+    var descriptionNode: ASTextNode?
     
-    let autherLabel: UILabel = UILabel()
+    var autherNode: ASTextNode?
     
     let corners = makeCorners()
 
@@ -29,56 +29,53 @@ class WaterFallCell: UICollectionViewCell {
         
         contentView.backgroundColor = UIColor.white
         
-        imageView.kf.indicatorType = .activity
-        
-        imageView.needsPrescaling = false
-
-        imageView.runLoopMode = .defaultRunLoopMode
-        
-        descriptionLabel.textColor = UIColor.Dribbble.charcoal
-        
-//        descriptionLabel.backgroundColor = UIColor.white
-        
-        descriptionLabel.font = UIFont.contentNormal
-        
-        descriptionLabel.numberOfLines = 0
-        
-        autherLabel.textColor = UIColor.Dribbble.slate
-        
-//        autherLabel.backgroundColor = UIColor.white
-        
-        autherLabel.font = UIFont.contentNormal
-        
-        autherLabel.textAlignment = .right
-        
-        autherLabel.numberOfLines = 0
-        
-        contentView.addSubview(descriptionLabel)
-        
-        contentView.addSubview(imageView)
-        
-        contentView.addSubview(autherLabel)
-        
-        imageView.addSubview(corners.bottomLeft)
-        
-        imageView.addSubview(corners.topLeft)
-        
-        imageView.addSubview(corners.bottomRight)
-        
-        imageView.addSubview(corners.topRight)
-        
-        corners.topLeft.snp.makeConstraints { (make) in
-            make.top.left.equalTo(0)
-        }
-        corners.topRight.snp.makeConstraints { (make) in
-            make.top.right.equalTo(0)
-        }
-        corners.bottomLeft.snp.makeConstraints { (make) in
-            make.bottom.left.equalTo(0)
-        }
-        corners.bottomRight.snp.makeConstraints { (make) in
-            make.bottom.right.equalTo(0)
-        }
+//        imageView.kf.indicatorType = .activity
+//        
+//        imageView.needsPrescaling = false
+//
+//        imageView.runLoopMode = .defaultRunLoopMode
+//        
+//        descriptionLabel.textColor = UIColor.Dribbble.charcoal
+//        
+//        descriptionLabel.font = UIFont.contentNormal
+//        
+//        descriptionLabel.numberOfLines = 0
+//        
+//        autherLabel.textColor = UIColor.Dribbble.slate
+//        
+//        
+//        autherLabel.font = UIFont.contentNormal
+//        
+//        autherLabel.textAlignment = .right
+//        
+//        autherLabel.numberOfLines = 0
+//        
+//        contentView.addSubview(descriptionLabel)
+//        
+//        contentView.addSubview(imageView)
+//        
+//        contentView.addSubview(autherLabel)
+//        
+//        imageView.addSubview(corners.bottomLeft)
+//        
+//        imageView.addSubview(corners.topLeft)
+//        
+//        imageView.addSubview(corners.bottomRight)
+//        
+//        imageView.addSubview(corners.topRight)
+//        
+//        corners.topLeft.snp.makeConstraints { (make) in
+//            make.top.left.equalTo(0)
+//        }
+//        corners.topRight.snp.makeConstraints { (make) in
+//            make.top.right.equalTo(0)
+//        }
+//        corners.bottomLeft.snp.makeConstraints { (make) in
+//            make.bottom.left.equalTo(0)
+//        }
+//        corners.bottomRight.snp.makeConstraints { (make) in
+//            make.bottom.right.equalTo(0)
+//        }
         
     }
     
@@ -160,5 +157,4 @@ extension WaterFallCell {
             size = CGSize(width: width, height: autherFrame.maxY + vPadding)
         }
     }
-    
 }

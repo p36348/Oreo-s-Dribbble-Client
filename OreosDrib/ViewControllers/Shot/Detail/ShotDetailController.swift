@@ -112,7 +112,7 @@ extension ShotDetailController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
+        self.viewModel.sectionViewModels[section]?.update(reusableView: view)
     }
     
     func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
@@ -129,7 +129,7 @@ extension ShotDetailController {
         
         var headerImageUrl: String = ""
         
-        var sectionViewModels: [Int: UIView]?
+        var sectionViewModels: [Int: ReusableViewModel] = [:]
         
         var cellViewModels: [IndexPath: ReusableViewModel] = [:]
         
@@ -149,7 +149,7 @@ extension ShotDetailController {
                 
                 _self.headerImageUrl = _self.shot.images?.hidpi ?? (_self.shot.images?.normal ?? (_self.shot.images?.teaser ?? ""))
                 
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     _self.updateObserver.sendCompleted()
                 }
             }

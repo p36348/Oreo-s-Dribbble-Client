@@ -24,7 +24,36 @@ struct ShotService {
     
     static var shared: ShotService = ShotService()
     
-    var (shotListSignal, shotListObserver) = Signal<(page: Int, shots: [Shot]), ReactiveError>.pipe()
+    static var shotsVMThread: Thread = {
+        
+        let _thread: Thread = Thread(block: {
+            Thread.current.name = "shotsViewModelThread"
+            
+            let _runLoop = RunLoop.current
+            
+            _runLoop.add(NSMachPort(), forMode: RunLoopMode.defaultRunLoopMode)
+            
+            _runLoop.run()
+        })
+        
+        _thread.start()
+        
+        return _thread
+    }()
+    
+    var shotOperationQueue: OperationQueue = {
+        let _queue = OperationQueue()
+        
+        return _queue
+    }()
+    
+    var shotDispatchQueue: DispatchQueue = {
+        return DispatchQueue(label: "ShotService.shot")
+    }()
+    
+    public private(set) var (shotListSignal, shotListObserver) = Signal<(page: Int, shots: [Shot]), ReactiveError>.pipe()
+    
+    public private(set) var shotsViewModels: [ShotCell.ViewModel] = []
     
     private init(){}
     
@@ -52,17 +81,33 @@ struct ShotService {
                                        "list": list.rawValue,
                                        "timeframe": timeframe.rawValue]
         
-        
         let response = ReactiveNetwork.shared.get(url: API.list, parameters: _parameters)
         
         response.signal.observeResult { (result) in
-            if let _error = result.error { return self.shotListObserver.send(error: _error) }
-            
-            if let _value = result.value {
-                let _shots = _value.arrayValue.map({ (_json) -> Shot in
-                    return Shot(with: _json)
-                })
-                return self.shotListObserver.send(value: (page: page, shots: _shots)) }
+            self.shotDispatchQueue.async {
+                if let _error = result.error {
+                    return DispatchQueue.main.async {
+                        self.shotListObserver.send(error: _error)
+                    }
+                }
+                
+                if let _value = result.value {
+                    let _shots = _value.arrayValue.map({ (_json) -> Shot in
+                        return Shot(with: _json)
+                    })
+                    
+                    let _cellViewModels = _shots.map({ (_shot) -> ShotCell.ViewModel in
+                        return ShotCell.ViewModel(width: (kScreenWidth - 30) / 2, shot: _shot)
+                    })
+                    
+                    DispatchQueue.main.async {
+                        
+                        ShotService.shared.shotsViewModels = page == 1 ? _cellViewModels : ShotService.shared.shotsViewModels + _cellViewModels
+
+                        self.shotListObserver.send(value: (page: page, shots: _shots)) }
+                    }
+                    
+            }
         }
         
         return response

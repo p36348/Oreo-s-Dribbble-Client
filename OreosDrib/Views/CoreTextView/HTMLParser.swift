@@ -53,7 +53,7 @@ class HTMLParser {
     func parse(html: String, completion: @escaping ()->Void) {
         DispatchQueue.global().async {
             self.parse(html: html)
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 completion()
             }
         }

@@ -24,17 +24,17 @@ class ShotsController: UIViewController {
     var collectionViewLayout: CHTCollectionViewWaterfallLayout {
         return collectionView.collectionViewLayout as! CHTCollectionViewWaterfallLayout
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureViews()
         
         bindViewModel()
         
         viewModel.loadFirstPageData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -166,7 +166,7 @@ extension ShotsController: UICollectionViewDelegate {
 
 extension ShotsController: CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         return viewModel.cellViewModels[indexPath.row].size
     }
 }
@@ -187,7 +187,9 @@ extension ShotsController {
         
         var shots: [Shot] = []
         
-        var cellViewModels: [ShotCell.ViewModel] = []
+        var cellViewModels: [ShotCell.ViewModel] {
+            return ShotService.shared.shotsViewModels
+        }
         
         var list: ShotService.List = .all
         
@@ -200,7 +202,7 @@ extension ShotsController {
         var currentPage: Int = 1
         
         var (firstPageSignal, firstPageObserver) = Signal<[IndexPath], ReactiveError>.pipe()
-
+        
         var (loadMoreDataSignal, loadMoreDataObserver) = Signal<[IndexPath], ReactiveError>.pipe()
         
         var (reloadSignal, reloadObserver) = Signal<String, NoError>.pipe()
@@ -211,32 +213,26 @@ extension ShotsController {
              */
             ShotService.shared.shotListSignal.filter { (result) -> Bool in
                 return result.page == 1
-            }.observeResult { [weak self] (result) in
-                guard let _self = self else { return }
-                
-                if let _error = result.error { return _self.firstPageObserver.send(error: _error) }
-                
-                DispatchQueue.global(qos: .background).async {
+                }.observeResult { [weak self] (result) in
+                    guard let _self = self else { return }
                     
-                    _self.shots = result.value!.shots
+                    if let _error = result.error { return _self.firstPageObserver.send(error: _error) }
                     
-                    _self.cellViewModels = result.value!.shots.map({ (shot) -> ShotCell.ViewModel in
+                    DispatchQueue.global(qos: .background).async {
                         
-                        return ShotCell.ViewModel(width: ItemInfo.width, shot: shot)
-                    })
-                    
-                    var indexPaths: [IndexPath] = []
-                    
-                    (0..<_self.cellViewModels.count).forEach { (index) in
-                        indexPaths.append(IndexPath(item: index, section: 0))
+                        _self.shots = result.value!.shots
+                        
+                        var indexPaths: [IndexPath] = []
+                        
+                        (0..<_self.shots.count).forEach { (index) in
+                            indexPaths.append(IndexPath(item: index, section: 0))
+                        }
+                        
+                        DispatchQueue.main.async {
+                            
+                            _self.firstPageObserver.send(value: indexPaths)
+                        }
                     }
-                    
-                    DispatchQueue.main.sync {
-                        _self.firstPageObserver.send(value: indexPaths)
-                    }
-                }
-                
-                
             }
             
             /**
@@ -251,22 +247,17 @@ extension ShotsController {
                     
                     DispatchQueue.global(qos: .background).async {
                         
-                        _self.shots = _self.shots + result.value!.shots
-                    
-                        let originCount: Int = _self.cellViewModels.count
+                        let originCount: Int = _self.shots.count
                         
-                        let newViewModels: [ShotCell.ViewModel] = result.value!.shots.map({ (shot) -> ShotCell.ViewModel in
-                            return ShotCell.ViewModel(width: ItemInfo.width, shot: shot)
-                        })
+                        _self.shots = _self.shots + result.value!.shots
                         
                         var indexPaths: [IndexPath] = []
-                        (0..<newViewModels.count).forEach { (index) in
+                        
+                        (0..<result.value!.shots.count).forEach { (index) in
                             indexPaths.append(IndexPath(item: originCount + index, section: 0))
                         }
                         
-                        _self.cellViewModels = _self.cellViewModels + newViewModels
-                        
-                        DispatchQueue.main.sync {
+                        DispatchQueue.main.async {
                             _self.loadMoreDataObserver.send(value: indexPaths)
                         }
                     }
