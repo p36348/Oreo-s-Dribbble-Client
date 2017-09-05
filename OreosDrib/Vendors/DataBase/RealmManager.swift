@@ -34,8 +34,6 @@ struct RealmManager {
             
             let fileURL: URL = Realm.Configuration.defaultConfiguration.fileURL!.deletingLastPathComponent().appendingPathComponent("User" + uid).appendingPathExtension("realm")
             
-            
-            
             let configuration: Realm.Configuration = Realm.Configuration(fileURL: fileURL,schemaVersion: schemVersion, migrationBlock: { (migration, oldSchemaVersion) in
                 
             })

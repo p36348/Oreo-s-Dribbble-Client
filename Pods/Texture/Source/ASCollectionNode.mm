@@ -213,10 +213,13 @@
 
 - (void)didEnterPreloadState
 {
-  // Intentionally allocate the view here so that super will trigger a layout pass on it which in turn will trigger the intial data load.
-  // We can get rid of this call later when ASDataController, ASRangeController and ASCollectionLayout can operate without the view.
-  [self view];
   [super didEnterPreloadState];
+  // Intentionally allocate the view here and trigger a layout pass on it, which in turn will trigger the intial data load.
+  // We can get rid of this call later when ASDataController, ASRangeController and ASCollectionLayout can operate without the view.
+  // TODO (ASCL) If this node supports async layout, kick off the initial data load without allocating the view
+  if (CGRectEqualToRect(self.bounds, CGRectZero) == NO) {
+    [[self view] layoutIfNeeded];
+  }
 }
 
 #if ASRangeControllerLoggingEnabled
@@ -591,10 +594,10 @@
   return [self.dataController.pendingMap elementForItemAtIndexPath:indexPath].node;
 }
 
-- (id)viewModelForItemAtIndexPath:(NSIndexPath *)indexPath
+- (id)nodeModelForItemAtIndexPath:(NSIndexPath *)indexPath
 {
   [self reloadDataInitiallyIfNeeded];
-  return [self.dataController.pendingMap elementForItemAtIndexPath:indexPath].viewModel;
+  return [self.dataController.pendingMap elementForItemAtIndexPath:indexPath].nodeModel;
 }
 
 - (NSIndexPath *)indexPathForNode:(ASCellNode *)cellNode

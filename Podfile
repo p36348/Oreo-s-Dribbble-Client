@@ -4,8 +4,8 @@ pod 'Alamofire'
 pod 'SnapKit'
 pod 'ReactiveCocoa', '~> 5.0'
 pod 'ReactiveSwift', '~> 1.1'
-#pod 'RxSwift',    '~> 3.0'
-#pod 'RxCocoa',    '~> 3.0'
+pod 'RxSwift',    '~> 3.0'
+pod 'RxCocoa',    '~> 3.0'
 pod 'SwiftyJSON'
 pod 'CHTCollectionViewWaterfallLayout'
 pod 'ESPullToRefresh'
@@ -19,6 +19,9 @@ pod 'OAuthSwift', '~> 1.1.0'
 pod 'Texture' #AsyncDisplayKit by Facebook
 pod 'YYText'
 #pod 'hpple', :git => 'https://github.com/topfunky/hpple.git'
+
+pod 'SwViewCapture'
+pod 'Toast-Swift', '~> 2.0.0'
 target 'OreosDrib' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!

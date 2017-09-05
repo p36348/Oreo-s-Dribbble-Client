@@ -27,6 +27,8 @@
 		3B0B481C1EE6A400006288FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B481B1EE6A400006288FA /* User.swift */; };
 		3B0B481D1EE6A400006288FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B481B1EE6A400006288FA /* User.swift */; };
 		3B0B481E1EE6A400006288FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B481B1EE6A400006288FA /* User.swift */; };
+		3B11EA251F5EC54100BE9CA5 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952179021F49845B00E5A0B1 /* FileService.swift */; };
+		3B11EA261F5EC54100BE9CA5 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952179021F49845B00E5A0B1 /* FileService.swift */; };
 		3B26489B1F57383E003B4C1C /* ShotDetailController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF6BB1F4D5E3100DBD9A6 /* ShotDetailController+Section.swift */; };
 		3B26489C1F57383F003B4C1C /* ShotDetailController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF6BB1F4D5E3100DBD9A6 /* ShotDetailController+Section.swift */; };
 		548B15427AE959EE8EA86ABA /* Pods_OreosDribUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E501A7C15591E282C1627D1 /* Pods_OreosDribUITests.framework */; };
@@ -849,11 +851,15 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/SwViewCapture/SwViewCapture.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftHEXColors/SwiftHEXColors.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -871,11 +877,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwViewCapture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHEXColors.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,6 +1061,7 @@
 				95AFF6B51F4D5DF200DBD9A6 /* ShotsController.swift in Sources */,
 				953C32DE1EFF9EA1009759D2 /* Team.swift in Sources */,
 				957B1E421F0943560047FBEE /* ChatListController.swift in Sources */,
+				3B11EA251F5EC54100BE9CA5 /* FileService.swift in Sources */,
 				3B0B48061EE6A3B9006288FA /* String+Handle.swift in Sources */,
 				955354FD1EE80118006AB961 /* JobService.swift in Sources */,
 				953C33961F06499B009759D2 /* OAuthController.swift in Sources */,
@@ -1109,6 +1120,7 @@
 				95AFF6B61F4D5DF300DBD9A6 /* ShotsController.swift in Sources */,
 				953C32DF1EFF9EA1009759D2 /* Team.swift in Sources */,
 				957B1E431F0943560047FBEE /* ChatListController.swift in Sources */,
+				3B11EA261F5EC54100BE9CA5 /* FileService.swift in Sources */,
 				3B0B48071EE6A3B9006288FA /* String+Handle.swift in Sources */,
 				955354FE1EE80118006AB961 /* JobService.swift in Sources */,
 				953C33971F06499B009759D2 /* OAuthController.swift in Sources */,

@@ -86,7 +86,7 @@ extension ShotsController {
             /**
              * 错误处理
              */
-            if let _error = result.error { return _self.oAlert.alert(errorMsg: _error.message) }
+            if let _error = result.error { return _self.oreo.alert(errorMsg: _error.message) }
             
             _self.collectionView.reloadSections([0])
             
@@ -98,7 +98,7 @@ extension ShotsController {
             /**
              * 错误处理
              */
-            if let _error = result.error { return _self.oAlert.alert(errorMsg: _error.message) }
+            if let _error = result.error { return _self.oreo.alert(errorMsg: _error.message) }
             /**
              * 停止加载动画
              */

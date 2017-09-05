@@ -7,15 +7,15 @@
 //
 
 import UIKit
-
+import Toast_Swift
 
 public protocol AlertCompatible: class {
     associatedtype CompatibleType
-    var oAlert: CompatibleType { get }
+    var oreo: CompatibleType { get }
     
 }
 
-public final class OAlert<Base> {
+public final class Oreo<Base> {
     let base: Base
     init(_ base: Base) {
         self.base = base
@@ -23,14 +23,14 @@ public final class OAlert<Base> {
 }
 
 public extension AlertCompatible {
-    public var oAlert: OAlert<Self> {
-        get { return OAlert(self) }
+    public var oreo: Oreo<Self> {
+        get {return Oreo(self)}
     }
 }
 
 extension UIViewController: AlertCompatible { }
 
-public extension OAlert where Base: UIViewController {
+public extension Oreo where Base: UIViewController {
     func alertActionSheet(title: String? = nil, message: String? = nil, sheetTitles: [String], sheetActions: [(()->Void)]){
         let controller = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         guard sheetTitles.count == sheetActions.count else {
@@ -54,5 +54,9 @@ public extension OAlert where Base: UIViewController {
     
     func alert(errorMsg: String) {
         
+    }
+    
+    func toast(message: String) {
+        base.view.makeToast(message, duration: 1.5, position: ToastPosition.center)
     }
 }

@@ -217,7 +217,8 @@ extension UserInfoController {
             sectionHeaderViewModel = SectionHeader.ViewModel(with: userService.currentUser)
             
             cellViewModels = [CellModel(title: "Likes", detail: "\(userService.currentUser.likesCount)"),
-                              CellModel(title: "Following", detail: "\(userService.currentUser.followingsCount)")]
+                              CellModel(title: "Following", detail: "\(userService.currentUser.followingsCount)"),
+                              CellModel(title: "TotalCaptures", detail: "\(userService.currentUser.followingsCount)")]
             
             userService.userInfoSignal.observeValues { [weak self] (user) in
                 
