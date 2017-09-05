@@ -76,7 +76,7 @@ ASDISPLAYNODE_INLINE AS_WARN_UNUSED_RESULT BOOL ASLayoutIsFlattened(ASLayout *la
 }
 
 /*
- * Caches all sublayouts if set to YES or destroys the sublayout cache if set to NO. Defaults to YES
+ * Caches all sublayouts if set to YES or destroys the sublayout cache if set to NO. Defaults to NO
  */
 @property (nonatomic, assign) BOOL retainSublayoutLayoutElements;
 
@@ -141,9 +141,11 @@ static std::atomic_bool static_retainsSublayoutLayoutElements = ATOMIC_VAR_INIT(
 
     _sublayouts = sublayouts != nil ? [sublayouts copy] : @[];
 
-    _elementToRectTable = [ASRectTable rectTableForWeakObjectPointers];
-    for (ASLayout *layout in sublayouts) {
-      [_elementToRectTable setRect:layout.frame forKey:layout.layoutElement];
+    if (_sublayouts.count > 0) {
+      _elementToRectTable = [ASRectTable rectTableForWeakObjectPointers];
+      for (ASLayout *layout in sublayouts) {
+        [_elementToRectTable setRect:layout.frame forKey:layout.layoutElement];
+      }
     }
     
     self.retainSublayoutLayoutElements = [ASLayout shouldRetainSublayoutLayoutElements];
@@ -278,7 +280,7 @@ static std::atomic_bool static_retainsSublayoutLayoutElements = ATOMIC_VAR_INIT(
 
 - (CGRect)frameForElement:(id<ASLayoutElement>)layoutElement
 {
-  return [_elementToRectTable rectForKey:layoutElement];
+  return _elementToRectTable ? [_elementToRectTable rectForKey:layoutElement] : CGRectNull;
 }
 
 - (CGRect)frame
@@ -314,9 +316,16 @@ static std::atomic_bool static_retainsSublayoutLayoutElements = ATOMIC_VAR_INIT(
 - (NSMutableArray <NSDictionary *> *)propertiesForDescription
 {
   NSMutableArray *result = [NSMutableArray array];
-  [result addObject:@{ @"layoutElement" : (self.layoutElement ?: (id)kCFNull) }];
-  [result addObject:@{ @"position" : [NSValue valueWithCGPoint:self.position] }];
   [result addObject:@{ @"size" : [NSValue valueWithCGSize:self.size] }];
+
+  if (auto layoutElement = self.layoutElement) {
+    [result addObject:@{ @"layoutElement" : layoutElement }];
+  }
+
+  auto pos = self.position;
+  if (!ASPointIsNull(pos)) {
+    [result addObject:@{ @"position" : [NSValue valueWithCGPoint:pos] }];
+  }
   return result;
 }
 

@@ -145,6 +145,11 @@
 		95AE777E1EFE82FB007B387E /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE777D1EFE82FB007B387E /* GlobalConstants.swift */; };
 		95AE777F1EFE82FB007B387E /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE777D1EFE82FB007B387E /* GlobalConstants.swift */; };
 		95AE77801EFE82FB007B387E /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE777D1EFE82FB007B387E /* GlobalConstants.swift */; };
+		95AF25401F5EA1A500B6A751 /* Captureable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AF253F1F5EA1A500B6A751 /* Captureable.swift */; };
+		95AF25411F5EA1AD00B6A751 /* Captureable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AF253F1F5EA1A500B6A751 /* Captureable.swift */; };
+		95AF25421F5EA1AD00B6A751 /* Captureable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AF253F1F5EA1A500B6A751 /* Captureable.swift */; };
+		95AF25431F5EA83C00B6A751 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952179021F49845B00E5A0B1 /* FileService.swift */; };
+		95AF25441F5EA83D00B6A751 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952179021F49845B00E5A0B1 /* FileService.swift */; };
 		95AFF6A51F4D3D5E00DBD9A6 /* ShotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952178F61F46739700E5A0B1 /* ShotCell.swift */; };
 		95AFF6A61F4D3D5E00DBD9A6 /* ShotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952178F61F46739700E5A0B1 /* ShotCell.swift */; };
 		95AFF6AF1F4D5DE200DBD9A6 /* ShotDetailController+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF6AA1F4D5DE200DBD9A6 /* ShotDetailController+Cell.swift */; };
@@ -252,6 +257,7 @@
 		95AE77641EFB7023007B387E /* MarkupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupParser.swift; sourceTree = "<group>"; };
 		95AE77681EFCA881007B387E /* WKWebView+Handle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+Handle.swift"; sourceTree = "<group>"; };
 		95AE777D1EFE82FB007B387E /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		95AF253F1F5EA1A500B6A751 /* Captureable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Captureable.swift; sourceTree = "<group>"; };
 		95AFF6AA1F4D5DE200DBD9A6 /* ShotDetailController+Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShotDetailController+Cell.swift"; sourceTree = "<group>"; };
 		95AFF6AB1F4D5DE200DBD9A6 /* ShotDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotDetailController.swift; sourceTree = "<group>"; };
 		95AFF6AD1F4D5DE200DBD9A6 /* ShotsController+Views.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShotsController+Views.swift"; sourceTree = "<group>"; };
@@ -375,6 +381,7 @@
 		3B0B47E71EE6A3B9006288FA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				95AF253E1F5EA18C00B6A751 /* Capture */,
 				951EEADC1EFA15730029DE55 /* DataBase */,
 				952C53701EF8C0B1006FC712 /* Runtime */,
 				952C53401EF88C6A006FC712 /* Socket */,
@@ -584,6 +591,14 @@
 				95C0EA451F1626F600688114 /* HTMLParser.swift */,
 			);
 			path = CoreTextView;
+			sourceTree = "<group>";
+		};
+		95AF253E1F5EA18C00B6A751 /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				95AF253F1F5EA1A500B6A751 /* Captureable.swift */,
+			);
+			path = Capture;
 			sourceTree = "<group>";
 		};
 		95AFF6A91F4D5DE200DBD9A6 /* Detail */ = {
@@ -845,11 +860,15 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/SwViewCapture/SwViewCapture.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftHEXColors/SwiftHEXColors.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -867,11 +886,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwViewCapture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHEXColors.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -951,6 +974,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95AF25401F5EA1A500B6A751 /* Captureable.swift in Sources */,
 				957B1E481F0945D40047FBEE /* FollowingController.swift in Sources */,
 				957B1E291F093A380047FBEE /* SearchController.swift in Sources */,
 				953C32DD1EFF9EA1009759D2 /* Team.swift in Sources */,
@@ -1012,6 +1036,7 @@
 				957B1E451F0943560047FBEE /* SignController.swift in Sources */,
 				952C534B1EF88C6A006FC712 /* ReactiveNetwork.swift in Sources */,
 				957B1E491F0945D40047FBEE /* FollowingController.swift in Sources */,
+				95AF25411F5EA1AD00B6A751 /* Captureable.swift in Sources */,
 				953C32F61F035D70009759D2 /* UIView+ReloadExtension.swift in Sources */,
 				952C53621EF88CB9006FC712 /* UIView+RoundCorner.swift in Sources */,
 				95C0EA471F1626F600688114 /* HTMLParser.swift in Sources */,
@@ -1045,6 +1070,7 @@
 				95AFF6B51F4D5DF200DBD9A6 /* ShotsController.swift in Sources */,
 				953C32DE1EFF9EA1009759D2 /* Team.swift in Sources */,
 				957B1E421F0943560047FBEE /* ChatListController.swift in Sources */,
+				95AF25431F5EA83C00B6A751 /* FileService.swift in Sources */,
 				3B0B48061EE6A3B9006288FA /* String+Handle.swift in Sources */,
 				955354FD1EE80118006AB961 /* JobService.swift in Sources */,
 				953C33961F06499B009759D2 /* OAuthController.swift in Sources */,
@@ -1069,6 +1095,7 @@
 				957B1E461F0943560047FBEE /* SignController.swift in Sources */,
 				952C534C1EF88C6A006FC712 /* ReactiveNetwork.swift in Sources */,
 				957B1E4A1F0945D40047FBEE /* FollowingController.swift in Sources */,
+				95AF25421F5EA1AD00B6A751 /* Captureable.swift in Sources */,
 				953C32F71F035D70009759D2 /* UIView+ReloadExtension.swift in Sources */,
 				952C53631EF88CB9006FC712 /* UIView+RoundCorner.swift in Sources */,
 				95C0EA481F1626F600688114 /* HTMLParser.swift in Sources */,
@@ -1102,6 +1129,7 @@
 				95AFF6B61F4D5DF300DBD9A6 /* ShotsController.swift in Sources */,
 				953C32DF1EFF9EA1009759D2 /* Team.swift in Sources */,
 				957B1E431F0943560047FBEE /* ChatListController.swift in Sources */,
+				95AF25441F5EA83D00B6A751 /* FileService.swift in Sources */,
 				3B0B48071EE6A3B9006288FA /* String+Handle.swift in Sources */,
 				955354FE1EE80118006AB961 /* JobService.swift in Sources */,
 				953C33971F06499B009759D2 /* OAuthController.swift in Sources */,

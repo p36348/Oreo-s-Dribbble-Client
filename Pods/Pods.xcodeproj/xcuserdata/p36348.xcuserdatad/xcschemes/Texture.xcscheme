@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27F804F4A2F2C3201D2CC31866B91AB6"
+               BlueprintIdentifier = "4849C9BE0983CD79E140CA464DD1610A"
                BuildableName = "AsyncDisplayKit.framework"
                BlueprintName = "Texture"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "27F804F4A2F2C3201D2CC31866B91AB6"
+            BlueprintIdentifier = "4849C9BE0983CD79E140CA464DD1610A"
             BuildableName = "AsyncDisplayKit.framework"
             BlueprintName = "Texture"
             ReferencedContainer = "container:Pods.xcodeproj">

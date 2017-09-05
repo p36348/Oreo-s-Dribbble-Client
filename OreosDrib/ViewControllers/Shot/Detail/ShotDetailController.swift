@@ -73,7 +73,21 @@ class ShotDetailController: UIViewController {
         let shareAction: ()->Void = {
             
         }
-        self.oAlert.alertActionSheet(sheetTitles: ["Share"], sheetActions: [shareAction])
+        
+        let captureAction: ()->Void = {
+            self.tableView.swContentCapture({ (image) in
+                guard let _image = image else {return}
+                FileService.shared.creat(image: _image, completion: { (error) in
+                    if error == nil {
+                        self.oreo.toast(message: "Success")
+                    }
+                })
+            })
+            
+        }
+        
+        self.oreo.alertActionSheet(sheetTitles: ["Share", "Capture"], sheetActions: [shareAction, captureAction])
+        
     }
     
     private func bindViewModel() {
@@ -119,8 +133,6 @@ extension ShotDetailController: UITableViewDelegate {
         
     }
 }
-
-
 
 extension ShotDetailController {
     class ViewModel {
