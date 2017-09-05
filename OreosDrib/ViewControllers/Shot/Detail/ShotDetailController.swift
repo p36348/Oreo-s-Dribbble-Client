@@ -61,6 +61,8 @@ class ShotDetailController: UIViewController {
         
         tableView.register(DescriptionCell.self, forCellReuseIdentifier: DescriptionCell.description())
         
+        tableView.register(ImageSection.self, forHeaderFooterViewReuseIdentifier: ImageSection.description())
+        
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { (make) in
@@ -100,9 +102,13 @@ extension ShotDetailController: UITableViewDataSource {
         return tableView.dequeueReusableCell(withIdentifier: viewModel.cellViewModels[indexPath]!.identifier, for: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return self.viewModel.tableView(tableView, viewForHeaderInSection: section)
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return viewModel.sectionViewModels[section]!.height
+//    }
+//    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return self.tableView.dequeueReusableHeaderFooterView(withIdentifier: viewModel.sectionViewModels[section]!.identifier)
+//    }
 }
 
 extension ShotDetailController: UITableViewDelegate {
@@ -143,6 +149,8 @@ extension ShotDetailController {
             
             DispatchQueue.global().async { [weak self] in
                 guard let _self = self else {return}
+                
+                _self.sectionViewModels = [0: ImageSection.ViewModel(width: kScreenWidth, urlString: _self.shot.images?.hidpi ?? (_self.shot.images?.normal ?? (_self.shot.images?.teaser ?? "")))]
                 
                 _self.cellViewModels = [IndexPath(item: 0, section: 0): AuthorInfoCell.ViewModel(shot: _self.shot),
                                         IndexPath(item: 1, section: 0): DescriptionCell.ViewModel(string: _self.shot.descriptionStr)]

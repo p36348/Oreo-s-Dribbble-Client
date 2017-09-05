@@ -24,7 +24,7 @@ public final class OAlert<Base> {
 
 public extension AlertCompatible {
     public var oAlert: OAlert<Self> {
-        get {return OAlert(self)}
+        get { return OAlert(self) }
     }
 }
 

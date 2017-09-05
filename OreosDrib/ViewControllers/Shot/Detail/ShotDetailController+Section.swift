@@ -18,6 +18,8 @@ extension ShotDetailController {
         override init(reuseIdentifier: String?) {
             super.init(reuseIdentifier: reuseIdentifier)
             
+            imageView.runLoopMode = RunLoopMode.defaultRunLoopMode
+            
             contentView.addSubview(imageView)
             
             imageView.snp.makeConstraints { (make) in

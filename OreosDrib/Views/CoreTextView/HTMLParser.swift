@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import CoreText
-import Kanna
+
 class HTMLParser {
+    
     var attrString: NSAttributedString = NSAttributedString()
     
     func parse(html: String) {
@@ -27,23 +27,18 @@ class HTMLParser {
                 
                 if _attribute[NSLinkAttributeName] != nil {
                     _attribute[NSFontAttributeName] = UIFont.link
+                    _attribute.removeValue(forKey: NSUnderlineStyleAttributeName)
+                    _attribute.removeValue(forKey: NSLinkAttributeName)
                     _attribute[NSForegroundColorAttributeName] = UIColor.Dribbble.linkBlue
                 }else {
-                    _attribute[NSFontAttributeName] = UIFont.contentNormal
+                    let originFont =  _attribute[NSFontAttributeName] as! UIFont
+                    _attribute[NSFontAttributeName] = originFont.fontName.contains("Bold") ? UIFont.contentBold : UIFont.contentNormal
                 }
                 finalAttributedString.addAttributes(_attribute, range: range)
                 
             })
             
-//            if let doc = HTML(html: html, encoding: String.Encoding.utf8) {
-//                if let nodes = doc.body?.xpath("p") {
-//                    for node in nodes {
-//                        
-//                    }
-//                }
-//            }
-            
-            attrString = finalAttributedString
+            self.attrString = finalAttributedString
             
         }catch {
         

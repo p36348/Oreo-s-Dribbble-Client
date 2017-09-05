@@ -27,6 +27,8 @@
 		3B0B481C1EE6A400006288FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B481B1EE6A400006288FA /* User.swift */; };
 		3B0B481D1EE6A400006288FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B481B1EE6A400006288FA /* User.swift */; };
 		3B0B481E1EE6A400006288FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B481B1EE6A400006288FA /* User.swift */; };
+		3B26489B1F57383E003B4C1C /* ShotDetailController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF6BB1F4D5E3100DBD9A6 /* ShotDetailController+Section.swift */; };
+		3B26489C1F57383F003B4C1C /* ShotDetailController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF6BB1F4D5E3100DBD9A6 /* ShotDetailController+Section.swift */; };
 		548B15427AE959EE8EA86ABA /* Pods_OreosDribUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E501A7C15591E282C1627D1 /* Pods_OreosDribUITests.framework */; };
 		6F44420B3B915FEAB30F134D /* Pods_OreosDribTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AAAD44F0BE3038A82B20F77 /* Pods_OreosDribTests.framework */; };
 		951EEADE1EFA158B0029DE55 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951EEADD1EFA158B0029DE55 /* RealmManager.swift */; };
@@ -208,6 +210,7 @@
 		3B0B47EF1EE6A3B9006288FA /* WaterFallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFallCell.swift; sourceTree = "<group>"; };
 		3B0B48151EE6A3CD006288FA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B0B481B1EE6A400006288FA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3B2648981F57269C003B4C1C /* OreosDrib-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OreosDrib-Bridging-Header.h"; sourceTree = "<group>"; };
 		3FD986A565590B74C0982F9D /* Pods_OreosDrib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OreosDrib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C77E22A8D3037006146A3FA /* Pods-OreosDribUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDribUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDribUITests/Pods-OreosDribUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		636A4BB6342026267E0983CF /* Pods-OreosDribTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDribTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDribTests/Pods-OreosDribTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -338,6 +341,7 @@
 				3B0B47B51EE6A121006288FA /* Assets.xcassets */,
 				3B0B47B71EE6A121006288FA /* LaunchScreen.storyboard */,
 				3B0B47BA1EE6A121006288FA /* Info.plist */,
+				3B2648981F57269C003B4C1C /* OreosDrib-Bridging-Header.h */,
 			);
 			path = OreosDrib;
 			sourceTree = "<group>";
@@ -691,6 +695,7 @@
 					3B0B47A81EE6A121006288FA = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 4M9P68HAAF;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					3B0B47BE1EE6A121006288FA = {
@@ -834,7 +839,6 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
@@ -850,13 +854,13 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftHEXColors/SwiftHEXColors.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
+				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHTCollectionViewWaterfallLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
@@ -872,6 +876,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHEXColors.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1014,6 +1019,7 @@
 				957B1E491F0945D40047FBEE /* FollowingController.swift in Sources */,
 				953C32F61F035D70009759D2 /* UIView+ReloadExtension.swift in Sources */,
 				952C53621EF88CB9006FC712 /* UIView+RoundCorner.swift in Sources */,
+				3B26489B1F57383E003B4C1C /* ShotDetailController+Section.swift in Sources */,
 				95C0EA471F1626F600688114 /* HTMLParser.swift in Sources */,
 				952C53731EF8C111006FC712 /* runtime+Utils.swift in Sources */,
 				95AFF6A51F4D3D5E00DBD9A6 /* ShotCell.swift in Sources */,
@@ -1071,6 +1077,7 @@
 				957B1E4A1F0945D40047FBEE /* FollowingController.swift in Sources */,
 				953C32F71F035D70009759D2 /* UIView+ReloadExtension.swift in Sources */,
 				952C53631EF88CB9006FC712 /* UIView+RoundCorner.swift in Sources */,
+				3B26489C1F57383F003B4C1C /* ShotDetailController+Section.swift in Sources */,
 				95C0EA481F1626F600688114 /* HTMLParser.swift in Sources */,
 				952C53741EF8C111006FC712 /* runtime+Utils.swift in Sources */,
 				95AFF6A61F4D3D5E00DBD9A6 /* ShotCell.swift in Sources */,
@@ -1254,12 +1261,15 @@
 			baseConfigurationReference = 9C13BFA301BE928A3270B15F /* Pods-OreosDrib.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = OreosDrib/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = P36348.OreosDrib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OreosDrib/OreosDrib-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1269,12 +1279,14 @@
 			baseConfigurationReference = FC4536EEE9653AA8BF471214 /* Pods-OreosDrib.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = OreosDrib/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = P36348.OreosDrib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OreosDrib/OreosDrib-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
