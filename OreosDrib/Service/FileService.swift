@@ -84,6 +84,10 @@ struct FileService {
         }
     }
     
+    func searchCache(fileName: String, completion: @escaping (Data?, Error?) -> Void) {
+        
+    }
+    
     private var isCalculating: Bool = false
     
     typealias Message = (message: String, error: Error?)
