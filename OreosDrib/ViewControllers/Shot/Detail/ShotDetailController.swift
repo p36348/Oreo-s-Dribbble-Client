@@ -78,15 +78,17 @@ class ShotDetailController: UIViewController {
         }
         
         let captureAction: ()->Void = {
+            // capture
             self.tableView.swContentCapture({ (image) in
                 guard let _image = image else {return}
-                FileService.shared.creat(image: _image, completion: { (error) in
+                // save image
+                self.viewModel.creatCapture(image: _image, completion: { (error) in
                     if error == nil {
                         self.toast(message: "Success")
                     }
                 })
+                
             })
-            
         }
         
         self.alertActionSheet(sheetTitles: ["Share", "Capture"], sheetActions: [shareAction, captureAction])
@@ -156,6 +158,11 @@ extension ShotDetailController {
         
         init(shot: Shot) {
             self.shot = shot
+        }
+        
+        func creatCapture(image: UIImage, completion: @escaping (Error?) -> Void) {
+            let fileName: String = ""
+            FileService.shared.creat(image: image, fileName: fileName, completion: completion)
         }
         
         func loadData() {

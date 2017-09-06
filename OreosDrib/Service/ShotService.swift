@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import SwiftyJSON
 import Result
 import ReactiveSwift
 import Alamofire
+
 /// 接口 -http://developer.dribbble.com/v1/shots/
 private struct API {
     
@@ -27,7 +29,7 @@ struct ShotService {
     static var shotsVMThread: Thread = {
         
         let _thread: Thread = Thread(block: {
-            Thread.current.name = "shotsViewModelThread"
+            Thread.current.name = "ShotService.viewModel"
             
             let _runLoop = RunLoop.current
             
@@ -120,9 +122,20 @@ struct ShotService {
     }
 }
 
+// MARK: - File manage
 extension ShotService {
-    fileprivate func cacheFirstPage() {
+    func loadCache() {
+        
+    }
     
+    func creatCache() {
+        
+    }
+    
+    func updateCache(json: JSON) {
+        FileService.shared.creat(json: json, fileName: "shot_list_json") { (error) in
+            
+        }
     }
 }
 

@@ -110,6 +110,9 @@
 		955355001EE80960006AB961 /* ShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955354FF1EE80960006AB961 /* ShotService.swift */; };
 		955355011EE80960006AB961 /* ShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955354FF1EE80960006AB961 /* ShotService.swift */; };
 		955355021EE80960006AB961 /* ShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955354FF1EE80960006AB961 /* ShotService.swift */; };
+		95536DB91F5FDC5D00F07500 /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95536DB81F5FDC5D00F07500 /* ShareService.swift */; };
+		95536DBA1F5FDC5D00F07500 /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95536DB81F5FDC5D00F07500 /* ShareService.swift */; };
+		95536DBB1F5FDC5D00F07500 /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95536DB81F5FDC5D00F07500 /* ShareService.swift */; };
 		957B1DEF1F08AAEC0047FBEE /* Date+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */; };
 		957B1DF01F08AAEC0047FBEE /* Date+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */; };
 		957B1DF11F08AAEC0047FBEE /* Date+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */; };
@@ -244,6 +247,7 @@
 		955354F71EE6C5E5006AB961 /* APIHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandle.swift; sourceTree = "<group>"; };
 		955354FB1EE80118006AB961 /* JobService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobService.swift; sourceTree = "<group>"; };
 		955354FF1EE80960006AB961 /* ShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotService.swift; sourceTree = "<group>"; };
+		95536DB81F5FDC5D00F07500 /* ShareService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
 		957B1DEE1F08AAEC0047FBEE /* Date+Handle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Handle.swift"; sourceTree = "<group>"; };
 		957B1E241F093A380047FBEE /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		957B1E251F093A380047FBEE /* SearchController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
@@ -374,6 +378,7 @@
 				955354FF1EE80960006AB961 /* ShotService.swift */,
 				953C339B1F078C62009759D2 /* OAuthService.swift */,
 				952179021F49845B00E5A0B1 /* FileService.swift */,
+				95536DB81F5FDC5D00F07500 /* ShareService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -407,6 +412,7 @@
 				957B1E261F093A380047FBEE /* Shot */,
 				953C338A1F06490F009759D2 /* OAuth */,
 				953C33201F04DC59009759D2 /* UserProfile */,
+				95536DBC1F5FDCAF00F07500 /* Capture */,
 				957B1E371F0943560047FBEE /* unused */,
 			);
 			path = ViewControllers;
@@ -541,6 +547,13 @@
 				953C33931F06499B009759D2 /* OAuthController.swift */,
 			);
 			path = OAuth;
+			sourceTree = "<group>";
+		};
+		95536DBC1F5FDCAF00F07500 /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Capture;
 			sourceTree = "<group>";
 		};
 		957B1E231F093A380047FBEE /* Search */ = {
@@ -987,6 +1000,7 @@
 				952C53501EF88C6A006FC712 /* SystemInfo.swift in Sources */,
 				957B1E441F0943560047FBEE /* SignController.swift in Sources */,
 				95AE77651EFB7023007B387E /* MarkupParser.swift in Sources */,
+				95536DB91F5FDC5D00F07500 /* ShareService.swift in Sources */,
 				3B0B481C1EE6A400006288FA /* User.swift in Sources */,
 				953C33231F04DC59009759D2 /* UserInfoController.swift in Sources */,
 				953C32D81EFF9A14009759D2 /* Shot.swift in Sources */,
@@ -1049,6 +1063,7 @@
 				95AE77661EFB7023007B387E /* MarkupParser.swift in Sources */,
 				95C0EA431F161CB200688114 /* CTSettings.swift in Sources */,
 				3B0B48171EE6A3CD006288FA /* AppDelegate.swift in Sources */,
+				95536DBA1F5FDC5D00F07500 /* ShareService.swift in Sources */,
 				3B0B47F11EE6A3B9006288FA /* UserService.swift in Sources */,
 				3B0B47C41EE6A121006288FA /* OreosDribTests.swift in Sources */,
 				951EEADF1EFA158B0029DE55 /* RealmManager.swift in Sources */,
@@ -1108,6 +1123,7 @@
 				95AE77671EFB7023007B387E /* MarkupParser.swift in Sources */,
 				95C0EA441F161CB200688114 /* CTSettings.swift in Sources */,
 				3B0B48181EE6A3CD006288FA /* AppDelegate.swift in Sources */,
+				95536DBB1F5FDC5D00F07500 /* ShareService.swift in Sources */,
 				3B0B47F21EE6A3B9006288FA /* UserService.swift in Sources */,
 				3B0B47CF1EE6A121006288FA /* OreosDribUITests.swift in Sources */,
 				951EEAE01EFA158B0029DE55 /* RealmManager.swift in Sources */,

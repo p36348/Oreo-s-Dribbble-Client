@@ -40,14 +40,28 @@ struct FileService {
     
     public private(set) var (captureSignal, captureObserver) = Signal<String, NoError>.pipe()
     
-    func creat(image: UIImage, completion: @escaping (Error?) -> Void) {
+    func creat(image: UIImage, fileName: String, completion: @escaping (Error?) -> Void) {
+        guard let _data = UIImagePNGRepresentation(image) else {
+            return completion(NSError(domain: "Faild to convert" + image.description + "to data", code: 0 , userInfo: nil))
+        }
+        self.creat(data: _data, path: SanBoxPath.images + "/" + fileName, completion: completion)
+    }
+    
+    func creat(json: JSON, fileName: String, completion: @escaping (Error?) -> Void) {
+        var _data: Data?
+        do {
+            _data = try json.rawData()
+        }catch {
+            return completion(error)
+        }
         
-        operationQueue.addOperation {
-            
+        self.creat(data: _data!, path: SanBoxPath.caches + "/" + fileName, completion: completion)
+    }
+    
+    func creat(data: Data, path: String, completion: @escaping (Error?) -> Void) {
+        self.operationQueue.addOperation {
             DispatchQueue.global().async {
                 let _fileManager: FileManager = FileManager.default
-                
-                let path = SanBoxPath.images
                 
                 if !_fileManager.fileExists(atPath: path) {
                     do {
@@ -57,12 +71,10 @@ struct FileService {
                     }
                 }
                 
-                let _data = UIImagePNGRepresentation(image)!
-                
                 var _error: Error?
                 
-                if !_fileManager.createFile(atPath: path, contents: _data, attributes: nil) {
-                    _error = NSError(domain: "Faild to creat image at path:" + path, code: 0, userInfo: ["data": _data])
+                if !_fileManager.createFile(atPath: path, contents: data, attributes: nil) {
+                    _error = NSError(domain: "Faild to creat image at path:" + path, code: 0, userInfo: ["data": data])
                 }
                 
                 DispatchQueue.main.sync {
@@ -70,10 +82,6 @@ struct FileService {
                 }
             }
         }
-    }
-    
-    func creat(json: JSON, completion: () -> Void) {
-    
     }
     
     private var isCalculating: Bool = false

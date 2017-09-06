@@ -27,6 +27,8 @@ class ShotsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.loadCache()
         
         self.setupUI()
         
@@ -42,6 +44,10 @@ class ShotsController: UIViewController {
     
     private func loadFirstPage() {
         self.viewModel.loadFirstPageData()
+    }
+    
+    private func loadCache() {
+        self.viewModel.loadCache()
     }
 }
 
@@ -275,6 +281,10 @@ extension ShotsController {
             let _view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "", for: indexPath)
             
             return _view
+        }
+        
+        func loadCache() {
+            ShotService.shared.loadCache()
         }
         
         func loadFirstPageData() {
