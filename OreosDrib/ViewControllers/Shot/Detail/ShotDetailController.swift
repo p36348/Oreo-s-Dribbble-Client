@@ -84,14 +84,14 @@ class ShotDetailController: UIViewController {
                 // save image
                 self.viewModel.creatCapture(image: _image, completion: { (error) in
                     if error == nil {
-                        self.oreo.toast(message: "Success")
+                        self.toast(message: "Success")
                     }
                 })
                 
             })
         }
         
-        self.oreo.alertActionSheet(sheetTitles: ["Share", "Capture"], sheetActions: [shareAction, captureAction])
+        self.alertActionSheet(sheetTitles: ["Share", "Capture"], sheetActions: [shareAction, captureAction])
         
     }
     
