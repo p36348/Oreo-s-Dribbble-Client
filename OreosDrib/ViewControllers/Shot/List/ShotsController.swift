@@ -27,14 +27,12 @@ class ShotsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.loadCache()
         
         self.setupUI()
         
         self.bindViewModel()
         
-        self.loadFirstPage()
+        self.loadCache()
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,12 +40,11 @@ class ShotsController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func loadFirstPage() {
-        self.viewModel.loadFirstPageData()
-    }
-    
     private func loadCache() {
-        self.viewModel.loadCache()
+        self.viewModel.loadCache {
+            self.updateUI()
+            self.viewModel.loadFirstPageData()
+        }
     }
 }
 
@@ -73,6 +70,10 @@ extension ShotsController {
         collectionView.snp.makeConstraints { (make) in
             make.edges.equalTo(UIEdgeInsetsMake(0, 0, tabBarController?.tabBar.bounds.height ?? 0, 0))
         }
+    }
+    
+    fileprivate func updateUI() {
+        self.collectionView.reloadData()
     }
     
     /**
@@ -283,8 +284,8 @@ extension ShotsController {
             return _view
         }
         
-        func loadCache() {
-            ShotService.shared.loadCache()
+        func loadCache(completion: @escaping () -> Void) {
+            ShotService.shared.loadCache(completion: completion)
         }
         
         func loadFirstPageData() {

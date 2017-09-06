@@ -55,11 +55,11 @@ struct ShotService {
         return DispatchQueue(label: "ShotService.shot")
     }()
     
-    public private(set) var (shotListSignal, shotListObserver) = Signal<(page: Int, shots: [Shot]), ReactiveError>.pipe()
+    public fileprivate(set) var (shotListSignal, shotListObserver) = Signal<(page: Int, shots: [Shot]), ReactiveError>.pipe()
     
-    public private(set) var shots: [Shot] = []
+    public fileprivate(set) var shots: [Shot] = []
     
-    public private(set) var shotsViewModels: [ShotCell.ViewModel] = []
+    public fileprivate(set) var shotsViewModels: [ShotCell.ViewModel] = []
     
     private init(){}
     
@@ -99,7 +99,11 @@ struct ShotService {
                 
                 if let _value = result.value {
                     
-                    let (_shots, _cellViewModels) = self.shotData(with: _value.arrayValue)
+                    let (_shots, _cellViewModels) = shotData(with: _value.arrayValue)
+                    
+                    if page == 1 {
+                        self.cacheFirstPage(json: _value)
+                    }
                     
                     DispatchQueue.main.async {
                         
@@ -117,36 +121,40 @@ struct ShotService {
     }
 }
 
-extension ShotService {
-    func shotData(with array: [JSON]) -> (shots: [Shot], cellModels: [ShotCell.ViewModel]){
-        let _shots = array.map { (_json) -> Shot in
-            Shot(with: _json)
-        }
-        
-        let _cellViewModels = _shots.map({ (_shot) -> ShotCell.ViewModel in
-            return ShotCell.ViewModel(width: (kScreenWidth - 30) / 2, shot: _shot)
-        })
-        
-        return (_shots, _cellViewModels)
+private func shotData(with array: [JSON]) -> (shots: [Shot], cellViewModels: [ShotCell.ViewModel]){
+    let _shots = array.map { (_json) -> Shot in
+        Shot(with: _json)
     }
+    
+    let _cellViewModels = _shots.map({ (_shot) -> ShotCell.ViewModel in
+        return ShotCell.ViewModel(width: (kScreenWidth - 30) / 2, shot: _shot)
+    })
+    
+    return (_shots, _cellViewModels)
 }
+
 
 // MARK: - File manage
 extension ShotService {
     
-    private var jsonFileName: String { return "shot_list_json"}
+    private var jsonFileName: String { return "shot_list.json"}
     
-    func loadCache() {
+    func loadCache(completion: @escaping () -> Void) {
         FileService.shared.searchCache(fileName: jsonFileName) { (data, error) in
-            guard let _data = data else { return }
-            let json = JSON.init(data: _data)
-            
-            ShotService.shared
+            DispatchQueue.main.async {
+                guard let _data = data else { return completion() }
+                
+                let json = JSON.init(data: _data)
+                
+                let result = shotData(with: json.arrayValue)
+                
+                ShotService.shared.shots = result.shots
+                
+                ShotService.shared.shotsViewModels = result.cellViewModels
+                
+                completion()
+            }
         }
-    }
-    
-    func creatCache() {
-        
     }
     
     func cacheFirstPage(json: JSON) {

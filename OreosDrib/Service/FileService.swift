@@ -20,6 +20,8 @@ struct SanBoxPath {
     
     static var caches: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
     
+    static var library: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
+    
     static var temporary: String = NSTemporaryDirectory()
     
     static var images: String = documents.appending("/Images")
@@ -40,25 +42,7 @@ struct FileService {
     
     public private(set) var (captureSignal, captureObserver) = Signal<String, NoError>.pipe()
     
-    func creat(image: UIImage, fileName: String, completion: @escaping (Error?) -> Void) {
-        guard let _data = UIImagePNGRepresentation(image) else {
-            return completion(NSError(domain: "Faild to convert" + image.description + "to data", code: 0 , userInfo: nil))
-        }
-        self.creat(data: _data, path: SanBoxPath.images + "/" + fileName, completion: completion)
-    }
-    
-    func creat(json: JSON, fileName: String, completion: @escaping (Error?) -> Void) {
-        var _data: Data?
-        do {
-            _data = try json.rawData()
-        }catch {
-            return completion(error)
-        }
-        
-        self.creat(data: _data!, path: SanBoxPath.caches + "/" + fileName, completion: completion)
-    }
-    
-    func creat(data: Data, path: String, completion: @escaping (Error?) -> Void) {
+    func creat(data: Data, path: String, fileName: String, completion: @escaping (Error?) -> Void) {
         self.operationQueue.addOperation {
             DispatchQueue.global().async {
                 let _fileManager: FileManager = FileManager.default
@@ -73,8 +57,8 @@ struct FileService {
                 
                 var _error: Error?
                 
-                if !_fileManager.createFile(atPath: path, contents: data, attributes: nil) {
-                    _error = NSError(domain: "Faild to creat image at path:" + path, code: 0, userInfo: ["data": data])
+                if !_fileManager.createFile(atPath: path + "/" + fileName, contents: data, attributes: nil) {
+                    _error = NSError(domain: "Faild to creat file at path:" + path, code: 0, userInfo: nil)
                 }
                 
                 DispatchQueue.main.sync {
@@ -84,8 +68,36 @@ struct FileService {
         }
     }
     
-    func searchCache(fileName: String, completion: @escaping (Data?, Error?) -> Void) {
+    func creat(image: UIImage, fileName: String, completion: @escaping (Error?) -> Void) {
+        guard let _data = UIImagePNGRepresentation(image) else {
+            return completion(NSError(domain: "Faild to convert" + image.description + "to data", code: 0 , userInfo: nil))
+        }
+        self.creat(data: _data, path: SanBoxPath.images, fileName: fileName, completion: completion)
+    }
+    
+    func creat(json: JSON, fileName: String, completion: @escaping (Error?) -> Void) {
+        var _data: Data?
+        do {
+            _data = try json.rawData()
+        }catch {
+            return completion(error)
+        }
         
+        self.creat(data: _data!, path: SanBoxPath.caches + "/shots", fileName: fileName, completion: completion)
+    }
+    
+    func searchCache(fileName: String, completion: @escaping (Data?, Error?) -> Void) {
+        let _fileManager = FileManager.default
+        self.operationQueue.addOperation {
+            DispatchQueue.global().async {
+                let data = _fileManager.contents(atPath: SanBoxPath.caches + "/shots/" + fileName)
+                
+                DispatchQueue.main.async {
+                    completion(data, nil)
+                }
+            }
+            
+        }
     }
     
     private var isCalculating: Bool = false
