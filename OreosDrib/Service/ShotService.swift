@@ -44,6 +44,8 @@ struct ShotService {
     var shotOperationQueue: OperationQueue = {
         let _queue = OperationQueue()
         
+        _queue.maxConcurrentOperationCount = 1
+        
         return _queue
     }()
     
@@ -52,6 +54,8 @@ struct ShotService {
     }()
     
     public private(set) var (shotListSignal, shotListObserver) = Signal<(page: Int, shots: [Shot]), ReactiveError>.pipe()
+    
+    public private(set) var shots: [Shot] = []
     
     public private(set) var shotsViewModels: [ShotCell.ViewModel] = []
     
@@ -101,6 +105,8 @@ struct ShotService {
                     })
                     
                     DispatchQueue.main.async {
+                        
+                        ShotService.shared.shots = page == 1 ? _shots : ShotService.shared.shots + _shots
                         
                         ShotService.shared.shotsViewModels = page == 1 ? _cellViewModels : ShotService.shared.shotsViewModels + _cellViewModels
 

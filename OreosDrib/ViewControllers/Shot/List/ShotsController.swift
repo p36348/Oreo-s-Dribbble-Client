@@ -28,21 +28,25 @@ class ShotsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureViews()
+        self.setupUI()
         
-        bindViewModel()
+        self.bindViewModel()
         
-        viewModel.loadFirstPageData()
+        self.loadFirstPage()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    private func loadFirstPage() {
+        self.viewModel.loadFirstPageData()
+    }
 }
 
 extension ShotsController {
-    fileprivate func configureViews() {
+    fileprivate func setupUI() {
         
         view.backgroundColor = UIColor.white
         
@@ -83,10 +87,8 @@ extension ShotsController {
         
         viewModel.firstPageSignal.observeResult { [weak self] (result) in
             guard let _self = self else { return }
-            /**
-             * 错误处理
-             */
-            if let _error = result.error { return _self.oreo.alert(errorMsg: _error.message) }
+ 
+            if let _error = result.error { return _self.alert(errorMsg: _error.message) }
             
             _self.collectionView.reloadSections([0])
             
@@ -95,17 +97,11 @@ extension ShotsController {
         
         viewModel.loadMoreDataSignal.observeResult { [weak self] (result) in
             guard let _self = self else { return }
-            /**
-             * 错误处理
-             */
-            if let _error = result.error { return _self.oreo.alert(errorMsg: _error.message) }
-            /**
-             * 停止加载动画
-             */
+ 
+            if let _error = result.error { return _self.alert(errorMsg: _error.message) }
+
             _self.collectionView.es_stopLoadingMore()
-            /**
-             * 数据更新
-             */
+ 
             let updates: () -> Void = {
                 _self.collectionView.insertItems(at: result.value!)
             }
@@ -185,11 +181,20 @@ struct ItemInfo {
 extension ShotsController {
     class ViewModel {
         
-        var shots: [Shot] = []
+        var shots: [Shot] {
+            return ShotService.shared.shots
+        }
         
         var cellViewModels: [ShotCell.ViewModel] {
             return ShotService.shared.shotsViewModels
         }
+        
+        var cellNums: Int = 0
+        
+        
+        /**
+         * query paramters
+         */
         
         var list: ShotService.List = .all
         
@@ -200,6 +205,10 @@ extension ShotsController {
         var date: Date = Date()
         
         var currentPage: Int = 1
+        
+        /**
+         * signals
+         */
         
         var (firstPageSignal, firstPageObserver) = Signal<[IndexPath], ReactiveError>.pipe()
         
@@ -214,19 +223,15 @@ extension ShotsController {
             ShotService.shared.shotListSignal.filter { (result) -> Bool in
                 return result.page == 1
                 }.observeResult { [weak self] (result) in
+                    
                     guard let _self = self else { return }
                     
                     if let _error = result.error { return _self.firstPageObserver.send(error: _error) }
                     
                     DispatchQueue.global(qos: .background).async {
                         
-                        _self.shots = result.value!.shots
-                        
-                        var indexPaths: [IndexPath] = []
-                        
-                        (0..<_self.shots.count).forEach { (index) in
-                            indexPaths.append(IndexPath(item: index, section: 0))
-                        }
+                        let indexPaths: [IndexPath] = _self.indexPaths(oldCellNum: 0,
+                                                                       newCellNum: result.value!.shots.count)
                         
                         DispatchQueue.main.async {
                             
@@ -241,21 +246,15 @@ extension ShotsController {
             ShotService.shared.shotListSignal.filter {(result) -> Bool in
                 return result.page != 1
                 }.observeResult { [weak self] (result) in
+                    
                     guard let _self = self else { return }
                     
                     if let _error = result.error { return _self.loadMoreDataObserver.send(error: _error) }
                     
                     DispatchQueue.global(qos: .background).async {
                         
-                        let originCount: Int = _self.shots.count
-                        
-                        _self.shots = _self.shots + result.value!.shots
-                        
-                        var indexPaths: [IndexPath] = []
-                        
-                        (0..<result.value!.shots.count).forEach { (index) in
-                            indexPaths.append(IndexPath(item: originCount + index, section: 0))
-                        }
+                        let indexPaths: [IndexPath] = _self.indexPaths(oldCellNum: _self.cellNums,
+                                                                       newCellNum: result.value!.shots.count)
                         
                         DispatchQueue.main.async {
                             _self.loadMoreDataObserver.send(value: indexPaths)
@@ -273,7 +272,6 @@ extension ShotsController {
         
         func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView  {
             
-            
             let _view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "", for: indexPath)
             
             return _view
@@ -286,11 +284,22 @@ extension ShotsController {
         
         func loadMoreData() {
             self.currentPage += 1
+            self.cellNums = self.cellViewModels.count
             self.fetchData()
         }
         
-        func fetchData() {
+        private func fetchData() {
             let _ = ShotService.shared.getList(page: currentPage, list: list, timeframe: timeFrame, sort: sort, date: self.date)
+        }
+        
+        private func indexPaths(oldCellNum: Int, newCellNum: Int) -> [IndexPath] {
+            
+            var _indexPath: [IndexPath] = []
+            (0..<newCellNum).forEach { (index) in
+                _indexPath.append(IndexPath(item: oldCellNum + index, section: 0))
+            }
+            
+            return _indexPath
         }
     }
 }

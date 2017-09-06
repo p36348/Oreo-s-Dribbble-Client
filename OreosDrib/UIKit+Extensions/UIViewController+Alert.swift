@@ -7,30 +7,10 @@
 //
 
 import UIKit
-import Toast_Swift
 
-public protocol AlertCompatible: class {
-    associatedtype CompatibleType
-    var oreo: CompatibleType { get }
-    
-}
 
-public final class Oreo<Base> {
-    let base: Base
-    init(_ base: Base) {
-        self.base = base
-    }
-}
-
-public extension AlertCompatible {
-    public var oreo: Oreo<Self> {
-        get {return Oreo(self)}
-    }
-}
-
-extension UIViewController: AlertCompatible { }
-
-public extension Oreo where Base: UIViewController {
+// MARK: - Alert
+public extension UIViewController {
     func alertActionSheet(title: String? = nil, message: String? = nil, sheetTitles: [String], sheetActions: [(()->Void)]){
         let controller = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         guard sheetTitles.count == sheetActions.count else {
@@ -47,16 +27,24 @@ public extension Oreo where Base: UIViewController {
             controller.dismiss(animated: true, completion: nil)
         }))
         
-        if base.navigationController?.topViewController == base || base.presentingViewController == nil{
-            base.present(controller, animated: true, completion: nil)
+        if self.navigationController?.topViewController == self || self.presentingViewController == nil{
+            self.present(controller, animated: true, completion: nil)
         }
     }
     
     func alert(errorMsg: String) {
+        let controller = UIAlertController(title: "Notice", message: errorMsg, preferredStyle: UIAlertControllerStyle.alert)
         
+        self.present(controller, animated: true, completion: nil)
     }
-    
+}
+
+
+import Toast_Swift
+
+// MARK: - Toast
+public extension UIViewController {
     func toast(message: String) {
-        base.view.makeToast(message, duration: 1.5, position: ToastPosition.center)
+        self.view.makeToast(message, duration: 1.5, position: ToastPosition.center)
     }
 }
