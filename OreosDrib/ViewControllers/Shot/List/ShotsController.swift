@@ -28,11 +28,13 @@ class ShotsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureViews()
+        self.viewModel.loadCache()
         
-        bindViewModel()
+        self.configureViews()
         
-        viewModel.loadFirstPageData()
+        self.bindViewModel()
+        
+        self.viewModel.loadFirstPageData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -277,6 +279,10 @@ extension ShotsController {
             let _view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "", for: indexPath)
             
             return _view
+        }
+        
+        func loadCache() {
+            ShotService.shared.loadCache()
         }
         
         func loadFirstPageData() {
