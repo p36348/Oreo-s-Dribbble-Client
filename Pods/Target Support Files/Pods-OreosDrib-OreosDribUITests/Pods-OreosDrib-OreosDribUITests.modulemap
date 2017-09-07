@@ -1,6 +1,0 @@
-framework module Pods_OreosDrib_OreosDribUITests {
-  umbrella header "Pods-OreosDrib-OreosDribUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

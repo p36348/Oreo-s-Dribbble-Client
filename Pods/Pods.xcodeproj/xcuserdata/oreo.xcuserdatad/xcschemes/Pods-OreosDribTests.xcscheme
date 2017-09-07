@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B8A5D5BCA7AB27748402F274502AE30"
-               BuildableName = "Pods_OreosDrib_OreosDribUITests.framework"
-               BlueprintName = "Pods-OreosDrib-OreosDribUITests"
+               BlueprintIdentifier = "59DE26F68DECE483ED74ED365AB08DC8"
+               BuildableName = "Pods_OreosDribTests.framework"
+               BlueprintName = "Pods-OreosDribTests"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B8A5D5BCA7AB27748402F274502AE30"
-            BuildableName = "Pods_OreosDrib_OreosDribUITests.framework"
-            BlueprintName = "Pods-OreosDrib-OreosDribUITests"
+            BlueprintIdentifier = "59DE26F68DECE483ED74ED365AB08DC8"
+            BuildableName = "Pods_OreosDribTests.framework"
+            BlueprintName = "Pods-OreosDribTests"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

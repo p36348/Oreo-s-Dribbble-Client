@@ -27,6 +27,8 @@
 		3B0B481C1EE6A400006288FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B481B1EE6A400006288FA /* User.swift */; };
 		3B0B481D1EE6A400006288FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B481B1EE6A400006288FA /* User.swift */; };
 		3B0B481E1EE6A400006288FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B481B1EE6A400006288FA /* User.swift */; };
+		3B0E4FA71F61AA1A00745A55 /* ReactiveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E4FA61F61AA1A00745A55 /* ReactiveTest.swift */; };
+		3B0E4FA91F61B16200745A55 /* FileServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E4FA81F61B16200745A55 /* FileServiceTest.swift */; };
 		3B11EA251F5EC54100BE9CA5 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952179021F49845B00E5A0B1 /* FileService.swift */; };
 		3B11EA261F5EC54100BE9CA5 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952179021F49845B00E5A0B1 /* FileService.swift */; };
 		3B26489B1F57383E003B4C1C /* ShotDetailController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF6BB1F4D5E3100DBD9A6 /* ShotDetailController+Section.swift */; };
@@ -218,6 +220,8 @@
 		3B0B47EF1EE6A3B9006288FA /* WaterFallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFallCell.swift; sourceTree = "<group>"; };
 		3B0B48151EE6A3CD006288FA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B0B481B1EE6A400006288FA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3B0E4FA61F61AA1A00745A55 /* ReactiveTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveTest.swift; sourceTree = "<group>"; };
+		3B0E4FA81F61B16200745A55 /* FileServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileServiceTest.swift; sourceTree = "<group>"; };
 		3B2648981F57269C003B4C1C /* OreosDrib-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OreosDrib-Bridging-Header.h"; sourceTree = "<group>"; };
 		3E7D0DB07020591CDA4D66EB /* Pods-OreosDrib-OreosDribTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib-OreosDribTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib-OreosDribTests/Pods-OreosDrib-OreosDribTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3FD986A565590B74C0982F9D /* Pods_OreosDrib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OreosDrib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -368,6 +372,8 @@
 			isa = PBXGroup;
 			children = (
 				3B0B47C31EE6A121006288FA /* OreosDribTests.swift */,
+				3B0E4FA61F61AA1A00745A55 /* ReactiveTest.swift */,
+				3B0E4FA81F61B16200745A55 /* FileServiceTest.swift */,
 				3B0B47C51EE6A121006288FA /* Info.plist */,
 			);
 			path = OreosDribTests;
@@ -809,7 +815,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribUITests/Pods-OreosDrib-OreosDribUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDribUITests/Pods-OreosDribUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6C91CAD91E147E1056C10DD6 /* [CP] Copy Pods Resources */ = {
@@ -824,7 +830,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribTests/Pods-OreosDrib-OreosDribTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDribTests/Pods-OreosDribTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		71FF89C8AB022A02415781B0 /* [CP] Copy Pods Resources */ = {
@@ -853,7 +859,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OreosDrib-OreosDribUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-OreosDribUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -946,7 +952,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribUITests/Pods-OreosDrib-OreosDribUITests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-OreosDribUITests/Pods-OreosDribUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
@@ -999,7 +1005,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribUITests/Pods-OreosDrib-OreosDribUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDribUITests/Pods-OreosDribUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E90C894BE855FBC7D4A2E3B4 /* [CP] Check Pods Manifest.lock */ = {
@@ -1013,7 +1019,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OreosDrib-OreosDribTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-OreosDribTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1026,7 +1032,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribTests/Pods-OreosDrib-OreosDribTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-OreosDribTests/Pods-OreosDribTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
@@ -1079,7 +1085,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribTests/Pods-OreosDrib-OreosDribTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDribTests/Pods-OreosDribTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1157,6 +1163,7 @@
 				95C0EA471F1626F600688114 /* HTMLParser.swift in Sources */,
 				952C53731EF8C111006FC712 /* runtime+Utils.swift in Sources */,
 				95AFF6A51F4D3D5E00DBD9A6 /* ShotCell.swift in Sources */,
+				3B0E4FA91F61B16200745A55 /* FileServiceTest.swift in Sources */,
 				952C535C1EF88CB9006FC712 /* UIColor+Extension.swift in Sources */,
 				952C53691EF892CE006FC712 /* Animation.swift in Sources */,
 				3B0B48121EE6A3B9006288FA /* WaterFallCell.swift in Sources */,
@@ -1180,6 +1187,7 @@
 				957B1E4D1F0946D50047FBEE /* PopularShotsController.swift in Sources */,
 				953C33241F04DC59009759D2 /* UserInfoController.swift in Sources */,
 				3B0B481D1EE6A400006288FA /* User.swift in Sources */,
+				3B0E4FA71F61AA1A00745A55 /* ReactiveTest.swift in Sources */,
 				953C32D91EFF9A14009759D2 /* Shot.swift in Sources */,
 				952C53511EF88C6A006FC712 /* SystemInfo.swift in Sources */,
 				953C339D1F078C62009759D2 /* OAuthService.swift in Sources */,
@@ -1432,7 +1440,7 @@
 		};
 		3B0B47D71EE6A121006288FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E7D0DB07020591CDA4D66EB /* Pods-OreosDrib-OreosDribTests.debug.xcconfig */;
+			baseConfigurationReference = 636A4BB6342026267E0983CF /* Pods-OreosDribTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1447,7 +1455,7 @@
 		};
 		3B0B47D81EE6A121006288FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71A0231E77009F28E1171A9B /* Pods-OreosDrib-OreosDribTests.release.xcconfig */;
+			baseConfigurationReference = 1C500E25A1B21D801A2228F9 /* Pods-OreosDribTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1462,7 +1470,7 @@
 		};
 		3B0B47DA1EE6A121006288FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08BA021D7108FDB3F99D923A /* Pods-OreosDrib-OreosDribUITests.debug.xcconfig */;
+			baseConfigurationReference = 4C77E22A8D3037006146A3FA /* Pods-OreosDribUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = OreosDribUITests/Info.plist;
@@ -1476,7 +1484,7 @@
 		};
 		3B0B47DB1EE6A121006288FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4131C6B89C88FAE811ED252B /* Pods-OreosDrib-OreosDribUITests.release.xcconfig */;
+			baseConfigurationReference = FDD7E57F494DA26CFB9E622A /* Pods-OreosDribUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = OreosDribUITests/Info.plist;
