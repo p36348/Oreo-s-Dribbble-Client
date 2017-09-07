@@ -67,8 +67,8 @@ extension ShotsController {
         
         view.addSubview(collectionView)
         
-        collectionView.snp.makeConstraints { (make) in
-            make.edges.equalTo(UIEdgeInsetsMake(0, 0, tabBarController?.tabBar.bounds.height ?? 0, 0))
+        collectionView.snp.makeConstraints { [weak self] (make) in
+            make.edges.equalTo(UIEdgeInsetsMake(0, 0, self?.tabBarController?.tabBar.bounds.height ?? 0, 0))
         }
     }
     
@@ -224,49 +224,40 @@ extension ShotsController {
         var (reloadSignal, reloadObserver) = Signal<String, NoError>.pipe()
         
         init() {
-            /**
-             * 第一页网络请求完成
-             */
-            ShotService.shared.shotListSignal.filter { (result) -> Bool in
-                return result.page == 1
-                }.observeResult { [weak self] (result) in
-                    
-                    guard let _self = self else { return }
-                    
-                    if let _error = result.error { return _self.firstPageObserver.send(error: _error) }
-                    
-                    DispatchQueue.global(qos: .background).async {
-                        
-                        let indexPaths: [IndexPath] = _self.indexPaths(oldCellNum: 0,
-                                                                       newCellNum: result.value!.shots.count)
-                        
-                        DispatchQueue.main.async {
-                            
-                            _self.firstPageObserver.send(value: indexPaths)
-                        }
-                    }
+            ShotService.shared.shotListSignal.observeResult { [weak self] (result) in
+                
+                guard let _self = self else { return }
+                
+                _self.handleLoadingResult(result: result)
             }
-            
-            /**
-             * 翻页网络请求完成
-             */
-            ShotService.shared.shotListSignal.filter {(result) -> Bool in
-                return result.page != 1
-                }.observeResult { [weak self] (result) in
+        }
+        
+        func handleLoadingResult(result: Result<(page: Int, shots: [Shot]), ReactiveError>) {
+            if result.value!.page == 1 {
+                if let _error = result.error { return self.firstPageObserver.send(error: _error) }
+                
+                DispatchQueue.global(qos: .background).async {
                     
-                    guard let _self = self else { return }
+                    let indexPaths: [IndexPath] = self.indexPaths(oldCellNum: 0,
+                                                                   newCellNum: result.value!.shots.count)
                     
-                    if let _error = result.error { return _self.loadMoreDataObserver.send(error: _error) }
-                    
-                    DispatchQueue.global(qos: .background).async {
+                    DispatchQueue.main.async {
                         
-                        let indexPaths: [IndexPath] = _self.indexPaths(oldCellNum: _self.cellNums,
-                                                                       newCellNum: result.value!.shots.count)
-                        
-                        DispatchQueue.main.async {
-                            _self.loadMoreDataObserver.send(value: indexPaths)
-                        }
+                        self.firstPageObserver.send(value: indexPaths)
                     }
+                }
+            }else {
+                if let _error = result.error { return self.loadMoreDataObserver.send(error: _error) }
+                
+                DispatchQueue.global(qos: .background).async {
+                    
+                    let indexPaths: [IndexPath] = self.indexPaths(oldCellNum: self.cellNums,
+                                                                   newCellNum: result.value!.shots.count)
+                    
+                    DispatchQueue.main.async {
+                        self.loadMoreDataObserver.send(value: indexPaths)
+                    }
+                }
             }
         }
         

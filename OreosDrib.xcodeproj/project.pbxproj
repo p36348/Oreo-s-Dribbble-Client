@@ -32,6 +32,7 @@
 		3B26489B1F57383E003B4C1C /* ShotDetailController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF6BB1F4D5E3100DBD9A6 /* ShotDetailController+Section.swift */; };
 		3B26489C1F57383F003B4C1C /* ShotDetailController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AFF6BB1F4D5E3100DBD9A6 /* ShotDetailController+Section.swift */; };
 		548B15427AE959EE8EA86ABA /* Pods_OreosDribUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E501A7C15591E282C1627D1 /* Pods_OreosDribUITests.framework */; };
+		6184E3A2933149A8559CC9B8 /* Pods_OreosDrib_OreosDribTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3D070455B5B1FEF0D5C3811 /* Pods_OreosDrib_OreosDribTests.framework */; };
 		6F44420B3B915FEAB30F134D /* Pods_OreosDribTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AAAD44F0BE3038A82B20F77 /* Pods_OreosDribTests.framework */; };
 		951EEADE1EFA158B0029DE55 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951EEADD1EFA158B0029DE55 /* RealmManager.swift */; };
 		951EEADF1EFA158B0029DE55 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951EEADD1EFA158B0029DE55 /* RealmManager.swift */; };
@@ -176,6 +177,7 @@
 		95C0EA461F1626F600688114 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EA451F1626F600688114 /* HTMLParser.swift */; };
 		95C0EA471F1626F600688114 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EA451F1626F600688114 /* HTMLParser.swift */; };
 		95C0EA481F1626F600688114 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EA451F1626F600688114 /* HTMLParser.swift */; };
+		CF9B443BA10612B514C8D73D /* Pods_OreosDrib_OreosDribUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A89A8B3C9B754B75BD2FC149 /* Pods_OreosDrib_OreosDribUITests.framework */; };
 		FF47EE43A800396D2919AA9C /* Pods_OreosDrib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD986A565590B74C0982F9D /* Pods_OreosDrib.framework */; };
 /* End PBXBuildFile section */
 
@@ -197,6 +199,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08BA021D7108FDB3F99D923A /* Pods-OreosDrib-OreosDribUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib-OreosDribUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib-OreosDribUITests/Pods-OreosDrib-OreosDribUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0E501A7C15591E282C1627D1 /* Pods_OreosDribUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OreosDribUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C500E25A1B21D801A2228F9 /* Pods-OreosDribTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDribTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDribTests/Pods-OreosDribTests.release.xcconfig"; sourceTree = "<group>"; };
 		3B0B47A91EE6A121006288FA /* OreosDrib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OreosDrib.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,9 +219,12 @@
 		3B0B48151EE6A3CD006288FA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B0B481B1EE6A400006288FA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B2648981F57269C003B4C1C /* OreosDrib-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OreosDrib-Bridging-Header.h"; sourceTree = "<group>"; };
+		3E7D0DB07020591CDA4D66EB /* Pods-OreosDrib-OreosDribTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib-OreosDribTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib-OreosDribTests/Pods-OreosDrib-OreosDribTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3FD986A565590B74C0982F9D /* Pods_OreosDrib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OreosDrib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4131C6B89C88FAE811ED252B /* Pods-OreosDrib-OreosDribUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib-OreosDribUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib-OreosDribUITests/Pods-OreosDrib-OreosDribUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4C77E22A8D3037006146A3FA /* Pods-OreosDribUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDribUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDribUITests/Pods-OreosDribUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		636A4BB6342026267E0983CF /* Pods-OreosDribTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDribTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDribTests/Pods-OreosDribTests.debug.xcconfig"; sourceTree = "<group>"; };
+		71A0231E77009F28E1171A9B /* Pods-OreosDrib-OreosDribTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib-OreosDribTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib-OreosDribTests/Pods-OreosDrib-OreosDribTests.release.xcconfig"; sourceTree = "<group>"; };
 		8AAAD44F0BE3038A82B20F77 /* Pods_OreosDribTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OreosDribTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		951EEADD1EFA158B0029DE55 /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		952178F61F46739700E5A0B1 /* ShotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotCell.swift; sourceTree = "<group>"; };
@@ -270,6 +276,8 @@
 		95C0EA411F161CB200688114 /* CTSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTSettings.swift; sourceTree = "<group>"; };
 		95C0EA451F1626F600688114 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
 		9C13BFA301BE928A3270B15F /* Pods-OreosDrib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib.debug.xcconfig"; sourceTree = "<group>"; };
+		A89A8B3C9B754B75BD2FC149 /* Pods_OreosDrib_OreosDribUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OreosDrib_OreosDribUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3D070455B5B1FEF0D5C3811 /* Pods_OreosDrib_OreosDribTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OreosDrib_OreosDribTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4536EEE9653AA8BF471214 /* Pods-OreosDrib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib.release.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib.release.xcconfig"; sourceTree = "<group>"; };
 		FDD7E57F494DA26CFB9E622A /* Pods-OreosDribUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDribUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDribUITests/Pods-OreosDribUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -288,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F44420B3B915FEAB30F134D /* Pods_OreosDribTests.framework in Frameworks */,
+				6184E3A2933149A8559CC9B8 /* Pods_OreosDrib_OreosDribTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				548B15427AE959EE8EA86ABA /* Pods_OreosDribUITests.framework in Frameworks */,
+				CF9B443BA10612B514C8D73D /* Pods_OreosDrib_OreosDribUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +318,8 @@
 				3FD986A565590B74C0982F9D /* Pods_OreosDrib.framework */,
 				8AAAD44F0BE3038A82B20F77 /* Pods_OreosDribTests.framework */,
 				0E501A7C15591E282C1627D1 /* Pods_OreosDribUITests.framework */,
+				B3D070455B5B1FEF0D5C3811 /* Pods_OreosDrib_OreosDribTests.framework */,
+				A89A8B3C9B754B75BD2FC149 /* Pods_OreosDrib_OreosDribUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -463,6 +475,10 @@
 				1C500E25A1B21D801A2228F9 /* Pods-OreosDribTests.release.xcconfig */,
 				4C77E22A8D3037006146A3FA /* Pods-OreosDribUITests.debug.xcconfig */,
 				FDD7E57F494DA26CFB9E622A /* Pods-OreosDribUITests.release.xcconfig */,
+				3E7D0DB07020591CDA4D66EB /* Pods-OreosDrib-OreosDribTests.debug.xcconfig */,
+				71A0231E77009F28E1171A9B /* Pods-OreosDrib-OreosDribTests.release.xcconfig */,
+				08BA021D7108FDB3F99D923A /* Pods-OreosDrib-OreosDribUITests.debug.xcconfig */,
+				4131C6B89C88FAE811ED252B /* Pods-OreosDrib-OreosDribUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -793,7 +809,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDribUITests/Pods-OreosDribUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribUITests/Pods-OreosDrib-OreosDribUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6C91CAD91E147E1056C10DD6 /* [CP] Copy Pods Resources */ = {
@@ -808,7 +824,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDribTests/Pods-OreosDribTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribTests/Pods-OreosDrib-OreosDribTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		71FF89C8AB022A02415781B0 /* [CP] Copy Pods Resources */ = {
@@ -837,7 +853,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OreosDribUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-OreosDrib-OreosDribUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -930,13 +946,60 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribUITests/Pods-OreosDrib-OreosDribUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/SwViewCapture/SwViewCapture.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftHEXColors/SwiftHEXColors.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHTCollectionViewWaterfallLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwViewCapture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHEXColors.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDribUITests/Pods-OreosDribUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribUITests/Pods-OreosDrib-OreosDribUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E90C894BE855FBC7D4A2E3B4 /* [CP] Check Pods Manifest.lock */ = {
@@ -950,7 +1013,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OreosDribTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-OreosDrib-OreosDribTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -963,13 +1026,60 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribTests/Pods-OreosDrib-OreosDribTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/SwViewCapture/SwViewCapture.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftHEXColors/SwiftHEXColors.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHTCollectionViewWaterfallLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwViewCapture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHEXColors.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDribTests/Pods-OreosDribTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib-OreosDribTests/Pods-OreosDrib-OreosDribTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1290,6 +1400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = OreosDrib/Info.plist;
@@ -1321,7 +1432,7 @@
 		};
 		3B0B47D71EE6A121006288FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 636A4BB6342026267E0983CF /* Pods-OreosDribTests.debug.xcconfig */;
+			baseConfigurationReference = 3E7D0DB07020591CDA4D66EB /* Pods-OreosDrib-OreosDribTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1336,7 +1447,7 @@
 		};
 		3B0B47D81EE6A121006288FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C500E25A1B21D801A2228F9 /* Pods-OreosDribTests.release.xcconfig */;
+			baseConfigurationReference = 71A0231E77009F28E1171A9B /* Pods-OreosDrib-OreosDribTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1351,7 +1462,7 @@
 		};
 		3B0B47DA1EE6A121006288FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C77E22A8D3037006146A3FA /* Pods-OreosDribUITests.debug.xcconfig */;
+			baseConfigurationReference = 08BA021D7108FDB3F99D923A /* Pods-OreosDrib-OreosDribUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = OreosDribUITests/Info.plist;
@@ -1365,7 +1476,7 @@
 		};
 		3B0B47DB1EE6A121006288FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FDD7E57F494DA26CFB9E622A /* Pods-OreosDribUITests.release.xcconfig */;
+			baseConfigurationReference = 4131C6B89C88FAE811ED252B /* Pods-OreosDrib-OreosDribUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = OreosDribUITests/Info.plist;

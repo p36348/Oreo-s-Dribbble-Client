@@ -31,6 +31,16 @@ class OreosDribUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        let collectionViewsQuery = app.collectionViews
+        collectionViewsQuery.children(matching: .cell).element(boundBy: 4).children(matching: .other).element.swipeUp()
+        collectionViewsQuery.children(matching: .cell).element(boundBy: 2).children(matching: .other).element.swipeDown()
+        collectionViewsQuery.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.tap()
+        app.tables.containing(.activityIndicator, identifier:"Progress halted").element.swipeDown()
+        app.navigationBars["OreosDrib.ShotDetail"].children(matching: .button).matching(identifier: "Back").element(boundBy: 0).tap()
+        
+        
     }
     
 }

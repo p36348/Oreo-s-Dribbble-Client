@@ -13,9 +13,9 @@ private let kContentPadding: CGFloat = 5
 
 class ShotCell: UICollectionViewCell {
     
-    private let imageView: AnimatedImageView = AnimatedImageView()
+    private let imageView: AnimatedImageView! = AnimatedImageView()
     
-    private let animatedTag: CALayer = CALayer()
+    private let animatedTag: CALayer! = CALayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

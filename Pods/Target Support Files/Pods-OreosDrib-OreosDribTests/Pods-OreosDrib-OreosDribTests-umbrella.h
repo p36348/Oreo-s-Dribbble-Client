@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_OreosDribUITestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_OreosDribUITestsVersionString[];
+FOUNDATION_EXPORT double Pods_OreosDrib_OreosDribTestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_OreosDrib_OreosDribTestsVersionString[];
 

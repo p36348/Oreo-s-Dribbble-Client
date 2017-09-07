@@ -29,12 +29,14 @@ target 'OreosDrib' do
   # Pods for OreosDrib
 
   target 'OreosDribTests' do
-    inherit! :search_paths
+      use_frameworks!
+#    inherit! :search_paths
     # Pods for testing
   end
 
   target 'OreosDribUITests' do
-    inherit! :search_paths
+      use_frameworks!
+#    inherit! :search_paths
     # Pods for testing
   end
 

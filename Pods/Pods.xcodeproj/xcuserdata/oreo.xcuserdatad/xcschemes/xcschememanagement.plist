@@ -49,17 +49,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-OreosDrib-OreosDribTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-OreosDrib-OreosDribUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-OreosDrib.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-OreosDribTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-OreosDribUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -162,6 +162,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>210A5EF1C0D6093BA3ED89AF177C0D4E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3B8A5D5BCA7AB27748402F274502AE30</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4A95E8CA67493078DF001B38455BC2DE</key>
 		<dict>
 			<key>primary</key>
@@ -173,11 +183,6 @@
 			<true/>
 		</dict>
 		<key>568185361EA6EEE89D2BC833905842FD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>59DE26F68DECE483ED74ED365AB08DC8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -243,11 +248,6 @@
 			<true/>
 		</dict>
 		<key>C115D5600F12C7290D38F4EA27890D8D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C3A07BED1ED2AE4481FFBE57D8421409</key>
 		<dict>
 			<key>primary</key>
 			<true/>
