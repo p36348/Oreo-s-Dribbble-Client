@@ -2,12 +2,11 @@
 //  OreosDribTests.swift
 //  OreosDribTests
 //
-//  Created by P36348 on 6/6/17.
+//  Created by P36348 on 8/9/2017.
 //  Copyright © 2017 P36348. All rights reserved.
 //
 
 import XCTest
-@testable import OreosDrib
 
 class OreosDribTests: XCTestCase {
     
@@ -29,7 +28,24 @@ class OreosDribTests: XCTestCase {
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
-            // Put the code you want to measure the time of here.
+            FileService.shared.creat(image: UIImage(), fileName: "image.png", completion: { (error) in
+                XCTAssertNotNil(error)
+            })
+        }
+    }
+    
+    func testRequest() {
+        ReactiveNetwork.shared.get(url: "https://www.google.com/hk").signal.observeResult { (result) in
+            print(result.value ?? "No value")
+            
+            XCTAssertNotNil(result.value)
+        }
+    }
+    
+    func testShotRequest() {
+        ShotService.shared.getList(list: ShotService.List.all, timeframe: ShotService.Timeframe.ever, sort: ShotService.Sort.recent, date: Date()).signal.observeResult { (result) in
+
+            XCTAssert(result.value != nil && result.value?.arrayValue.isEmpty == false)
         }
     }
     

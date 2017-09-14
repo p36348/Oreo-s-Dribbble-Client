@@ -103,7 +103,7 @@ extension SignController {
             enablePwdTF = userNameTFOutput.map({ (value) -> Bool in
                 return value.isValidMobile
             })
-            
+
             enableCommit = Signal.combineLatest(enablePwdTF, pwdTFOutput).map({ (value) -> Bool in
                 return value.0 && value.1.isValidPassword
             })

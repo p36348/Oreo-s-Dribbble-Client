@@ -27,9 +27,9 @@ def project_pods
     pod 'SwViewCapture'
     pod 'Toast-Swift', '~> 2.0.0'
     
-    target 'OreosDribUITests' do
-        inherit! :search_paths
-    end
+#    target 'OreosDribUITests' do
+#        inherit! :search_paths
+#    end
     
     target 'OreosDribTests' do
         inherit! :search_paths

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D39B156165D81F604CB824F5A51ADACF'
+               BlueprintIdentifier = 'E32F4D583F58A662128684F2B6519B17'
                BlueprintName = 'SwViewCapture'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'SwViewCapture.framework'>

@@ -48,6 +48,16 @@
                ReferencedContainer = "container:OreosDrib.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "95A445C61F61EBD7000D483F"
+               BuildableName = "OreosDribTestsB.xctest"
+               BlueprintName = "OreosDribTestsB"
+               ReferencedContainer = "container:OreosDrib.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

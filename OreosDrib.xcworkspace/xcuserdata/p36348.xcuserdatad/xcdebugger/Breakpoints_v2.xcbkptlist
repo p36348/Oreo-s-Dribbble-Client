@@ -42,12 +42,12 @@
                   moduleName = "OAuthSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/p36348/Documents/OreosDrib/Pods/OAuthSwift/Sources/OAuth2Swift.swift"
-                  timestampString = "526382776.957696"
+                  timestampString = "526512541.222516"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "80"
                   endingLineNumber = "80"
-                  offsetFromSymbolStart = "108">
+                  offsetFromSymbolStart = "180">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,12 +57,12 @@
                   moduleName = "OAuthSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/p36348/Documents/OreosDrib/Pods/OAuthSwift/Sources/OAuth2Swift.swift"
-                  timestampString = "526382776.959603"
+                  timestampString = "526512541.224047"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "80"
                   endingLineNumber = "80"
-                  offsetFromSymbolStart = "48">
+                  offsetFromSymbolStart = "58">
                </Location>
             </Locations>
          </BreakpointContent>
