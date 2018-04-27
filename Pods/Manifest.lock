@@ -5,7 +5,7 @@ PODS:
   - CHTCollectionViewWaterfallLayout/ObjC (0.9.7)
   - ESPullToRefresh (2.7)
   - Kingfisher (4.7.0)
-  - OAuthSwift (1.1.2)
+  - OAuthSwift (1.2.0)
   - PINCache (3.0.1-beta.6):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
     - PINCache/Core (= 3.0.1-beta.6)
@@ -26,15 +26,12 @@ PODS:
   - Realm/Headers (3.5.0)
   - RealmSwift (3.5.0):
     - Realm (= 3.5.0)
-  - Reveal-iOS-SDK (1.6.2)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
   - SnapKit (4.0.0)
-  - Socket.IO-Client-Swift (10.0.1)
   - SwiftHEXColors (1.1.1)
   - SwiftyJSON (4.1.0)
-  - SwViewCapture (1.0.6)
   - Texture (2.6):
     - Texture/PINRemoteImage (= 2.6)
   - Texture/Core (2.6)
@@ -42,7 +39,7 @@ PODS:
     - PINRemoteImage/iOS (= 3.0.0-beta.13)
     - PINRemoteImage/PINCache
     - Texture/Core
-  - Toast-Swift (2.0.0)
+  - Toast-Swift (3.0.1)
   - YYText (1.0.7)
 
 DEPENDENCIES:
@@ -50,67 +47,37 @@ DEPENDENCIES:
   - CHTCollectionViewWaterfallLayout
   - ESPullToRefresh
   - Kingfisher
-  - OAuthSwift (~> 1.1.0)
+  - OAuthSwift
   - RealmSwift
-  - Reveal-iOS-SDK
   - RxCocoa
   - RxSwift
   - SnapKit
-  - Socket.IO-Client-Swift (~> 10.0.0)
   - SwiftHEXColors
   - SwiftyJSON
-  - SwViewCapture
   - Texture
-  - Toast-Swift (~> 2.0.0)
+  - Toast-Swift
   - YYText
-
-SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - Alamofire
-    - CHTCollectionViewWaterfallLayout
-    - ESPullToRefresh
-    - Kingfisher
-    - OAuthSwift
-    - PINCache
-    - PINOperation
-    - PINRemoteImage
-    - Realm
-    - RealmSwift
-    - Reveal-iOS-SDK
-    - RxCocoa
-    - RxSwift
-    - SnapKit
-    - Socket.IO-Client-Swift
-    - SwiftHEXColors
-    - SwiftyJSON
-    - SwViewCapture
-    - Texture
-    - Toast-Swift
-    - YYText
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   CHTCollectionViewWaterfallLayout: 9d11068fafecac106695bb5a5d6d0f738483b598
   ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
-  OAuthSwift: 5aa5659984d3ca3206ba636a9e7a9c6626b2e8bd
+  OAuthSwift: 7fd6855b8e4d58eb5a30d156ea9bed7a8aecd1ca
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
   RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
-  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  Socket.IO-Client-Swift: f6553633ba6a01df8f1c8b583ec36560901e9de6
   SwiftHEXColors: 9681e756dc78a99ae97f277165b3f5e33b087553
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
-  SwViewCapture: edf1ea74e164f47af005fbdfdc6fc18ec373ec69
   Texture: 7249074582daf75e524e59df5428b66b8e8db0e4
-  Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
+  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 84b01a27d5e3e09e1fcd8b5a585703ae322846df
+PODFILE CHECKSUM: c75918cc296aa7626812200f69545675a059fb19
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.4.0

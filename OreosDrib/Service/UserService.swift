@@ -8,9 +8,8 @@
 
 import Foundation
 import SwiftyJSON
-import ReactiveSwift
+import RxSwift
 import Alamofire
-import Result
 import RealmSwift
 
 /// 接口 -http://developer.dribbble.com/v1/users/

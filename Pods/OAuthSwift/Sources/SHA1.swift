@@ -21,7 +21,7 @@ class SHA1 {
         self.message = message
     }
 
-    /** Common part for hash calculation. Prepare header data. */
+    /// Common part for hash calculation. Prepare header data.
     func prepare(_ message: [UInt8], _ blockSize: Int, _ allowance: Int) -> [UInt8] {
         var tmpMessage = message
 
@@ -139,7 +139,7 @@ class SHA1 {
 
 }
 
-fileprivate struct BytesSequence<D: RandomAccessCollection>: Sequence where D.Iterator.Element == UInt8, D.IndexDistance == Int, D.SubSequence.IndexDistance == Int, D.Index == Int {
+private struct BytesSequence<D: RandomAccessCollection>: Sequence where D.Iterator.Element == UInt8, D.IndexDistance == Int, D.SubSequence.IndexDistance == Int, D.Index == Int {
     let data: D
     let chunkSize: D.IndexDistance
 

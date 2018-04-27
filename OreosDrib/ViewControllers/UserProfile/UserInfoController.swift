@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Result
-import ReactiveSwift
+import RxSwift
+import RxCocoa
 import Kingfisher
 
 class UserInfoController: UIViewController {

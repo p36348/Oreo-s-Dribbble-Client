@@ -23,8 +23,8 @@ self.view.makeToast("This is a piece of toast")
 // toast with a specific duration and position
 self.view.makeToast("This is a piece of toast", duration: 3.0, position: .top)
 
-// toast with all possible options
-self.view.makeToast("This is a piece of toast", duration: 2.0, position: CGPoint(x: 110.0, y: 110.0), title: "Toast Title", image: UIImage(named: "toast.png"), style:nil) { (didTap: Bool) -> Void in
+// toast presented with multiple options and with a completion closure
+self.view.makeToast("This is a piece of toast", duration: 2.0, point: CGPoint(x: 110.0, y: 110.0), title: "Toast Title", image: UIImage(named: "toast.png")) { didTap in
     if didTap {
         print("completion from tap")
     } else {
@@ -37,16 +37,19 @@ self.view.makeToastActivity(.center)
 
 // display any view as toast
 self.view.showToast(myView)
+
+// immediately hides all toast views in self.view
+self.view.hideAllToasts()
 ```
 
 But wait, there's more!
 ---------
 ```swift
 // create a new style
-let style = ToastStyle()
+var style = ToastStyle()
 
 // this is just one of many style options
-style.messageColor = UIColor.blue
+style.messageColor = .blue
 
 // present the toast with the new style
 self.view.makeToast("This is a piece of toast", duration: 3.0, position: .bottom, style: style)
@@ -54,6 +57,7 @@ self.view.makeToast("This is a piece of toast", duration: 3.0, position: .bottom
 // or perhaps you want to use this style for all toasts going forward?
 // just set the shared style and there's no need to provide the style again
 ToastManager.shared.style = style
+self.view.makeToast("This is a piece of toast") // now uses the shared style
 
 // toggle "tap to dismiss" functionality
 ToastManager.shared.tapToDismissEnabled = true
@@ -73,9 +77,8 @@ Setup Instructions
 
 To integrate Toast-Swift into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
-``` ruby
-platform :ios, '8.0'
-pod 'Toast-Swift', '~> 2.0.0'
+```ruby
+pod 'Toast-Swift', '~> 3.0.1'
 ```
 
 and in your code add `import Toast_Swift`.
@@ -86,7 +89,7 @@ and in your code add `import Toast_Swift`.
 To integrate Toast-Swift into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "scalessec/Toast-Swift" ~> 2.0.0
+github "scalessec/Toast-Swift" ~> 3.0.1
 ```
 
 Run `carthage update` to build the framework and drag the built `ToastSwiftFramework.framework` into your Xcode project.
@@ -97,17 +100,18 @@ Manually
 ------------------
 
 1. Add `Toast.swift` to your project.
-2. Link against QuartzCore.
+2. Grab yourself a cold 🍺.
 
 Compatibility
 ------------------
-* Version `2.0.0` and later requires Swift 3 and Xcode 8.
+* Version `3.0.0` and later requires Swift 4 and Xcode 9.
+* Version `2.0.0` requires Swift 3 and Xcode 8.
 * Version `1.4.0` requires Swift 2.2 and Xcode 7.3. 
 * Version `1.0.0` can be used with Swift 2.1 and earlier versions of Xcode.
  
 MIT License
 -----------
-    Copyright (c) 2016 Charles Scalesse.
+    Copyright (c) 2015-2017 Charles Scalesse.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the

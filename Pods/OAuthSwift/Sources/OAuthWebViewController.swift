@@ -19,13 +19,13 @@ import Foundation
     public typealias OAuthViewController = NSViewController
 #endif
 
-// Delegate for OAuthWebViewController
+/// Delegate for OAuthWebViewController
 public protocol OAuthWebViewControllerDelegate: class {
 
     #if os(iOS) || os(tvOS)
-    // Did web view presented (work only without navigation controller)
+    /// Did web view presented (work only without navigation controller)
     func oauthWebViewControllerDidPresent()
-    // Did web view dismiss (work only without navigation controller)
+    /// Did web view dismiss (work only without navigation controller)
     func oauthWebViewControllerDidDismiss()
     #endif
 
@@ -35,19 +35,19 @@ public protocol OAuthWebViewControllerDelegate: class {
     func oauthWebViewControllerDidDisappear()
 }
 
-// A web view controller, which handler OAuthSwift authentification.
+/// A web view controller, which handler OAuthSwift authentification.
 open class OAuthWebViewController: OAuthViewController, OAuthSwiftURLHandlerType {
 
     #if os(iOS) || os(tvOS) || os(OSX)
-    // Delegate for this view
+    /// Delegate for this view
     public weak var delegate: OAuthWebViewControllerDelegate?
     #endif
 
     #if os(iOS) || os(tvOS)
-    // If controller have an navigation controller, application top view controller could be used if true
+    /// If controller have an navigation controller, application top view controller could be used if true
     public var useTopViewControlerInsteadOfNavigation = false
 
-    // If you want you could set animation transition to NO
+    /// If you want you could set animation transition to NO
     public var presentViewControllerAnimated = true
 
     public var topViewController: UIViewController? {
@@ -58,12 +58,12 @@ open class OAuthWebViewController: OAuthViewController, OAuthSwiftURLHandlerType
         #endif
     }
     #elseif os(OSX)
-    // How to present this view controller if parent view controller set
+    /// How to present this view controller if parent view controller set
     public enum Present {
         case asModalWindow
         case asSheet
-        case asPopover(relativeToRect: NSRect, ofView : NSView, preferredEdge: NSRectEdge, behavior: NSPopoverBehavior)
-        case transitionFrom(fromViewController: NSViewController, options: NSViewControllerTransitionOptions)
+        case asPopover(relativeToRect: NSRect, ofView : NSView, preferredEdge: NSRectEdge, behavior: NSPopover.Behavior)
+        case transitionFrom(fromViewController: NSViewController, options: NSViewController.TransitionOptions)
         case animator(animator: NSViewControllerPresentationAnimator)
         case segue(segueIdentifier: String)
     }
@@ -122,7 +122,7 @@ open class OAuthWebViewController: OAuthViewController, OAuthSwiftURLHandlerType
                 case .animator(let animator):
                     p.presentViewController(self, animator: animator)
                 case .segue(let segueIdentifier):
-                    p.performSegue(withIdentifier: segueIdentifier, sender: self) // The segue must display self.view
+                    p.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: segueIdentifier), sender: self) // The segue must display self.view
                     break
                 }
             } else if let window = self.view.window {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-var OAuthSwiftDataEncoding: String.Encoding = .utf8
+public var OAuthSwiftDataEncoding: String.Encoding = .utf8
 
 @objc public protocol OAuthSwiftRequestHandle {
     func cancel()
@@ -18,7 +18,7 @@ open class OAuthSwiftClient: NSObject {
 
     fileprivate(set) open var credential: OAuthSwiftCredential
     open var paramsLocation: OAuthSwiftHTTPRequest.ParamsLocation = .authorizationHeader
-    // Contains default URL session configuration
+    /// Contains default URL session configuration
     open var sessionFactory = URLSessionFactory()
 
     static let separator: String = "\r\n"

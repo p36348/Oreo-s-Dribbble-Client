@@ -8,9 +8,7 @@
 
 import Foundation
 import Alamofire
-import ReactiveCocoa
-import ReactiveSwift
-import Result
+import RxSwift
 import SwiftyJSON
 
 struct ReactiveNetwork {

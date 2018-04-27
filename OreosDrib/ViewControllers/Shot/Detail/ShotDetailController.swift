@@ -8,9 +8,8 @@
 
 import UIKit
 import Kingfisher
-import ReactiveSwift
-import Result
-import SwViewCapture
+import RxSwift
+import RxCocoa
 
 class ShotDetailController: UIViewController {
     

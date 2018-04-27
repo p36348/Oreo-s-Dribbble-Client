@@ -24,24 +24,12 @@ extension Dictionary {
         return joinedDictionary
     }
 
-    func filter(_ predicate: (_ key: Key, _ value: Value) -> Bool) -> Dictionary {
-        var filteredDictionary = Dictionary()
-
-        for (key, value) in self {
-            if predicate(key, value) {
-                filteredDictionary.updateValue(value, forKey: key)
-            }
-        }
-
-        return filteredDictionary
-    }
-
     var urlEncodedQuery: String {
         var parts = [String]()
 
         for (key, value) in self {
-            let keyString = "\(key)".urlEncodedString
-            let valueString = "\(value)".urlEncodedString
+            let keyString = "\(key)".urlEncoded
+            let valueString = "\(value)".urlEncoded
             let query = "\(keyString)=\(valueString)"
             parts.append(query)
         }

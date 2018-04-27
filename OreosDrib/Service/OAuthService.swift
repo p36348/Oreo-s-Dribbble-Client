@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import ReactiveSwift
-import Result
+import RxSwift
+import RxCocoa
 import SwiftyJSON
 import Alamofire
 import OAuthSwift

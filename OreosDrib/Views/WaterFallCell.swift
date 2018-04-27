@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import ReactiveSwift
-import Result
+import RxSwift
+import RxCocoa
 import AsyncDisplayKit
 
 class WaterFallCell: UICollectionViewCell {

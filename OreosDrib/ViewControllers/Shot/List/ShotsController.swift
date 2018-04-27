@@ -8,8 +8,8 @@
 
 import UIKit
 import SnapKit
-import Result
-import ReactiveSwift
+import RxSwift
+import RxCocoa
 import CHTCollectionViewWaterfallLayout
 import ESPullToRefresh
 
