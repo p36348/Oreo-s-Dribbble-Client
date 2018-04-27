@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'A2056D28D4064E15332DF034DD33D8A4'
-               BlueprintName = 'SwiftHEXColors'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftHEXColors.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "210B4D47F9645008DD8EB002387BB3F0"
+               BlueprintName = "SwiftHEXColors"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "SwiftHEXColors.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

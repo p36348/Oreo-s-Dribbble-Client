@@ -3,7 +3,7 @@
 //  Mazing
 //
 //  Created by P36348 on 5/3/2017.
-//  Copyright © 2017 Mazing. All rights reserved.
+//  Copyright © 2017 P36348. All rights reserved.
 //
 
 import UIKit

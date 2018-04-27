@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-
-
 protocol ReusableViewModel: class {
     
     var viewClass: AnyClass {get}
