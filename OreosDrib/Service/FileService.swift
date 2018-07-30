@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import SwiftyJSON
-import RxSwift
 
 struct SanBoxPath {
     
@@ -39,7 +38,7 @@ struct FileService {
         return _queue
     }()
     
-    public private(set) var (captureSignal, captureObserver) = Signal<String, NoError>.pipe()
+//    public private(set) var (captureSignal, captureObserver) = Signal<String, NoError>.pipe()
     
     func creat(data: Data, path: String, fileName: String, completion: @escaping (Error?) -> Void) {
         self.operationQueue.addOperation {

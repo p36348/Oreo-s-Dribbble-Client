@@ -8,46 +8,27 @@
 
 import Foundation
 import SwiftyJSON
-import RxSwift
 import Alamofire
 import RealmSwift
-
-/// 接口 -http://developer.dribbble.com/v1/users/
-private struct API {
-    
-    static let signIn: String = ""
-    
-    static let authenticatedUser: String = "/user".dribbbleFullUrl
-    
-    static let authenticatedUserBuckets: String = "/user/buckets".dribbbleFullUrl
-    
-    static let authenticatedFollowers: String = "/user/followers".dribbbleFullUrl
-    
-    static let authenticatedFollowing: String = "/user/following"
-    
-    static let singleUser: String = "/users/:user".dribbbleFullUrl
-    
-    static let userBuckets: String = "/users/:user/buckets".dribbbleFullUrl
-    
-    static let followers: String = "/users/:user/followers".dribbbleFullUrl
-    
-    static let following: String = "/users/:user/following".dribbbleFullUrl
-    
-}
+import RxSwift
+import Moya
 
 private let currentUIDKey: String = "user_service_current_uid_key"
 
-class UserService {
+public class UserService {
+    
+    typealias selfClass = UserService
     
     static let shared: UserService = UserService()
     
     /// 外部get 内部带set
-    public fileprivate(set) var currentUser: User = User()
+    public fileprivate(set) var currentUser: User = User() {
+        didSet {
+            (self.rx_user as! PublishSubject<User>).onNext(self.currentUser)
+        }
+    }
     
-    /// 当前用户信息更新热信号
-    public private(set) var (userInfoSignal, userInfoObserver) = Signal<User, NoError>.pipe()
-    
-    public private(set) var signInRequest: DataRequest?
+    let rx_user: Observable<User> = PublishSubject<User>()
     
     private init(){
         /**
@@ -56,62 +37,36 @@ class UserService {
         loadUserFromDataBase()
     }
     
-    func sign(userName: String, password: String) -> NetworkResponse {
+    
+    func fetchDetail(uid: String = "") -> Observable<User> {
         
-        cancelSignIn()
-        
-        let response: NetworkResponse = ReactiveNetwork.shared.post(url: API.signIn, parameters: ["userName": userName, "password": password])
-        
-        response.signal.observeResult { (result) in //处理结果
-            guard let _result = result.value else { return }
-            /*
-             更新User模型数据
-             */
-            self.currentUser.configureData(with: _result)
+        if uid.isEmpty {
+            return DribbbleAPI.user
+                .rx.request(.authenticatedUser).asObservable()
+                .flatMap{selfClass.parseUserFromResponse($0)}
+                .map{[unowned self] in self.updateCurrentUser($0)}
+        } else {
+            return DribbbleAPI.user.rx.request(.singleUser(uid: uid)).asObservable().flatMap{selfClass.parseUserFromResponse($0)}
         }
         
-        signInRequest = response.request
-        
-        return response
     }
     
-    func cancelSignIn() {
-        signInRequest?.cancel()
-        signInRequest = nil
+    func buckets(uid: String = "") -> Observable<Response> {
+        return DribbbleAPI.user.rx.request(uid.isEmpty ? .authenticatedUserBuckets : .userBuckets(uid: uid)).asObservable()
     }
     
-    func get(user: String = "") -> NetworkResponse {
-        return ReactiveNetwork.shared.get(url: API.singleUser.replace(user: user))
-    }
-    
-    func getCurrentUser() -> NetworkResponse {
-        let response: NetworkResponse = ReactiveNetwork.shared.get(url: API.authenticatedUser)
-        response.signal.observeResult { (result) in
-            guard let _json = result.value else { return }
-            /*
-             更新User模型数据
-             */
-            self.updateCurrentUser(with: _json)
-        }
-        return response
-    }
-    
-    func buckets(user: String = "") -> NetworkResponse {
-        guard user.isEmpty else {
-            return ReactiveNetwork.shared.get(url: API.authenticatedUserBuckets)
-        }
-        return ReactiveNetwork.shared.get(url: API.userBuckets.replace(user: user))
-    }
-    
-    func followers(user: String = "") -> NetworkResponse {
-        guard user.isEmpty else {
-            return ReactiveNetwork.shared.get(url: API.authenticatedFollowers)
-        }
-        return ReactiveNetwork.shared.get(url: API.followers.replace(user: user))
+    func followers(uid: String = "") -> Observable<Response> {
+        return DribbbleAPI.user.rx.request(uid.isEmpty ? .authenticatedFollowers : .followers(uid: uid)).asObservable()
     }
     
     func logOut() {
-        currentUser = User()
+        self.currentUser = User()
+    }
+}
+
+extension UserService {
+    static func parseUserFromResponse(_ res: Response) -> Observable<User> {
+        return res.rx_jsonValue.map { User().setupData(with: $0)}
     }
 }
 
@@ -122,25 +77,30 @@ class UserService {
 
 // MARK: - User数据本地化处理
 extension UserService {
-    func updateCurrentUser(with json: JSON) {
-        
-        let _id = json["id"].stringValue
-        
-        let realm = RealmManager.shared.dataBase(of: _id)
-        
-        do {
-            try realm.write {
-                self.currentUser.configureData(with: json)
-                
-                UserDefaults.standard.set(currentUser.id, forKey: currentUIDKey)
-                
-                UserDefaults.standard.synchronize()
-                
-                self.userInfoObserver.send(value: currentUser)
-            }
-        }catch let error {
-            print(error)
-        }
+//    func updateCurrentUser(with json: JSON) {
+//
+//        let _id = json["id"].stringValue
+//
+//        let realm = RealmManager.shared.dataBase(of: _id)
+//
+//        do {
+//            try realm.write {
+//                self.currentUser.configureData(with: json)
+//
+//                UserDefaults.standard.set(currentUser.id, forKey: currentUIDKey)
+//
+//                UserDefaults.standard.synchronize()
+//
+////                self.userInfoObserver.send(value: currentUser)
+//            }
+//        }catch let error {
+//            print(error)
+//        }
+//    }
+    
+    func updateCurrentUser(_ user: User) -> User {
+        self.currentUser = user
+        return self.currentUser
     }
     
     func loadUserFromDataBase() {

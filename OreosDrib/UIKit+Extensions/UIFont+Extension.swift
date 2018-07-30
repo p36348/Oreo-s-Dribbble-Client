@@ -55,16 +55,17 @@ extension UIFont {
 // MARK: - caculate
 extension UIFont {
     func size(of string: String, maxWidth: CGFloat) -> CGSize {
+        
         return NSString(string: string).boundingRect(with: CGSize(width: Double(maxWidth), height: Double.greatestFiniteMagnitude),
                                                      options: NSStringDrawingOptions.usesLineFragmentOrigin,
-                                                     attributes: [NSFontAttributeName: self],
+                                                     attributes: [NSAttributedStringKey.font: self],
                                                      context: nil).size
     }
     
     func size(of string: String, maxHeight: CGFloat) -> CGSize {
         return NSString(string: string).boundingRect(with: CGSize(width: Double.greatestFiniteMagnitude, height: Double(maxHeight)),
                                                      options: NSStringDrawingOptions.usesFontLeading,
-                                                     attributes: [NSFontAttributeName: self],
+                                                     attributes: [NSAttributedStringKey.font: self],
                                                      context: nil).size
     }
 }

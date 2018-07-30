@@ -15,7 +15,7 @@ extension UIView {
     open func addClickToReload(withImage image: UIImage = UIImage(named: "Reload")!, title: String = "网络出错,点击重试", offsetY: CGFloat = 0, action: ()->Void){
         if reloadView.superview == nil {
             
-            reloadView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIView.userDidTapReloadView(sender:))))
+            reloadView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userDidTapReloadView(sender:))))
             addSubview(reloadView)
             reloadView.snp.makeConstraints { (make) in
                 make.centerX.equalTo(self)
@@ -46,7 +46,7 @@ extension UIView {
     }
     
     
-    dynamic private func userDidTapReloadView(sender: UIGestureRecognizer) {
+    @objc func userDidTapReloadView(sender: UIGestureRecognizer) {
         guard sender.view == reloadView else { return }
         hideReload()
         reloadAction?()

@@ -50,7 +50,7 @@ class MarkupParser: NSObject {
                 //4
                 let font = UIFont(name: fontName, size: UIScreen.main.bounds.size.height / 40) ?? defaultFont
                 //5
-                let attrs: [String : Any] = [NSForegroundColorAttributeName: color, NSFontAttributeName: font]
+                let attrs: [NSAttributedStringKey : Any] = [NSAttributedStringKey.foregroundColor: color, NSAttributedStringKey.font: font]
                 let text = NSMutableAttributedString(string: parts[0], attributes: attrs)
                 attrString.append(text)
                 // 1

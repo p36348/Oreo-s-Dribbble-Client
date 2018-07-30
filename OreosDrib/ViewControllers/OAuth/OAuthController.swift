@@ -102,7 +102,7 @@ class OAuthController: UIViewController {
         }
     }
     
-    dynamic private func dismiss() {
+     func dismiss() {
         dismiss(animated: true, completion: nil)
     }
 }

@@ -8,12 +8,11 @@
 
 import UIKit
 import Kingfisher
-import RxSwift
-import RxCocoa
+import Result
 
 class ShotDetailController: UIViewController {
     
-    public fileprivate(set) var viewModel: ViewModel!
+    fileprivate var viewModel: ViewModel!
     
     fileprivate var tableHeader: AnimatedImageView = AnimatedImageView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth * 3 / 4))
     
@@ -70,38 +69,38 @@ class ShotDetailController: UIViewController {
         }
     }
     
-    dynamic private func clickRightItem(sender: UIBarButtonItem){
+    @objc func clickRightItem(sender: UIBarButtonItem){
         
-        let shareAction: ()->Void = {
-            
-        }
-        
-        let captureAction: ()->Void = {
-            // capture
-            self.tableView.swContentCapture({ (image) in
-                guard let _image = image else {return}
-                // save image
-                self.viewModel.creatCapture(image: _image, completion: { (error) in
-                    if error == nil {
-                        self.toast(message: "Success")
-                    }
-                })
-                
-            })
-        }
-        
-        self.alertActionSheet(sheetTitles: ["Share", "Capture"], sheetActions: [shareAction, captureAction])
+//        let shareAction: ()->Void = {
+//
+//        }
+//
+//        let captureAction: ()->Void = {
+//            // capture
+//            self.tableView.swContentCapture({ (image) in
+//                guard let _image = image else {return}
+//                // save image
+//                self.viewModel.creatCapture(image: _image, completion: { (error) in
+//                    if error == nil {
+//                        self.toast(message: "Success")
+//                    }
+//                })
+//
+//            })
+//        }
+//
+//        self.alertActionSheet(sheetTitles: ["Share", "Capture"], sheetActions: [shareAction, captureAction])
         
     }
     
     private func bindViewModel() {
-        viewModel.updateSignal.observeCompleted { [weak self] in
-            guard let _self = self else { return }
-            
-            _self.tableHeader.setImage(urlString: _self.viewModel.headerImageUrl)
-            
-            _self.tableView.reloadSections([0], with: UITableViewRowAnimation.automatic)
-        }
+//        viewModel.updateSignal.observeCompleted { [weak self] in
+//            guard let _self = self else { return }
+//
+//            _self.tableHeader.setImage(urlString: _self.viewModel.headerImageUrl)
+//
+//            _self.tableView.reloadSections([0], with: UITableViewRowAnimation.automatic)
+//        }
     }
 }
 
@@ -142,8 +141,7 @@ extension ShotDetailController: UITableViewDelegate {
     }
 }
 
-extension ShotDetailController {
-    class ViewModel {
+private class ViewModel {
         
         weak var shot: Shot!
         
@@ -153,8 +151,8 @@ extension ShotDetailController {
         
         var cellViewModels: [IndexPath: ReusableViewModel] = [:]
         
-        var (updateSignal, updateObserver) = Signal<Shot, NoError>.pipe()
-        
+//        var (updateSignal, updateObserver) = Signal<Shot, NoError>.pipe()
+    
         init(shot: Shot) {
             self.shot = shot
         }
@@ -166,20 +164,20 @@ extension ShotDetailController {
         
         func loadData() {
             
-            DispatchQueue.global().async { [weak self] in
-                guard let _self = self else {return}
-                
-                _self.sectionViewModels = [0: ImageSection.ViewModel(width: kScreenWidth, urlString: _self.shot.images?.hidpi ?? (_self.shot.images?.normal ?? (_self.shot.images?.teaser ?? "")))]
-                
-                _self.cellViewModels = [IndexPath(item: 0, section: 0): AuthorInfoCell.ViewModel(shot: _self.shot),
-                                        IndexPath(item: 1, section: 0): DescriptionCell.ViewModel(string: _self.shot.descriptionStr)]
-                
-                _self.headerImageUrl = _self.shot.images?.hidpi ?? (_self.shot.images?.normal ?? (_self.shot.images?.teaser ?? ""))
-                
-                DispatchQueue.main.async {
-                    _self.updateObserver.sendCompleted()
-                }
-            }
+//            DispatchQueue.global().async { [weak self] in
+//                guard let _self = self else {return}
+//
+//                _self.sectionViewModels = [0: ImageSection.ViewModel(width: kScreenWidth, urlString: _self.shot.images?.hidpi ?? (_self.shot.images?.normal ?? (_self.shot.images?.teaser ?? "")))]
+//
+//                _self.cellViewModels = [IndexPath(item: 0, section: 0): AuthorInfoCell.ViewModel(shot: _self.shot),
+//                                        IndexPath(item: 1, section: 0): DescriptionCell.ViewModel(string: _self.shot.descriptionStr)]
+//
+//                _self.headerImageUrl = _self.shot.images?.hidpi ?? (_self.shot.images?.normal ?? (_self.shot.images?.teaser ?? ""))
+//
+//                DispatchQueue.main.async {
+//                    _self.updateObserver.sendCompleted()
+//                }
+//            }
         }
         
         func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -191,4 +189,4 @@ extension ShotDetailController {
             return nil
         }
     }
-}
+

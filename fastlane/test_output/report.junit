@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<testsuites name='OreosDribTests.xctest' tests='4' failures='0'>
-  <testsuite name='OreosDribTests.OreosDribTests' tests='4' failures='0'>
-    <testcase classname='OreosDribTests.OreosDribTests' name='testExample' time='0.001'/>
-    <testcase classname='OreosDribTests.OreosDribTests' name='testPerformanceExample' time='0.408'/>
-    <testcase classname='OreosDribTests.OreosDribTests' name='testRequest' time='0.001'/>
-    <testcase classname='OreosDribTests.OreosDribTests' name='testShotRequest' time='0.002'/>
-  </testsuite>
-</testsuites>

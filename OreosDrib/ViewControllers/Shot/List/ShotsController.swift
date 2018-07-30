@@ -8,8 +8,6 @@
 
 import UIKit
 import SnapKit
-import RxSwift
-import RxCocoa
 import CHTCollectionViewWaterfallLayout
 import ESPullToRefresh
 
@@ -80,55 +78,56 @@ extension ShotsController {
      绑定事件
      */
     fileprivate func bindViewModel() {
-        collectionView.es_addPullToRefresh { [weak self] in
+        
+        collectionView.es.addPullToRefresh { [weak self] in
             guard let _self = self else { return }
             
             _self.viewModel.loadFirstPageData()
         }
         
-        collectionView.es_addInfiniteScrolling { [weak self] in
+        collectionView.es.addInfiniteScrolling { [weak self] in
             guard let _self = self else { return }
             
             _self.viewModel.loadMoreData()
         }
         
-        viewModel.firstPageSignal.observeResult { [weak self] (result) in
-            guard let _self = self else { return }
- 
-            if let _error = result.error { return _self.alert(errorMsg: _error.message) }
-            
-            _self.collectionView.reloadSections([0])
-            
-            _self.collectionView.es_stopPullToRefresh()
-        }
-        
-        viewModel.loadMoreDataSignal.observeResult { [weak self] (result) in
-            guard let _self = self else { return }
- 
-            if let _error = result.error { return _self.alert(errorMsg: _error.message) }
-
-            _self.collectionView.es_stopLoadingMore()
- 
-            let updates: () -> Void = {
-                _self.collectionView.insertItems(at: result.value!)
-            }
-            
-            let completion: (Bool) -> Void = { (finished) in
-                
-            }
-            
-            _self.collectionView.performBatchUpdates(updates, completion: completion)
-        }
-        
-        viewModel.reloadSignal.observeCompleted { [weak self] in
-            guard let _self = self else { return }
-            
-            _self.collectionView.reloadSections([0])
-        }
-        
-        OAuthService.shared.authorizeTokenSignal.observeResult({ [weak self] (result) in
-            self?.viewModel.loadFirstPageData()
-        })
+//        viewModel.firstPageSignal.observeResult { [weak self] (result) in
+//            guard let _self = self else { return }
+//
+//            if let _error = result.error { return _self.alert(errorMsg: _error.message) }
+//
+//            _self.collectionView.reloadSections([0])
+//
+//            _self.collectionView.es_stopPullToRefresh()
+//        }
+//
+//        viewModel.loadMoreDataSignal.observeResult { [weak self] (result) in
+//            guard let _self = self else { return }
+//
+//            if let _error = result.error { return _self.alert(errorMsg: _error.message) }
+//
+//            _self.collectionView.es_stopLoadingMore()
+//
+//            let updates: () -> Void = {
+//                _self.collectionView.insertItems(at: result.value!)
+//            }
+//            
+//            let completion: (Bool) -> Void = { (finished) in
+//
+//            }
+//
+//            _self.collectionView.performBatchUpdates(updates, completion: completion)
+//        }
+//
+//        viewModel.reloadSignal.observeCompleted { [weak self] in
+//            guard let _self = self else { return }
+//
+//            _self.collectionView.reloadSections([0])
+//        }
+//
+//        OAuthService.shared.authorizeTokenSignal.observeResult({ [weak self] (result) in
+//            self?.viewModel.loadFirstPageData()
+//        })
     }
 }
 
@@ -185,123 +184,122 @@ struct ItemInfo {
     }
 }
 
-extension ShotsController {
-    class ViewModel {
-        
-        var shots: [Shot] {
-            return ShotService.shared.shots
-        }
-        
-        var cellViewModels: [ShotCell.ViewModel] {
-            return ShotService.shared.shotsViewModels
-        }
-        
-        var cellNums: Int = 0
-        
-        
-        /**
-         * query paramters
-         */
-        
-        var list: ShotService.List = .all
-        
-        var timeFrame: ShotService.Timeframe = .now
-        
-        var sort: ShotService.Sort = .popularity
-        
-        var date: Date = Date()
-        
-        var currentPage: Int = 1
-        
-        /**
-         * signals
-         */
-        
-        var (firstPageSignal, firstPageObserver) = Signal<[IndexPath], ReactiveError>.pipe()
-        
-        var (loadMoreDataSignal, loadMoreDataObserver) = Signal<[IndexPath], ReactiveError>.pipe()
-        
-        var (reloadSignal, reloadObserver) = Signal<String, NoError>.pipe()
-        
-        init() {
-            ShotService.shared.shotListSignal.observeResult { [weak self] (result) in
-                
-                guard let _self = self else { return }
-                
-                _self.handleLoadingResult(result: result)
-            }
-        }
-        
-        func handleLoadingResult(result: Result<(page: Int, shots: [Shot]), ReactiveError>) {
-            if result.value!.page == 1 {
-                if let _error = result.error { return self.firstPageObserver.send(error: _error) }
-                
-                DispatchQueue.global(qos: .background).async {
-                    
-                    let indexPaths: [IndexPath] = self.indexPaths(oldCellNum: 0,
-                                                                   newCellNum: result.value!.shots.count)
-                    
-                    DispatchQueue.main.async {
-                        
-                        self.firstPageObserver.send(value: indexPaths)
-                    }
-                }
-            }else {
-                if let _error = result.error { return self.loadMoreDataObserver.send(error: _error) }
-                
-                DispatchQueue.global(qos: .background).async {
-                    
-                    let indexPaths: [IndexPath] = self.indexPaths(oldCellNum: self.cellNums,
-                                                                   newCellNum: result.value!.shots.count)
-                    
-                    DispatchQueue.main.async {
-                        self.loadMoreDataObserver.send(value: indexPaths)
-                    }
-                }
-            }
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            if collectionView.cellForItem(at: indexPath) == nil {
-                collectionView.register(cellViewModels[indexPath.row].viewClass, forCellWithReuseIdentifier: cellViewModels[indexPath.row].identifier)
-            }
-            return collectionView.dequeueReusableCell(withReuseIdentifier: cellViewModels[indexPath.row].identifier, for: indexPath)
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView  {
-            
-            let _view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "", for: indexPath)
-            
-            return _view
-        }
-        
-        func loadCache(completion: @escaping () -> Void) {
-            ShotService.shared.loadCache(completion: completion)
-        }
-        
-        func loadFirstPageData() {
-            self.currentPage = 1
-            self.fetchData()
-        }
-        
-        func loadMoreData() {
-            self.currentPage += 1
-            self.cellNums = self.cellViewModels.count
-            self.fetchData()
-        }
-        
-        private func fetchData() {
-            let _ = ShotService.shared.getList(page: currentPage, list: list, timeframe: timeFrame, sort: sort, date: self.date)
-        }
-        
-        private func indexPaths(oldCellNum: Int, newCellNum: Int) -> [IndexPath] {
-            
-            var _indexPath: [IndexPath] = []
-            (0..<newCellNum).forEach { (index) in
-                _indexPath.append(IndexPath(item: oldCellNum + index, section: 0))
-            }
-            
-            return _indexPath
-        }
+private class ViewModel {
+    
+    var shots: [Shot] {
+        return ShotService.shared.shots
     }
+    
+    var cellViewModels: [ShotCell.ViewModel] {
+        return ShotService.shared.shotsViewModels
+    }
+    
+    var cellNums: Int = 0
+    
+    
+    /**
+     * query paramters
+     */
+    
+    var list: ShotAPI.List = .all
+    
+    var timeFrame: ShotAPI.Timeframe = .now
+    
+    var sort: ShotAPI.Sort = .popularity
+    
+    var date: Date = Date()
+    
+    var currentPage: Int = 1
+    
+    /**
+     * signals
+     */
+    
+//    var (firstPageSignal, firstPageObserver) = Signal<[IndexPath], ReactiveError>.pipe()
+//
+//    var (loadMoreDataSignal, loadMoreDataObserver) = Signal<[IndexPath], ReactiveError>.pipe()
+//
+//    var (reloadSignal, reloadObserver) = Signal<String, NoError>.pipe()
+    
+    init() {
+//        ShotService.shared.shotListSignal.observeResult { [weak self] (result) in
+//
+//            guard let _self = self else { return }
+//
+//            _self.handleLoadingResult(result: result)
+//        }
+    }
+    
+//    func handleLoadingResult(result: Result<(page: Int, shots: [Shot]), ReactiveError>) {
+//        if result.value!.page == 1 {
+//            if let _error = result.error { return self.firstPageObserver.send(error: _error) }
+//
+//            DispatchQueue.global(qos: .background).async {
+//
+//                let indexPaths: [IndexPath] = self.indexPaths(oldCellNum: 0,
+//                                                              newCellNum: result.value!.shots.count)
+//
+//                DispatchQueue.main.async {
+//
+//                    self.firstPageObserver.send(value: indexPaths)
+//                }
+//            }
+//        }else {
+//            if let _error = result.error { return self.loadMoreDataObserver.send(error: _error) }
+//
+//            DispatchQueue.global(qos: .background).async {
+//
+//                let indexPaths: [IndexPath] = self.indexPaths(oldCellNum: self.cellNums,
+//                                                              newCellNum: result.value!.shots.count)
+//
+//                DispatchQueue.main.async {
+//                    self.loadMoreDataObserver.send(value: indexPaths)
+//                }
+//            }
+//        }
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView.cellForItem(at: indexPath) == nil {
+            collectionView.register(cellViewModels[indexPath.row].viewClass, forCellWithReuseIdentifier: cellViewModels[indexPath.row].identifier)
+        }
+        return collectionView.dequeueReusableCell(withReuseIdentifier: cellViewModels[indexPath.row].identifier, for: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView  {
+        
+        let _view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "", for: indexPath)
+        
+        return _view
+    }
+    
+    func loadCache(completion: @escaping () -> Void) {
+        ShotService.shared.loadCache(completion: completion)
+    }
+    
+    func loadFirstPageData() {
+        self.currentPage = 1
+        self.fetchData()
+    }
+    
+    func loadMoreData() {
+        self.currentPage += 1
+        self.cellNums = self.cellViewModels.count
+        self.fetchData()
+    }
+    
+    private func fetchData() {
+        let _ = ShotService.shared.fetchList(page: currentPage, list: list, timeframe: timeFrame, sort: sort, date: self.date)
+    }
+    
+    private func indexPaths(oldCellNum: Int, newCellNum: Int) -> [IndexPath] {
+        
+        var _indexPath: [IndexPath] = []
+        (0..<newCellNum).forEach { (index) in
+            _indexPath.append(IndexPath(item: oldCellNum + index, section: 0))
+        }
+        
+        return _indexPath
+    }
+    
 }

@@ -7,22 +7,22 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import AsyncDisplayKit
+//import ReactiveSwift
+//import Result
+//import AsyncDisplayKit
 
 class WaterFallCell: UICollectionViewCell {
     
     
     // views
     
-    var imageNode: ASNetworkImageNode?
+//    var imageNode: ASNetworkImageNode?
+//    
+//    var descriptionNode: ASTextNode?
+//    
+//    var autherNode: ASTextNode?
     
-    var descriptionNode: ASTextNode?
-    
-    var autherNode: ASTextNode?
-    
-    let corners = makeCorners()
+//    let corners = makeCorners()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

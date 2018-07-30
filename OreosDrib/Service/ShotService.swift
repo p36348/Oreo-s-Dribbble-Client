@@ -8,8 +8,9 @@
 
 import Foundation
 import SwiftyJSON
-import RxSwift
 import Alamofire
+import RxSwift
+import Moya
 
 /// 接口 -http://developer.dribbble.com/v1/shots/
 private struct API {
@@ -25,36 +26,36 @@ struct ShotService {
     
     static var shared: ShotService = ShotService()
     
-    static var shotsVMThread: Thread = {
-        
-        let _thread: Thread = Thread(block: {
-            Thread.current.name = "ShotService.viewModel"
-            
-            let _runLoop = RunLoop.current
-            
-            _runLoop.add(NSMachPort(), forMode: RunLoopMode.defaultRunLoopMode)
-            
-            _runLoop.run()
-        })
-        
-        _thread.start()
-        
-        return _thread
-    }()
+//    static var shotsVMThread: Thread = {
+//
+//        let _thread: Thread = Thread(block: {
+//            Thread.current.name = "ShotService.viewModel"
+//
+//            let _runLoop = RunLoop.current
+//
+//            _runLoop.add(NSMachPort(), forMode: RunLoopMode.defaultRunLoopMode)
+//
+//            _runLoop.run()
+//        })
+//
+//        _thread.start()
+//
+//        return _thread
+//    }()
     
-    var shotOperationQueue: OperationQueue = {
-        let _queue = OperationQueue()
-        
-        _queue.maxConcurrentOperationCount = 1
-        
-        return _queue
-    }()
+//    var shotOperationQueue: OperationQueue = {
+//        let _queue = OperationQueue()
+//
+//        _queue.maxConcurrentOperationCount = 1
+//
+//        return _queue
+//    }()
     
-    var shotDispatchQueue: DispatchQueue = {
-        return DispatchQueue(label: "ShotService.shot")
-    }()
+//    var shotDispatchQueue: DispatchQueue = {
+//        return DispatchQueue(label: "ShotService.shot")
+//    }()
     
-    public fileprivate(set) var (shotListSignal, shotListObserver) = Signal<(page: Int, shots: [Shot]), ReactiveError>.pipe()
+//    public fileprivate(set) var (shotListSignal, shotListObserver) = Signal<(page: Int, shots: [Shot]), ReactiveError>.pipe()
     
     public fileprivate(set) var shots: [Shot] = []
     
@@ -77,47 +78,52 @@ struct ShotService {
         return _formatter
     }()
     
-    
-    func getList(page: Int = 1, list: ShotService.List, timeframe: Timeframe, sort: Sort, date: Date) -> NetworkResponse {
-        
-        let _parameters: Parameters = ["date": dateFormatter.string(from: date),
-                                       "sort": sort.rawValue,
-                                       "page": page,
-                                       "list": list.rawValue,
-                                       "timeframe": timeframe.rawValue]
-        
-        let response = ReactiveNetwork.shared.get(url: API.list, parameters: _parameters)
-        
-        response.signal.observeResult { (result) in
-            self.shotDispatchQueue.async {
-                if let _error = result.error {
-                    return DispatchQueue.main.async {
-                        self.shotListObserver.send(error: _error)
-                    }
-                }
-                
-                if let _value = result.value {
-                    
-                    let (_shots, _cellViewModels) = shotData(with: _value.arrayValue)
-                    
-                    if page == 1 {
-                        self.cacheFirstPage(json: _value)
-                    }
-                    
-                    DispatchQueue.main.async {
-                        
-                        ShotService.shared.shots = page == 1 ? _shots : ShotService.shared.shots + _shots
-                        
-                        ShotService.shared.shotsViewModels = page == 1 ? _cellViewModels : ShotService.shared.shotsViewModels + _cellViewModels
+    func fetchList(page: Int = 1, list: ShotAPI.List, timeframe: ShotAPI.Timeframe, sort: ShotAPI.Sort, date: Date) -> Observable<Response>{
 
-                        self.shotListObserver.send(value: (page: page, shots: _shots)) }
-                    }
-                    
-            }
-        }
-        
-        return response
+        return DribbbleAPI.shot.rx.request(.shots(page: page, list: list, timeframe: timeframe, sort: sort, date: date)).asObservable()
     }
+    
+    
+//    func getList(page: Int = 1, list: ShotService.List, timeframe: Timeframe, sort: Sort, date: Date) -> NetworkResponse {
+//
+//        let _parameters: Parameters = ["date": dateFormatter.string(from: date),
+//                                       "sort": sort.rawValue,
+//                                       "page": page,
+//                                       "list": list.rawValue,
+//                                       "timeframe": timeframe.rawValue]
+//
+//        let response = ReactiveNetwork.shared.get(url: API.list, parameters: _parameters)
+//
+//        response.signal.observeResult { (result) in
+//            self.shotDispatchQueue.async {
+//                if let _error = result.error {
+//                    return DispatchQueue.main.async {
+//                        self.shotListObserver.send(error: _error)
+//                    }
+//                }
+//
+//                if let _value = result.value {
+//
+//                    let (_shots, _cellViewModels) = shotData(with: _value.arrayValue)
+//
+//                    if page == 1 {
+//                        self.cacheFirstPage(json: _value)
+//                    }
+//
+//                    DispatchQueue.main.async {
+//
+//                        ShotService.shared.shots = page == 1 ? _shots : ShotService.shared.shots + _shots
+//
+//                        ShotService.shared.shotsViewModels = page == 1 ? _cellViewModels : ShotService.shared.shotsViewModels + _cellViewModels
+//
+//                        self.shotListObserver.send(value: (page: page, shots: _shots)) }
+//                    }
+//
+//            }
+//        }
+//
+//        return response
+//    }
 }
 
 private func shotData(with array: [JSON]) -> (shots: [Shot], cellViewModels: [ShotCell.ViewModel]){
@@ -139,39 +145,27 @@ extension ShotService {
     private var jsonFileName: String { return "shot_list.json"}
     
     func loadCache(completion: @escaping () -> Void) {
-        FileService.shared.searchCache(fileName: jsonFileName) { (data, error) in
-            DispatchQueue.main.async {
-                guard let _data = data else { return completion() }
-                
-                let json = JSON.init(data: _data)
-                
-                let result = shotData(with: json.arrayValue)
-                
-                ShotService.shared.shots = result.shots
-                
-                ShotService.shared.shotsViewModels = result.cellViewModels
-                
-                completion()
-            }
-        }
+//        FileService.shared.searchCache(fileName: jsonFileName) { (data, error) in
+//            DispatchQueue.main.async {
+//                guard let _data = data else { return completion() }
+//
+//                let json = JSON.init(data: _data)
+//
+//                let result = shotData(with: json.arrayValue)
+//
+//                ShotService.shared.shots = result.shots
+//
+//                ShotService.shared.shotsViewModels = result.cellViewModels
+//
+//                completion()
+//            }
+//        }
     }
     
     func cacheFirstPage(json: JSON) {
         FileService.shared.creat(json: json, fileName: jsonFileName) { (error) in
             
         }
-    }
-}
-
-extension ShotService {
-    enum List: String {
-        case animated = "animated", attachments = "attachments", debuts = "debuts", playoffs = "playoffs", rebounds = "rebounds", teams = "teams", all = ""
-    }
-    enum Sort: String {
-        case comments = "comments", recent = "recent", views = "views", popularity = ""
-    }
-    enum Timeframe: String {
-        case week = "week", month = "month", year = "year", ever = "ever", now = ""
     }
 }
 

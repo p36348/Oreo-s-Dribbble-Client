@@ -110,26 +110,26 @@ extension ShotDetailController {
                 let _attributeString = NSMutableAttributedString()
                 
                 _attributeString.append(NSAttributedString(string: shot.title + "\n",
-                                                           attributes: [NSFontAttributeName: UIFont.title]))
+                                                           attributes: [NSAttributedStringKey.font: UIFont.title]))
                 
                 _attributeString.append(NSAttributedString(string: "by ",
-                                                           attributes: [NSFontAttributeName: UIFont.subTitle]))
+                                                           attributes: [NSAttributedStringKey.font: UIFont.subTitle]))
                 
                 let byUser: Bool = shot.user.name != ""
                 
                 let author = byUser ? shot.user.name : shot.team.name
                 
                 _attributeString.append(NSAttributedString(string: author,
-                                                           attributes: [NSFontAttributeName: UIFont.subTitleBold, NSForegroundColorAttributeName: UIColor.Dribbble.linkBlue]))
+                                                           attributes: [NSAttributedStringKey.font: UIFont.subTitleBold, NSAttributedStringKey.foregroundColor: UIColor.Dribbble.linkBlue]))
                 
                 let hasCompany: Bool = shot.team.name != ""
                 
                 if (byUser && hasCompany) {
                     _attributeString.append(NSAttributedString(string: " in ",
-                                                               attributes: [NSFontAttributeName: UIFont.subTitle]))
+                                                               attributes: [NSAttributedStringKey.font: UIFont.subTitle]))
                     
                     _attributeString.append(NSAttributedString(string: shot.team.name,
-                                                               attributes: [NSFontAttributeName: UIFont.subTitleBold, NSForegroundColorAttributeName: UIColor.Dribbble.linkBlue]))
+                                                               attributes: [NSAttributedStringKey.font: UIFont.subTitleBold, NSAttributedStringKey.foregroundColor: UIColor.Dribbble.linkBlue]))
                 }
                 
                 attributeString = _attributeString

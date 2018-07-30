@@ -13,33 +13,33 @@ import RealmSwift
 
 private let defaultUID: String = "default_uid"
 
-class User: Object {
+public class User: Object {
     
-    override class func ignoredProperties() -> [String] {
+    override public class func ignoredProperties() -> [String] {
         return ["creatDate"]
     }
     
-    dynamic var id:   String = defaultUID
+    @objc dynamic public var id:   String = defaultUID
     
-    dynamic var name: String = ""
+    @objc dynamic public var name: String = ""
     
-    dynamic var userName: String = ""
+    @objc dynamic public var userName: String = ""
     
-    dynamic var avator:   String = ""
+    @objc dynamic public var avator:   String = ""
     
-    dynamic var location: String = ""
+    @objc dynamic public var location: String = ""
     
-    dynamic var html: String = ""
+    @objc dynamic public var html: String = ""
     
-    dynamic var bio: String = ""
+    @objc dynamic public var bio: String = ""
     
-    dynamic var createdAt: String = ""
+    @objc dynamic public var createdAt: String = ""
     
-    dynamic var likesCount: Int = 0
+    @objc dynamic public var likesCount: Int = 0
     
-    dynamic var followingsCount: Int = 0
+    @objc dynamic public var followingsCount: Int = 0
     
-    var creatDate: Date? {
+    public var creatDate: Date? {
         return Date.dribbbleDate(string: createdAt)
     }
 }
@@ -65,8 +65,7 @@ extension Realm {
 
 extension User {
     
-    
-    func configureData(with json: JSON) {
+    func setupData(with json: JSON) -> User {
         id      = json["id"].stringValue
         name = json["name"].stringValue
         userName = json["username"].stringValue
@@ -77,6 +76,8 @@ extension User {
         createdAt = json["created_at"].stringValue
         likesCount = json["likes_count"].intValue
         followingsCount = json["followings_count"].intValue
+        
+        return self
     }
 }
 

@@ -13,9 +13,9 @@ import Kingfisher
 
 class UserInfoController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+     var tableView: UITableView = UITableView()
     
-    fileprivate var viewModel: ViewModel = ViewModel(userService: UserService.shared)
+    fileprivate var viewModel: ViewModel = ViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,20 +33,20 @@ class UserInfoController: UIViewController {
     }
     
     private func configureSubviews() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "sign out", style: UIBarButtonItemStyle.done, target: self, action: #selector(UserInfoController.clickSignOut(sender:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "sign out", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.clickSignOut(sender:)))
     }
     
     private func bindViewModel() {
         
-        viewModel.updateSignal.observeCompleted { [weak self] in
-            guard let _self = self else { return }
-            
-            _self.tableView.reloadData()
-        }
+//        viewModel.updateSignal.observeCompleted { [weak self] in
+//            guard let _self = self else { return }
+//
+//            _self.tableView.reloadData()
+//        }
         
     }
     
-    dynamic func clickSignOut(sender: UIBarButtonItem) {
+    @objc func clickSignOut(sender: UIBarButtonItem) {
         OAuthService.shared.resetToken()
         
         UserService.shared.logOut()
@@ -55,47 +55,47 @@ class UserInfoController: UIViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension UserInfoController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return viewModel.tableView(tableView, viewForHeaderInSection: section)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: UITableViewCell.description())
-    }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.cellViewModels.count
-    }
-}
+//extension UserInfoController: UITableViewDataSource {
+//
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 200
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return viewModel.tableView(tableView, viewForHeaderInSection: section)
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        return UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: UITableViewCell.description())
+//    }
+//
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return viewModel.cellViewModels.count
+//    }
+//}
 
 // MARK: - UITableViewDelegate
-extension UserInfoController: UITableViewDelegate {
-    
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//extension UserInfoController: UITableViewDelegate {
+//
+//
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
 //        (view as? UITableViewHeaderFooterView)?.update()
-        viewModel.sectionHeaderViewModel.update(reusableView: view)
-    }
-    
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.textLabel?.text = viewModel.cellViewModels[indexPath.row].title
-        
-        cell.detailTextLabel?.text = viewModel.cellViewModels[indexPath.row].detail
-    }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
+//        viewModel.sectionHeaderViewModel.update(reusableView: view)
+//    }
+//
+//
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        cell.textLabel?.text = viewModel.cellViewModels[indexPath.row].title
+//
+//        cell.detailTextLabel?.text = viewModel.cellViewModels[indexPath.row].detail
+//    }
+//
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
+//}
 
 private let dateFormatter: DateFormatter = {
     
@@ -190,78 +190,85 @@ fileprivate class SectionHeader: UITableViewHeaderFooterView {
     }
 }
 
-extension UserInfoController {
-    fileprivate class ViewModel {
-        
-        /// 头像数据更新
-        var avatorSignal: Signal<String, NoError>
-        
-        /// 用户昵称数据更新
-        var nameSignal: Signal<String?, NoError>
-        
-        var (updateSignal, updateObserver) = Signal<User, NoError>.pipe()
-        
-        var sectionHeaderViewModel: SectionHeader.ViewModel 
-        
-        var cellViewModels: [CellModel]
-        
-        init(userService: UserService) {
-            avatorSignal = userService.userInfoSignal.map({ (user) -> String in
-                return user.avator
-            })
-            
-            nameSignal = userService.userInfoSignal.map({ (user) -> String? in
-                return user.name
-            })
-            
-            sectionHeaderViewModel = SectionHeader.ViewModel(with: userService.currentUser)
-            
-            cellViewModels = [CellModel(title: "Likes", detail: "\(userService.currentUser.likesCount)"),
-                              CellModel(title: "Following", detail: "\(userService.currentUser.followingsCount)"),
-                              CellModel(title: "TotalCaptures", detail: "\(userService.currentUser.followingsCount)")]
-            
-            userService.userInfoSignal.observeValues { [weak self] (user) in
-                
-                guard let _self = self else { return }
-                
-                _self.sectionHeaderViewModel.update(with: user)
-                
-                _self.cellViewModels[0].detail = "\(user.likesCount)"
-                
-                _self.cellViewModels[1].detail = "\(user.followingsCount)"
-                
-                _self.updateObserver.sendCompleted()
-            }
-        }
-        
-        func loadUserInfo() {
-            let _ = UserService.shared.getCurrentUser()
-        }
-        
-        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            
-            var header: SectionHeader?
-            
-            if let _header = tableView.headerView(forSection: section) {
-                
-                header = _header as? SectionHeader
-                
-            } else {
-                tableView.register(SectionHeader.self, forHeaderFooterViewReuseIdentifier: SectionHeader.description())
-                
-                header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeader.description()) as? SectionHeader
-            }
-            
-//            header?.viewModel = sectionHeaderViewModel
-            
-            return header
-        }
-        
+private class ViewModel {
+    func loadUserInfo() {
+//        let _ = UserService.shared.getCurrentUser()
     }
-    
-    struct CellModel {
-        var title: String = ""
-        
-        var detail: String = ""
-    }
+
 }
+
+//extension UserInfoController {
+//    fileprivate class ViewModel {
+//
+//        /// 头像数据更新
+//        var avatorSignal: Signal<String, NoError>
+//
+//        /// 用户昵称数据更新
+//        var nameSignal: Signal<String?, NoError>
+//
+//        var (updateSignal, updateObserver) = Signal<User, NoError>.pipe()
+//
+//        var sectionHeaderViewModel: SectionHeader.ViewModel
+//
+//        var cellViewModels: [CellModel]
+//
+//        init(userService: UserService) {
+//            avatorSignal = userService.userInfoSignal.map({ (user) -> String in
+//                return user.avator
+//            })
+//
+//            nameSignal = userService.userInfoSignal.map({ (user) -> String? in
+//                return user.name
+//            })
+//
+//            sectionHeaderViewModel = SectionHeader.ViewModel(with: userService.currentUser)
+//
+//            cellViewModels = [CellModel(title: "Likes", detail: "\(userService.currentUser.likesCount)"),
+//                              CellModel(title: "Following", detail: "\(userService.currentUser.followingsCount)"),
+//                              CellModel(title: "TotalCaptures", detail: "\(userService.currentUser.followingsCount)")]
+//
+//            userService.userInfoSignal.observeValues { [weak self] (user) in
+//
+//                guard let _self = self else { return }
+//
+//                _self.sectionHeaderViewModel.update(with: user)
+//
+//                _self.cellViewModels[0].detail = "\(user.likesCount)"
+//
+//                _self.cellViewModels[1].detail = "\(user.followingsCount)"
+//
+//                _self.updateObserver.sendCompleted()
+//            }
+//        }
+//
+//        func loadUserInfo() {
+//            let _ = UserService.shared.getCurrentUser()
+//        }
+//
+//        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//
+//            var header: SectionHeader?
+//
+//            if let _header = tableView.headerView(forSection: section) {
+//
+//                header = _header as? SectionHeader
+//
+//            } else {
+//                tableView.register(SectionHeader.self, forHeaderFooterViewReuseIdentifier: SectionHeader.description())
+//
+//                header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeader.description()) as? SectionHeader
+//            }
+//
+////            header?.viewModel = sectionHeaderViewModel
+//
+//            return header
+//        }
+//
+//    }
+//
+//    struct CellModel {
+//        var title: String = ""
+//
+//        var detail: String = ""
+//    }
+//}

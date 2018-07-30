@@ -41,8 +41,7 @@ class Shot {
         attachments = json["attachments"].uIntValue
         rebounds = json["rebounds"].uIntValue
         
-        user = User()
-        user.configureData(with: json["user"])
+        user = User().setupData(with: json["user"])
         
         team = Team(json: json["team"])
     }

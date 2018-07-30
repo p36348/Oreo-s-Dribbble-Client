@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
 import SwiftyJSON
 import Alamofire
 import OAuthSwift
@@ -34,7 +32,7 @@ class OAuthService {
     
     var accessToken: String = defaultAccessToken
     
-    let (authorizeTokenSignal, authorizeTokenObserver) = Signal<TokenType, NSError>.pipe()
+//    let (authorizeTokenSignal, authorizeTokenObserver) = Signal<TokenType, NSError>.pipe()
     
     private init(){
         accessToken = UserDefaults.standard.string(forKey: accessTokenKey) ?? defaultAccessToken
@@ -54,34 +52,34 @@ class OAuthService {
             
             self.accessToken = credential.oauthToken
             
-            self.authorizeTokenObserver.sendCompleted()
+//            self.authorizeTokenObserver.sendCompleted()
         }
         
         let failure: OAuthSwift.FailureHandler = { error in
         print("error", error as NSError)
         
-        self.authorizeTokenObserver.send(error: error as NSError)
+//        self.authorizeTokenObserver.send(error: error as NSError)
         }
         oauthswift.authorize(withCallbackURL: "OreosDrib://oauth-callback/dribbble", scope: "public+write+comment+upload", state: "", success: success, failure: failure)
     }
     
-    func authorizeToken(code: String) -> NetworkResponse {
-        let params: Parameters = ["code": code, "client_id": GlobalConstant.Client.id, "client_secret": GlobalConstant.Client.secret]
+    func authorizeToken(code: String) {
+//        let params: Parameters = ["code": code, "client_id": GlobalConstant.Client.id, "client_secret": GlobalConstant.Client.secret]
+//        let response: NetworkResponse = ReactiveNetwork.shared.post(url: API.token, parameters: params)
+//
+//        response.signal.observeResult { (result) in
+//
+//            guard let _value = result.value else { return }
+//
+//            self.accessToken = _value["access_token"].stringValue
+//
+//            self.saveToken()
+//
+//            self.authorizeTokenObserver.send(value: OAuthService.TokenType.authorized)
+//        }
+//        return response
         
-        let response: NetworkResponse = ReactiveNetwork.shared.post(url: API.token, parameters: params)
-        
-        response.signal.observeResult { (result) in
-            
-            guard let _value = result.value else { return }
-            
-            self.accessToken = _value["access_token"].stringValue
-            
-            self.saveToken()
-            
-            self.authorizeTokenObserver.send(value: OAuthService.TokenType.authorized)
-        }
-        
-        return response
+        DribbbleAPI.authrize.rx.request(.token(code: code, clientID: GlobalConstant.Client.id, clientSecret: GlobalConstant.Client.secret))
     }
     
     /**
@@ -90,7 +88,7 @@ class OAuthService {
     func resetToken() {
         accessToken = defaultAccessToken
         
-        authorizeTokenObserver.send(value: OAuthService.TokenType.notAuthorized)
+//        authorizeTokenObserver.send(value: OAuthService.TokenType.notAuthorized)
         
         UserDefaults.standard.removeObject(forKey: accessTokenKey)
         

@@ -38,7 +38,7 @@ class TabBarController: UITabBarController {
         tabBar.tintColor = UIColor.Dribbble.pink
     }
     
-    func clickLeftItem(sender: UIBarButtonItem) {
+    @objc func clickLeftItem(sender: UIBarButtonItem) {
         let isAuth = OAuthService.shared.accessToken != GlobalConstant.Client.accessToken
         
         if isAuth {
@@ -48,16 +48,16 @@ class TabBarController: UITabBarController {
         }
     }
     
-    func clickRightItem(sender: UIBarButtonItem) {
-        navigationController?.pushViewController(SearchController(), animated: true)
+    @objc func clickRightItem(sender: UIBarButtonItem) {
+//        navigationController?.pushViewController(SearchController(), animated: true)
     }
     
     private func bindViewModel() {
-        OAuthService.shared.authorizeTokenSignal.observeResult({ (result) in
-            guard let _value = result.value else { return }
-            
-            self.handle(authorized: _value == .authorized)
-        })
+//        OAuthService.shared.authorizeTokenSignal.observeResult({ (result) in
+//            guard let _value = result.value else { return }
+//
+//            self.handle(authorized: _value == .authorized)
+//        })
     }
     
     private func handle(authorized: Bool) {
