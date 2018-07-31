@@ -27,11 +27,14 @@ class ShotsController: UIViewController {
         
         self.bindObservables()
         
-        _ = ShotService.shared.reloadShots().subscribe(onNext: { (service) in
-            print("service shots:", service.shots)
-        }, onError: { err in
-            print("err:", err)
-        })
+        
+        OAuthService.shared.doOAuth()
+        
+//        _ = ShotService.shared.reloadShots().subscribe(onNext: { (service) in
+//            print("service shots:", service.shots)
+//        }, onError: { err in
+//            print("err:", err)
+//        })
     }
     
     

@@ -41,11 +41,11 @@ class TabBarController: UITabBarController {
     @objc func clickLeftItem(sender: UIBarButtonItem) {
         let isAuth = OAuthService.shared.accessToken != GlobalConstant.Client.accessToken
         
-        if isAuth {
-            navigationController?.pushViewController(UserInfoController(), animated: true)
-        }else {
-            present(OAuthController(), animated: true, completion: nil)
-        }
+//        if isAuth {
+//            navigationController?.pushViewController(UserInfoController(), animated: true)
+//        }else {
+//            present(OAuthController(), animated: true, completion: nil)
+//        }
     }
     
     @objc func clickRightItem(sender: UIBarButtonItem) {

@@ -21,9 +21,10 @@ struct GlobalConstant {
     }
     
     struct Authentication {
-        static let redirect_uri = "OreosDrib://oauth-callback/dribbble"
-        
-        static let callbackHost: String = "oauth-callback"
+        static let redirect_uri = "oreosdrib://oauth-callback/dribbble"
+        static let authorizeUrl =   "https://dribbble.com/oauth/authorize"
+        static let accessTokenUrl = "https://dribbble.com/oauth/token"
+        static let responseType =  "code"
     }
     
 }

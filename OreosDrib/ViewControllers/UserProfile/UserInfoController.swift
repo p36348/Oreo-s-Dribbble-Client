@@ -47,7 +47,7 @@ class UserInfoController: UIViewController {
     }
     
     @objc func clickSignOut(sender: UIBarButtonItem) {
-        OAuthService.shared.resetToken()
+        OAuthService.shared.clearToken()
         
         UserService.shared.logOut()
     }

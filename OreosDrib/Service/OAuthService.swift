@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 import OAuthSwift
+import RxSwift
 
 private struct API {
     static let authorize: String = "https://dribbble.com/oauth/dribbble"
@@ -30,73 +31,55 @@ extension OAuthService {
 class OAuthService {
     static let shared: OAuthService = OAuthService()
     
-    var accessToken: String = defaultAccessToken
-    
-//    let (authorizeTokenSignal, authorizeTokenObserver) = Signal<TokenType, NSError>.pipe()
-    
-    private init(){
-        accessToken = UserDefaults.standard.string(forKey: accessTokenKey) ?? defaultAccessToken
+    private(set)var accessToken: String = UserDefaults.standard.string(forKey: accessTokenKey) ?? "" {
+        didSet {
+            (self.rx_accessToken as! PublishSubject).onNext(self.accessToken)
+            self.saveToken()
+        }
     }
+    
+    let rx_accessToken: Observable<String> = PublishSubject<String>()
+    
+    private var oauthswift: OAuth2Swift?
     
     func doOAuth() {
-        let oauthswift = OAuth2Swift(
+        self.oauthswift = OAuth2Swift(
             consumerKey:    GlobalConstant.Client.id,
             consumerSecret: GlobalConstant.Client.secret,
-            authorizeUrl:   "https://dribbble.com/oauth/authorize",
-            accessTokenUrl: "https://dribbble.com/oauth/token",
-            responseType:   "code"
+            authorizeUrl:   GlobalConstant.Authentication.authorizeUrl,
+            accessTokenUrl: GlobalConstant.Authentication.accessTokenUrl,
+            responseType:   GlobalConstant.Authentication.responseType
         )
         
-        let success: OAuthSwift.TokenSuccessHandler = { (credential, response, params) in
-            print("response", response ?? "no value")
+        let success: OAuth2Swift.TokenSuccessHandler = { [unowned self] (credential, response, params) in
+            print("response", response ?? "no value", "credential:", credential, "token:", credential.oauthToken)
             
             self.accessToken = credential.oauthToken
-            
-//            self.authorizeTokenObserver.sendCompleted()
         }
         
-        let failure: OAuthSwift.FailureHandler = { error in
-        print("error", error as NSError)
-        
-//        self.authorizeTokenObserver.send(error: error as NSError)
+        let failure: OAuth2Swift.FailureHandler = { [unowned self] error in
+            print("error", error as NSError)
+            (self.rx_accessToken as! PublishSubject).onError(error)
         }
-        oauthswift.authorize(withCallbackURL: "OreosDrib://oauth-callback/dribbble", scope: "public+write+comment+upload", state: "", success: success, failure: failure)
-    }
-    
-    func authorizeToken(code: String) {
-//        let params: Parameters = ["code": code, "client_id": GlobalConstant.Client.id, "client_secret": GlobalConstant.Client.secret]
-//        let response: NetworkResponse = ReactiveNetwork.shared.post(url: API.token, parameters: params)
-//
-//        response.signal.observeResult { (result) in
-//
-//            guard let _value = result.value else { return }
-//
-//            self.accessToken = _value["access_token"].stringValue
-//
-//            self.saveToken()
-//
-//            self.authorizeTokenObserver.send(value: OAuthService.TokenType.authorized)
-//        }
-//        return response
-        
-        DribbbleAPI.authrize.rx.request(.token(code: code, clientID: GlobalConstant.Client.id, clientSecret: GlobalConstant.Client.secret))
+        self.oauthswift?.authorize(withCallbackURL: GlobalConstant.Authentication.redirect_uri,
+                                   scope: "public+write+comment+upload",
+                                   state: generateState(withLength: 20),
+                                   success: success,
+                                   failure: failure)
     }
     
     /**
      * 重置token
      */
-    func resetToken() {
-        accessToken = defaultAccessToken
+    func clearToken() {
         
-//        authorizeTokenObserver.send(value: OAuthService.TokenType.notAuthorized)
+        self.accessToken = ""
         
         UserDefaults.standard.removeObject(forKey: accessTokenKey)
         
         UserDefaults.standard.synchronize()
     }
-}
-
-extension OAuthService {
+    
     fileprivate func saveToken() {
         UserDefaults.standard.set(accessToken, forKey: accessTokenKey)
         

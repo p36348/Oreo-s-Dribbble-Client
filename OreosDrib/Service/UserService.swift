@@ -38,25 +38,10 @@ public class UserService {
     }
     
     
-    func fetchDetail(uid: String = "") -> Observable<User> {
-        
-        if uid.isEmpty {
-            return DribbbleAPI.user
-                .rx.request(.authenticatedUser).asObservable()
-                .flatMap{selfClass.parseUserFromResponse($0)}
-                .map{[unowned self] in self.updateCurrentUser($0)}
-        } else {
-            return DribbbleAPI.user.rx_request(.singleUser(uid: uid)).flatMap{selfClass.parseUserFromResponse($0)}
-        }
-        
-    }
-    
-    func buckets(uid: String = "") -> Observable<Response> {
-        return DribbbleAPI.user.rx_request(uid.isEmpty ? .authenticatedUserBuckets : .userBuckets(uid: uid))
-    }
-    
-    func followers(uid: String = "") -> Observable<Response> {
-        return DribbbleAPI.user.rx_request(uid.isEmpty ? .authenticatedFollowers : .followers(uid: uid))
+    func fetchDetail() -> Observable<User> {
+        return DribbbleAPI.user.rx_request(.authenticatedUser)
+            .flatMap{selfClass.parseUserFromResponse($0)}
+            .map{[unowned self] in self.updateCurrentUser($0)}
     }
     
     func logOut() {

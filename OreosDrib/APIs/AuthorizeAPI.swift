@@ -17,7 +17,7 @@ private struct API {
 
 public enum AuthorizeAPI {
     case authorize
-    case token(code: String, clientID: String, clientSecret: String)
+    case token(code: String, clientID: String, clientSecret: String, redirectURI: String)
 }
 
 
@@ -35,10 +35,11 @@ extension AuthorizeAPI: BaseTargetType {
     }
     public var task: Task {
         switch self {
-        case .token(let code, let clientID, let clientSecret):
+        case .token(let code, let clientID, let clientSecret, let redirectURI):
             return .requestParameters(parameters: ["code": code,
                                                    "client_id": clientID,
-                                                   "client_secret": clientSecret],
+                                                   "client_secret": clientSecret,
+                                                   "redirect_uri": redirectURI],
                                       encoding: Moya.URLEncoding.default)//
         default:
             return .requestPlain

@@ -40,7 +40,6 @@
 		95C7A9F2210E0FD60037A1B6 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9B0210E0FD60037A1B6 /* FileService.swift */; };
 		95C7A9F3210E0FD60037A1B6 /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9B1210E0FD60037A1B6 /* ShareService.swift */; };
 		95C7A9F4210E0FD60037A1B6 /* ShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9B2210E0FD60037A1B6 /* ShotService.swift */; };
-		95C7A9F5210E0FD60037A1B6 /* OAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9B5210E0FD60037A1B6 /* OAuthController.swift */; };
 		95C7A9FB210E0FD60037A1B6 /* PopularShotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9BE210E0FD60037A1B6 /* PopularShotsController.swift */; };
 		95C7A9FC210E0FD60037A1B6 /* FollowingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9BF210E0FD60037A1B6 /* FollowingController.swift */; };
 		95C7A9FD210E0FD60037A1B6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9C0210E0FD60037A1B6 /* TabBarController.swift */; };
@@ -120,7 +119,6 @@
 		95C7A9B0210E0FD60037A1B6 /* FileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		95C7A9B1210E0FD60037A1B6 /* ShareService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
 		95C7A9B2210E0FD60037A1B6 /* ShotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotService.swift; sourceTree = "<group>"; };
-		95C7A9B5210E0FD60037A1B6 /* OAuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthController.swift; sourceTree = "<group>"; };
 		95C7A9BE210E0FD60037A1B6 /* PopularShotsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularShotsController.swift; sourceTree = "<group>"; };
 		95C7A9BF210E0FD60037A1B6 /* FollowingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingController.swift; sourceTree = "<group>"; };
 		95C7A9C0210E0FD60037A1B6 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -356,20 +354,11 @@
 		95C7A9B3210E0FD60037A1B6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				95C7A9B4210E0FD60037A1B6 /* OAuth */,
 				95C7A9BD210E0FD60037A1B6 /* Root */,
 				95C7A9C1210E0FD60037A1B6 /* UserProfile */,
 				95C7A9C4210E0FD60037A1B6 /* Shot */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		95C7A9B4210E0FD60037A1B6 /* OAuth */ = {
-			isa = PBXGroup;
-			children = (
-				95C7A9B5210E0FD60037A1B6 /* OAuthController.swift */,
-			);
-			path = OAuth;
 			sourceTree = "<group>";
 		};
 		95C7A9BD210E0FD60037A1B6 /* Root */ = {
@@ -690,7 +679,6 @@
 				95C7AA18210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift in Sources */,
 				95C7AA05210E0FD60037A1B6 /* UIFont+Extension.swift in Sources */,
 				95C7A9F1210E0FD60037A1B6 /* OAuthService.swift in Sources */,
-				95C7A9F5210E0FD60037A1B6 /* OAuthController.swift in Sources */,
 				95C7AA00210E0FD60037A1B6 /* ShotDetailController+Cell.swift in Sources */,
 				95C7A9FD210E0FD60037A1B6 /* TabBarController.swift in Sources */,
 				95C7A9F2210E0FD60037A1B6 /* FileService.swift in Sources */,
