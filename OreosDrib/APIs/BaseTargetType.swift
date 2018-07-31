@@ -23,7 +23,7 @@ extension BaseTargetType {
     }
     
     public var headers: [String : String]? {
-        return ["Authorization": "Bearer " + OAuthService.shared.accessToken]
+        return ["Authorization": "Bearer \(OAuthService.shared.accessToken)" ]
     }
     
     public var method: Moya.Method {

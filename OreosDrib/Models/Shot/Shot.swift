@@ -11,6 +11,8 @@ import UIKit
 import SwiftyJSON
 
 class Shot {
+    
+    var rawJson: JSON
     var id: String = ""
     var title: String = ""
     var descriptionStr: String = ""
@@ -29,6 +31,7 @@ class Shot {
     var team: Team
     
     init(with json: JSON) {
+        rawJson = json
         id = json["id"].stringValue
         title = json["title"].stringValue
         descriptionStr = json["description"].stringValue

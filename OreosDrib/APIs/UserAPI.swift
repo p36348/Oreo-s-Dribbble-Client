@@ -9,8 +9,9 @@
 import Foundation
 import Moya
 
+// MARK: http://developer.dribbble.com/v2/user/
 enum UserAPI {
-    case authenticatedUser, authenticatedUserBuckets, authenticatedFollowers, authenticatedFollowing, singleUser(uid: String), userBuckets(uid: String), followers(uid: String), following(uid: String)
+    case authenticatedUser
 }
 
 extension UserAPI: BaseTargetType {
@@ -19,20 +20,6 @@ extension UserAPI: BaseTargetType {
         switch self {
         case .authenticatedUser:
             return "/user"
-        case .authenticatedUserBuckets:
-            return "/user/buckets"
-        case .authenticatedFollowers:
-            return "/user/followers"
-        case .authenticatedFollowing:
-            return "/user/following"
-        case .singleUser(let uid):
-            return "/user/\(uid)"
-        case .userBuckets(let uid):
-            return "/user/\(uid)/buckets"
-        case .followers(let uid):
-            return "/user/\(uid)/followers"
-        case .following(let uid):
-            return "/user/\(uid)/following"
         }
     }
 }

@@ -9,46 +9,54 @@
 import Foundation
 import Moya
 
+// MARK: http://developer.dribbble.com/v2/shots/
+
 enum ShotAPI {
-    case shots(page: Int, list: List, timeframe: Timeframe, sort: Sort, date: Date)
+    case shots(page: UInt, pageSize: UInt)
+    case popularShots(page: UInt, pageSize: UInt)
     case singleShot(id: String)
-    case shot
+    case createShot(title: String, image: Data, desc: String?, tags: [String]?, teamID: Int?, reboundSourceID: Int?, lowProfile: Int?)
 }
-
-extension ShotAPI {
-    enum List: String {
-        case animated = "animated", attachments = "attachments", debuts = "debuts", playoffs = "playoffs", rebounds = "rebounds", teams = "teams", all = ""
-    }
-    enum Sort: String {
-        case comments = "comments", recent = "recent", views = "views", popularity = ""
-    }
-    enum Timeframe: String {
-        case week = "week", month = "month", year = "year", ever = "ever", now = ""
-    }
-}
-
-
 
 extension ShotAPI: BaseTargetType {
     var path: String {
         switch self {
-        case .shot:
-            return "/shot"
-        case .shots:
+        case .createShot:
             return "/shots"
+        case .shots:
+            return "/user/shots"
         case .singleShot(let id):
             return "/shots/\(id)"
+        case .popularShots:
+            return "/popular_shots"
         }
     }
+    
+    var method: Moya.Method {
+        switch self {
+        case .createShot:
+            return .post
+        default:
+            return .get
+        }
+    }
+    
     var task: Task {
         switch self {
-        case .shots(let page, let list, let timeframe, let sort, let date):
-            return .requestParameters(parameters: ["date": apiDateFormatter.string(from: date),
-                                                   "sort": sort.rawValue,
-                                                   "page": page,
-                                                   "list": list.rawValue,
-                                                   "timeframe": timeframe.rawValue],
-                                      encoding: Moya.URLEncoding.default)
+        case .shots(let page, let pageSize):
+            
+            return .requestParameters(parameters: ["page": page, "per_page": pageSize], encoding: Moya.URLEncoding.default)
+            
+        case .createShot(let title, let image, let desc, let tags, let teamID, let reboundSourceID, let lowProfile):
+            var parameters: [String: Any] = ["title": title, "image": image]
+            
+            if let val = desc {parameters["description"] = val}
+            if let val = tags {parameters["tags"] = val}
+            if let val = teamID {parameters["team_id"] = val}
+            if let val = reboundSourceID {parameters["rebound_source_id"] = val}
+            if let val = lowProfile {parameters["low_profile"] = val}
+            
+            return .requestParameters(parameters: parameters,  encoding: Moya.URLEncoding.default)
         default:
             return .requestPlain
         }

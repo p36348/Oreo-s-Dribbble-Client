@@ -36,7 +36,6 @@
 		95C7A9ED210E0FD60037A1B6 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9A8210E0FD60037A1B6 /* Team.swift */; };
 		95C7A9EE210E0FD60037A1B6 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9AA210E0FD60037A1B6 /* Shot.swift */; };
 		95C7A9EF210E0FD60037A1B6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9AD210E0FD60037A1B6 /* UserService.swift */; };
-		95C7A9F0210E0FD60037A1B6 /* JobService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9AE210E0FD60037A1B6 /* JobService.swift */; };
 		95C7A9F1210E0FD60037A1B6 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9AF210E0FD60037A1B6 /* OAuthService.swift */; };
 		95C7A9F2210E0FD60037A1B6 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9B0210E0FD60037A1B6 /* FileService.swift */; };
 		95C7A9F3210E0FD60037A1B6 /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9B1210E0FD60037A1B6 /* ShareService.swift */; };
@@ -66,6 +65,7 @@
 		95C7AA16210EC1600037A1B6 /* ShotAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7AA15210EC1600037A1B6 /* ShotAPI.swift */; };
 		95C7AA18210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7AA17210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift */; };
 		95C7AA1A210F10580037A1B6 /* AuthorizeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7AA19210F10580037A1B6 /* AuthorizeAPI.swift */; };
+		95C7AA1E2110A8500037A1B6 /* MoyaProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7AA1D2110A8500037A1B6 /* MoyaProvider+Extensions.swift */; };
 		F7342932B15925BBFF8F5A21 /* Pods_OreosDribTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3284562AD854AA5FD0C879F7 /* Pods_OreosDribTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -116,7 +116,6 @@
 		95C7A9A8210E0FD60037A1B6 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		95C7A9AA210E0FD60037A1B6 /* Shot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
 		95C7A9AD210E0FD60037A1B6 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		95C7A9AE210E0FD60037A1B6 /* JobService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobService.swift; sourceTree = "<group>"; };
 		95C7A9AF210E0FD60037A1B6 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
 		95C7A9B0210E0FD60037A1B6 /* FileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		95C7A9B1210E0FD60037A1B6 /* ShareService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
@@ -146,6 +145,7 @@
 		95C7AA15210EC1600037A1B6 /* ShotAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotAPI.swift; sourceTree = "<group>"; };
 		95C7AA17210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+DribbbleAPI.swift"; sourceTree = "<group>"; };
 		95C7AA19210F10580037A1B6 /* AuthorizeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeAPI.swift; sourceTree = "<group>"; };
+		95C7AA1D2110A8500037A1B6 /* MoyaProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Extensions.swift"; sourceTree = "<group>"; };
 		B2618EF94B5A8BC6C8E705E7 /* Pods-OreosDrib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib.release.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib.release.xcconfig"; sourceTree = "<group>"; };
 		B60C7033E182A50A6D61209E /* Pods-OreosDrib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -332,6 +332,7 @@
 				95C7AA0D210E12380037A1B6 /* DribbbleAPI.swift */,
 				95C7AA11210E19530037A1B6 /* BaseTargetType.swift */,
 				95C7AA17210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift */,
+				95C7AA1D2110A8500037A1B6 /* MoyaProvider+Extensions.swift */,
 				95C7AA13210E2BD50037A1B6 /* Moya+JSON.swift */,
 				95C7AA0F210E18D00037A1B6 /* UserAPI.swift */,
 				95C7AA15210EC1600037A1B6 /* ShotAPI.swift */,
@@ -344,11 +345,10 @@
 			isa = PBXGroup;
 			children = (
 				95C7A9AD210E0FD60037A1B6 /* UserService.swift */,
-				95C7A9AE210E0FD60037A1B6 /* JobService.swift */,
+				95C7A9B2210E0FD60037A1B6 /* ShotService.swift */,
 				95C7A9AF210E0FD60037A1B6 /* OAuthService.swift */,
 				95C7A9B0210E0FD60037A1B6 /* FileService.swift */,
 				95C7A9B1210E0FD60037A1B6 /* ShareService.swift */,
-				95C7A9B2210E0FD60037A1B6 /* ShotService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -663,12 +663,12 @@
 				95C7A9FC210E0FD60037A1B6 /* FollowingController.swift in Sources */,
 				95C7A9DF210E0FD60037A1B6 /* APIHandle.swift in Sources */,
 				95C7A9E3210E0FD60037A1B6 /* ReactiveError.swift in Sources */,
-				95C7A9F0210E0FD60037A1B6 /* JobService.swift in Sources */,
 				95C7A9E6210E0FD60037A1B6 /* GlobalConstants.swift in Sources */,
 				95C7A9E8210E0FD60037A1B6 /* String+Handle.swift in Sources */,
 				95C7AA07210E0FD60037A1B6 /* Animation.swift in Sources */,
 				95C7A9FF210E0FD60037A1B6 /* UserInfoController.swift in Sources */,
 				95C7A9EF210E0FD60037A1B6 /* UserService.swift in Sources */,
+				95C7AA1E2110A8500037A1B6 /* MoyaProvider+Extensions.swift in Sources */,
 				95C7AA08210E0FD60037A1B6 /* UIViewController+Alert.swift in Sources */,
 				95C7A9D8210E0FD60037A1B6 /* CoreTextView.swift in Sources */,
 				95C7A9E2210E0FD60037A1B6 /* ReactiveNetwork.swift in Sources */,

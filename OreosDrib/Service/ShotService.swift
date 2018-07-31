@@ -12,165 +12,101 @@ import Alamofire
 import RxSwift
 import Moya
 
-/// 接口 -http://developer.dribbble.com/v1/shots/
-private struct API {
-    
-    static let list: String = "/shots".dribbbleFullUrl
-    
-    static let singleShot: String = "/shots/:id".dribbbleFullUrl
-    
-    static let show: String = "/shot".dribbbleFullUrl
+struct ShotsParams {
+    var page: UInt = 1
+    var pageSize: UInt = 30
 }
 
-struct ShotService {
+class ShotService {
     
     static var shared: ShotService = ShotService()
     
-//    static var shotsVMThread: Thread = {
-//
-//        let _thread: Thread = Thread(block: {
-//            Thread.current.name = "ShotService.viewModel"
-//
-//            let _runLoop = RunLoop.current
-//
-//            _runLoop.add(NSMachPort(), forMode: RunLoopMode.defaultRunLoopMode)
-//
-//            _runLoop.run()
-//        })
-//
-//        _thread.start()
-//
-//        return _thread
-//    }()
-    
-//    var shotOperationQueue: OperationQueue = {
-//        let _queue = OperationQueue()
-//
-//        _queue.maxConcurrentOperationCount = 1
-//
-//        return _queue
-//    }()
-    
-//    var shotDispatchQueue: DispatchQueue = {
-//        return DispatchQueue(label: "ShotService.shot")
-//    }()
-    
-//    public fileprivate(set) var (shotListSignal, shotListObserver) = Signal<(page: Int, shots: [Shot]), ReactiveError>.pipe()
+    // MARK: stores
     
     public fileprivate(set) var shots: [Shot] = []
     
+    fileprivate var shotsParams: ShotsParams = ShotsParams()
+    
+    public fileprivate(set) var popShots: [Shot] = []
+    
+    fileprivate var popShotsParams: ShotsParams = ShotsParams()
+    
+    public fileprivate(set) var detailShot: Shot? = nil
+    
     public fileprivate(set) var shotsViewModels: [ShotCell.ViewModel] = []
     
-    private init(){}
+    // observables
     
-    private let dateFormatter: DateFormatter = {
-        let _formatter: DateFormatter = DateFormatter()
-        
-        /**
-         * 根据dribbble要求格式化
-         */
-        _formatter.dateFormat = "YYYY-MM-dd"
-        
-        /**
-         * 时区转换为西四区
-         */
-        _formatter.timeZone = TimeZone(secondsFromGMT: -4 * 60 * 60)
-        return _formatter
-    }()
+    public let rx_shots: Observable<[Shot]> = PublishSubject<[Shot]>()
     
-    func fetchList(page: Int = 1, list: ShotAPI.List, timeframe: ShotAPI.Timeframe, sort: ShotAPI.Sort, date: Date) -> Observable<Response>{
+    public let rx_shotsViewModels: Observable<[ShotCell.ViewModel]> = PublishSubject<[ShotCell.ViewModel]>()
 
-        return DribbbleAPI.shot.rx.request(.shots(page: page, list: list, timeframe: timeframe, sort: sort, date: date)).asObservable()
-    }
-    
-    
-//    func getList(page: Int = 1, list: ShotService.List, timeframe: Timeframe, sort: Sort, date: Date) -> NetworkResponse {
-//
-//        let _parameters: Parameters = ["date": dateFormatter.string(from: date),
-//                                       "sort": sort.rawValue,
-//                                       "page": page,
-//                                       "list": list.rawValue,
-//                                       "timeframe": timeframe.rawValue]
-//
-//        let response = ReactiveNetwork.shared.get(url: API.list, parameters: _parameters)
-//
-//        response.signal.observeResult { (result) in
-//            self.shotDispatchQueue.async {
-//                if let _error = result.error {
-//                    return DispatchQueue.main.async {
-//                        self.shotListObserver.send(error: _error)
-//                    }
-//                }
-//
-//                if let _value = result.value {
-//
-//                    let (_shots, _cellViewModels) = shotData(with: _value.arrayValue)
-//
-//                    if page == 1 {
-//                        self.cacheFirstPage(json: _value)
-//                    }
-//
-//                    DispatchQueue.main.async {
-//
-//                        ShotService.shared.shots = page == 1 ? _shots : ShotService.shared.shots + _shots
-//
-//                        ShotService.shared.shotsViewModels = page == 1 ? _cellViewModels : ShotService.shared.shotsViewModels + _cellViewModels
-//
-//                        self.shotListObserver.send(value: (page: page, shots: _shots)) }
-//                    }
-//
-//            }
-//        }
-//
-//        return response
-//    }
 }
 
-private func shotData(with array: [JSON]) -> (shots: [Shot], cellViewModels: [ShotCell.ViewModel]){
-    let _shots = array.map { (_json) -> Shot in
-        Shot(with: _json)
+// MARK: - data fetch, no side effect
+extension ShotService {
+    func fetchShots(page: UInt, pageSize: UInt) -> Observable<[Shot]> {
+
+        return
+            DribbbleAPI.shot
+                .rx_request(.shots(page: page, pageSize: pageSize))
+                .flatMap {$0.rx_jsonValue}
+                .map { mapJsonToShots($0) }
     }
     
-    let _cellViewModels = _shots.map({ (_shot) -> ShotCell.ViewModel in
-        return ShotCell.ViewModel(width: (kScreenWidth - 30) / 2, shot: _shot)
-    })
+    func fetchPopShots(page: UInt, pageSize: UInt) -> Observable<[Shot]> {
+        
+        return
+            DribbbleAPI.shot
+                .rx_request(.popularShots(page: page, pageSize: pageSize))
+                .flatMap {$0.rx_jsonValue}
+                .map { mapJsonToShots($0) }
+    }
     
-    return (_shots, _cellViewModels)
+    func fetchShotDetail() {
+        
+    }
 }
 
+private func mapJsonToShots(_ json: JSON) -> [Shot] {
+    return json.arrayValue.map { Shot(with: $0) }
+}
 
-// MARK: - File manage
+// MARK: - stores update (with side effect)
 extension ShotService {
     
-    private var jsonFileName: String { return "shot_list.json"}
-    
-    func loadCache(completion: @escaping () -> Void) {
-//        FileService.shared.searchCache(fileName: jsonFileName) { (data, error) in
-//            DispatchQueue.main.async {
-//                guard let _data = data else { return completion() }
-//
-//                let json = JSON.init(data: _data)
-//
-//                let result = shotData(with: json.arrayValue)
-//
-//                ShotService.shared.shots = result.shots
-//
-//                ShotService.shared.shotsViewModels = result.cellViewModels
-//
-//                completion()
-//            }
-//        }
+    func reloadShots() -> Observable<ShotService> {
+        let params = self.shotsParams
+        return
+            self.fetchShots(page: params.page, pageSize: params.pageSize)
+                .map { [unowned self] in self.shots = $0; return self }
     }
     
-    func cacheFirstPage(json: JSON) {
-        FileService.shared.creat(json: json, fileName: jsonFileName) { (error) in
-            
-        }
+    func loadMoreShots() -> Observable<ShotService> {
+        var params = self.shotsParams
+        params.page += 1
+        return
+            self.fetchShots(page: params.page, pageSize: params.pageSize)
+                .map { [unowned self] in self.shots = self.shots + $0; self.shotsParams = params; return self }
+    }
+    
+    func reloadPopShots() -> Observable<ShotService> {
+        let params = self.popShotsParams
+        return
+            self.fetchPopShots(page: params.page, pageSize: params.pageSize)
+                .map { [unowned self] in self.popShots = $0; return self }
+    }
+    
+    func loadMorePopShots() -> Observable<ShotService> {
+        var params = self.popShotsParams
+        params.page += 1
+        return
+            self.fetchPopShots(page: params.page, pageSize: params.pageSize)
+                .map { [unowned self] in self.popShots = self.popShots + $0; self.popShotsParams = params; return self }
+    }
+    
+    func reloadShotDetail() {
+        
     }
 }
 
-extension String {
-    fileprivate func replace(id: String) -> String {
-        return self.replacingOccurrences(of: ":id", with: id)
-    }
-}

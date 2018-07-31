@@ -9,10 +9,6 @@
 import UIKit
 import WebKit
 
-private let redirect_uri = "OreosDrib://oauth-callback/dribbble"
-
-private let host: String = "oauth-callback"
-
 private func finalUrl(scope: String) -> URL? {
     return URL(string: "https://dribbble.com/oauth/authorize?client_id=\(GlobalConstant.Client.id)&scope=\(scope)")
 }
@@ -20,7 +16,7 @@ private func finalUrl(scope: String) -> URL? {
 
 class OAuthController: UIViewController {
     
-    fileprivate let dismissButton: UIButton = UIButton(type: UIButtonType.custom)
+    fileprivate let dismissButton: UIButton = UIButton(type: UIButtonType.system)
     
     fileprivate let progressView: UIProgressView = UIProgressView()
     
@@ -48,9 +44,9 @@ class OAuthController: UIViewController {
         
         webView.uiDelegate = self
         
-        dismissButton.addTarget(self, action: NSSelectorFromString("dismiss"), for: UIControlEvents.touchUpInside)
+        dismissButton.setTitle("Dismiss", for: UIControlState.normal)
         
-        dismissButton.setImage(#imageLiteral(resourceName: "DismissButton"), for: .normal)
+        dismissButton.addTarget(self, action: NSSelectorFromString("dismiss"), for: UIControlEvents.touchUpInside)
         
         view.addSubview(webView)
         
@@ -109,7 +105,7 @@ class OAuthController: UIViewController {
 
 extension OAuthController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        let isOauthCallBack: Bool = navigationAction.request.url?.host == host
+        let isOauthCallBack: Bool = navigationAction.request.url?.host == GlobalConstant.Authentication.callbackHost
         
         guard isOauthCallBack else { return decisionHandler(WKNavigationActionPolicy.allow) }
         
