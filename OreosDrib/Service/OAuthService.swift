@@ -12,13 +12,6 @@ import Alamofire
 import OAuthSwift
 import RxSwift
 
-private struct API {
-    static let authorize: String = "https://dribbble.com/oauth/dribbble"
-    
-    static let token: String = "https://dribbble.com/oauth/token"
-}
-
-private let defaultAccessToken: String = GlobalConstant.Client.accessToken
 
 private let accessTokenKey: String = "OAuth_service_access_token_key"
 
@@ -29,9 +22,10 @@ extension OAuthService {
 }
 
 class OAuthService {
+    
     static let shared: OAuthService = OAuthService()
     
-    private(set)var accessToken: String = UserDefaults.standard.string(forKey: accessTokenKey) ?? "" {
+    private(set) var accessToken: String = UserDefaults.standard.string(forKey: accessTokenKey) ?? "" {
         didSet {
             (self.rx_accessToken as! PublishSubject).onNext(self.accessToken)
             self.saveToken()
@@ -40,16 +34,13 @@ class OAuthService {
     
     let rx_accessToken: Observable<String> = PublishSubject<String>()
     
-    private var oauthswift: OAuth2Swift?
+    private var oauthswift: OAuth2Swift = OAuth2Swift(consumerKey:    GlobalConstant.Client.id,
+                                                      consumerSecret: GlobalConstant.Client.secret,
+                                                      authorizeUrl:   GlobalConstant.Authentication.authorizeUrl,
+                                                      accessTokenUrl: GlobalConstant.Authentication.accessTokenUrl,
+                                                      responseType:   GlobalConstant.Authentication.responseType)
     
     func doOAuth() {
-        self.oauthswift = OAuth2Swift(
-            consumerKey:    GlobalConstant.Client.id,
-            consumerSecret: GlobalConstant.Client.secret,
-            authorizeUrl:   GlobalConstant.Authentication.authorizeUrl,
-            accessTokenUrl: GlobalConstant.Authentication.accessTokenUrl,
-            responseType:   GlobalConstant.Authentication.responseType
-        )
         
         let success: OAuth2Swift.TokenSuccessHandler = { [unowned self] (credential, response, params) in
             print("response", response ?? "no value", "credential:", credential, "token:", credential.oauthToken)
@@ -61,7 +52,7 @@ class OAuthService {
             print("error", error as NSError)
             (self.rx_accessToken as! PublishSubject).onError(error)
         }
-        self.oauthswift?.authorize(withCallbackURL: GlobalConstant.Authentication.redirect_uri,
+        self.oauthswift.authorize(withCallbackURL: GlobalConstant.Authentication.redirect_uri,
                                    scope: "public+write+comment+upload",
                                    state: generateState(withLength: 20),
                                    success: success,
