@@ -39,7 +39,7 @@ class ShotService {
     
     public let rx_shots: Observable<[Shot]> = PublishSubject<[Shot]>()
     
-//    public let rx_shotsViewModels: Observable<[ShotCell.ViewModel]> = PublishSubject<[ShotCell.ViewModel]>()
+    public let rx_popShots: Observable<[Shot]> = PublishSubject<[Shot]>()
 
 }
 

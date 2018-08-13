@@ -47,6 +47,9 @@ extension ShotAPI: BaseTargetType {
             
             return .requestParameters(parameters: ["page": page, "per_page": pageSize], encoding: Moya.URLEncoding.default)
             
+        case .popularShots(let page, let pageSize):
+            return .requestParameters(parameters: ["page": page, "per_page": pageSize], encoding: Moya.URLEncoding.default)
+            
         case .createShot(let title, let image, let desc, let tags, let teamID, let reboundSourceID, let lowProfile):
             var parameters: [String: Any] = ["title": title, "image": image]
             
