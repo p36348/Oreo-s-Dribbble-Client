@@ -28,7 +28,7 @@
  
  Service
  ------
- 直接调用API以及存放数据
+ 直接调用API以及存放数据(network, store)
  
  Controller
  ------
