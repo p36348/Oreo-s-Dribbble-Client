@@ -15,7 +15,7 @@ public protocol BaseTargetType: TargetType {
 
 extension BaseTargetType {
     public var baseURL: URL {
-        return URL(string: "https://api.dribbble.com/v1")!
+        return URL(string: "https://api.dribbble.com/v2")!
     }
     
     public var sampleData: Data {
