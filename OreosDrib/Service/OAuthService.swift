@@ -15,6 +15,7 @@ import RxSwift
 
 private let accessTokenKey: String = "OAuth_service_access_token_key"
 
+
 class OAuthService {
     
     static let shared: OAuthService = OAuthService()

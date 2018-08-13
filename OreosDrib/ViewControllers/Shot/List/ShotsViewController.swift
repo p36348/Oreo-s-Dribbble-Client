@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-import AsyncDisplayKit
+//import AsyncDisplayKit
 import IGListKit
 import RxSwift
 import RxCocoa
@@ -34,6 +34,10 @@ class ShotsController: ListSectionController {
     
 }
 
+class LargeShotsController: ListSectionController {
+    
+}
+
 enum ShotsDataType: Int {
     case oauthcated = 0, popular
 }
@@ -56,6 +60,13 @@ func loadMoreder(with type: ShotsDataType) -> Observable<ShotService> {
     }
 }
 
+
+
+/**
+ 快照列表:
+ 用一个collection view来显示两种类型的快照, 需要考虑 <页面操作状态, 页面加载状态, 数据状态> 来更新界面;
+ 追求场景严谨, 使用RxSwift进行模块之间的数据通信.
+ */
 class ShotsViewController: UIViewController {
     
     let segmented: UISegmentedControl = {
@@ -93,7 +104,9 @@ class ShotsViewController: UIViewController {
         return _item
     }()
     
-    var currentType: ShotsDataType = .oauthcated
+    var currentType: ShotsDataType {
+        return ShotsDataType(rawValue: self.segmented.selectedSegmentIndex)!
+    }
     
     let disposeBag: DisposeBag = DisposeBag()
     
@@ -138,30 +151,36 @@ extension ShotsViewController {
     
     /// bind observables with service service
     func bindObservables() {
-
         // service -> view
+        // 收集最新的认证数据, 根据是否认证更新可操作UI元素
         OAuthService.shared.rx_hasAccessToken
             .startWith(OAuthService.shared.hasAccessToken)
-            .subscribe(onNext: {[weak self] in self?.switchContent(hasToken: $0)})
-            .disposed(by: self.disposeBag)
-        
-        ShotService.shared.rx_shots
-            .flatMap { [unowned self] in self.updateList(shots: $0) }
-            .flatMap { $0.collectionView.rx_stopLoading() }
-            .subscribe()
-            .disposed(by: self.disposeBag)
-        
-        ShotService.shared.rx_popShots
-            .flatMap { [unowned self] in self.updateList(shots: $0) }
-            .flatMap { $0.collectionView.rx_stopLoading() }
-            .subscribe()
+            .subscribe(onNext: {[weak self] in self?.switchUI(hasToken: $0)})
             .disposed(by: self.disposeBag)
         
         // service&view -> service
+        // 收集最新的认证数据, 如果认证通过则刷新数据
         Observable.combineLatest(OAuthService.shared.rx_hasAccessToken, self.segmented.rx.value)
             .filter {$0.0}
             .subscribe(onNext: {[weak self] in self?.reloadList(ShotsDataType(rawValue: $0.1)!)})
             .disposed(by: self.disposeBag)
+        
+        // 收集shots的最新数据以及用户的最新选择, 匹配则更新列表
+        Observable.combineLatest(ShotService.shared.rx_shots, self.segmented.rx.value)
+            .filter {$0.1 == ShotsDataType.oauthcated.rawValue}
+            .flatMap { [unowned self] in self.updateList(shots: $0.0) }
+            .flatMap { $0.collectionView.rx_stopLoading() }
+            .subscribe()
+            .disposed(by: self.disposeBag)
+        
+        // 收集pop shots的最新数据以及用户的最新选择, 匹配则更新列表
+        Observable.combineLatest(ShotService.shared.rx_popShots, self.segmented.rx.value)
+            .filter {$0.1 == ShotsDataType.popular.rawValue}
+            .flatMap { [unowned self] in self.updateList(shots: $0.0) }
+            .flatMap { $0.collectionView.rx_stopLoading() }
+            .subscribe()
+            .disposed(by: self.disposeBag)
+        
         
         // view -> service
         self.oauthButton.rx.controlEvent(UIControlEvents.touchUpInside)
@@ -174,31 +193,28 @@ extension ShotsViewController {
             })
             .disposed(by: self.disposeBag)
         
+        // 单独响应用户切换显示类型的操作, 如果对应的类型没有数据, 要尝试从网络加载. (如果已经有数据, 只需要加载内存中的数据, 已经在上方实现)
         self.segmented.rx.value
-            .subscribe(onNext: { index in
+            .map { ShotsDataType(rawValue: $0)!}
+            .subscribe(onNext: { [weak self] type in
                 
             })
             .disposed(by: self.disposeBag)
         
-//        self.segmented.rx.isEnabled
-        
         self.collectionView.rx_pullToRefresh()
             .subscribe(onNext: { [unowned self] in
-                self.reloadList(ShotsDataType(rawValue: self.segmented.selectedSegmentIndex)!)
+                self.reloadList(self.currentType)
             })
             .disposed(by: self.disposeBag)
         
         self.collectionView.rx_pullToLoadMore()
             .subscribe(onNext: { [unowned self] in
-                self.loadMoreList(ShotsDataType(rawValue: self.segmented.selectedSegmentIndex)!)
+                self.loadMoreList(self.currentType)
             })
             .disposed(by: self.disposeBag)
-        
-        
-        
     }
     
-    func switchContent(hasToken: Bool) {
+    func switchUI(hasToken: Bool) {
         self.oauthButton.isHidden = hasToken
         self.collectionView.isHidden = !hasToken
         self.navigationItem.titleView = hasToken ? self.segmented : nil
@@ -236,6 +252,12 @@ extension ShotsViewController: ListAdapterDataSource {
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
+//        switch object {
+//        case <#pattern#>:
+//            return ShotsController()
+//        default:
+//            <#code#>
+//        }
         return ShotsController()
     }
     
@@ -280,35 +302,35 @@ class ShotLargeCell: UICollectionViewCell {
     
 }
 
-/// MARK: - cell node config
-class ShotNormalCellNode: ASCellNode {
-    
-    var image: ASImageNode = ASImageNode()
-    
-    var like: ASButtonNode = ASButtonNode()
-    
-    var tag: ASImageNode = ASImageNode()
-    
-    override init() {
-        super.init()
-        self.backgroundColor = UIColor.white
-    }
-}
-
-class ShotLargeCellNode: ASCellNode {
-    var image: ASImageNode = ASImageNode()
-    
-    var like: ASButtonNode = ASButtonNode()
-    
-    var tag: ASImageNode = ASImageNode()
-    
-    var title: ASTextNode = ASTextNode()
-    override init() {
-        super.init()
-        self.backgroundColor = UIColor.white
-    }
-    
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASStackLayoutSpec(direction: ASStackLayoutDirection.vertical, spacing: 5, justifyContent: ASStackLayoutJustifyContent.start, alignItems: ASStackLayoutAlignItems.center, flexWrap: ASStackLayoutFlexWrap.wrap, alignContent: ASStackLayoutAlignContent.start, children: [self.image, self.like, self.tag, self.title])
-    }
-}
+///// MARK: - cell node config
+//class ShotNormalCellNode: ASCellNode {
+//
+//    var image: ASImageNode = ASImageNode()
+//
+//    var like: ASButtonNode = ASButtonNode()
+//
+//    var tag: ASImageNode = ASImageNode()
+//
+//    override init() {
+//        super.init()
+//        self.backgroundColor = UIColor.white
+//    }
+//}
+//
+//class ShotLargeCellNode: ASCellNode {
+//    var image: ASImageNode = ASImageNode()
+//
+//    var like: ASButtonNode = ASButtonNode()
+//
+//    var tag: ASImageNode = ASImageNode()
+//
+//    var title: ASTextNode = ASTextNode()
+//    override init() {
+//        super.init()
+//        self.backgroundColor = UIColor.white
+//    }
+//
+//    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+//        return ASStackLayoutSpec(direction: ASStackLayoutDirection.vertical, spacing: 5, justifyContent: ASStackLayoutJustifyContent.start, alignItems: ASStackLayoutAlignItems.center, flexWrap: ASStackLayoutFlexWrap.wrap, alignContent: ASStackLayoutAlignContent.start, children: [self.image, self.like, self.tag, self.title])
+//    }
+//}

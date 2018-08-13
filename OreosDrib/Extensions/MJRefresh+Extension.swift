@@ -13,7 +13,7 @@ import RxSwift
 extension UIScrollView {
     func rx_pullToRefresh() -> Observable<Void> {
         if self.mj_header == nil {
-            self.mj_header = MJRefreshHeader()
+            self.mj_header = MJRefreshNormalHeader()
         }
         
         return Observable.create({ (observer) -> Disposable in
@@ -21,6 +21,8 @@ extension UIScrollView {
                 observer.onNext(())
             }
             return Disposables.create()
+        }).do(onDispose: { [weak self] in
+            self?.mj_header = nil
         })
     }
     func rx_pullToLoadMore() -> Observable<Void> {
@@ -33,17 +35,18 @@ extension UIScrollView {
              self.mj_footer.refreshingBlock = {observer.onNext(())}
             return Disposables.create()
         })
+            .do(onDispose: { [weak self] in
+                self?.mj_footer = nil
+            })
     }
     
     func rx_stopLoading() -> Observable<Void> {
-        return Observable.create({ (observer) -> Disposable in
-            if self.mj_header?.isRefreshing == true {
-                self.mj_header.endRefreshing()
-            }
-            if self.mj_footer?.isRefreshing == true {
-                self.mj_footer.endRefreshing()
-            }
-            return Disposables.create()
-        })
+        if self.mj_header?.isRefreshing == true {
+            self.mj_header.endRefreshing()
+        }
+        if self.mj_footer?.isRefreshing == true {
+            self.mj_footer.endRefreshing()
+        }
+        return Observable.just(())
     }
 }

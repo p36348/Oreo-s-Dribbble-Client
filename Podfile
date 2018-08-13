@@ -20,7 +20,7 @@ target 'OreosDrib' do
 #    pod 'Kingfisher'
     #pod 'Kanna'
     pod 'OAuthSwift'
-    pod 'Texture' #AsyncDisplayKit by Facebook
+#    pod 'Texture' #AsyncDisplayKit by Facebook
     pod 'IGListKit', '~> 3.0' # by instagram
 
 #    pod 'SwViewCapture'
