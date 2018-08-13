@@ -70,6 +70,13 @@ extension ShotsViewController {
     func setupUI() {
         self.view.addSubview(self.oauthButton)
         self.view.addSubview(self.collectionView)
+        
+        self.oauthButton.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
+        self.collectionView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     func bindObservables() {
@@ -93,8 +100,7 @@ extension ShotsViewController {
         
         // view -> store
         self.oauthButton.rx.controlEvent(UIControlEvents.touchUpInside)
-            .flatMap { _ in ShotService.shared.reloadShots()}
-            .subscribe()
+            .subscribe(onNext: { _ in OAuthService.shared.doOAuth() })
             .disposed(by: self.disposeBag)
         
         self.collectionView.rx_pullToRefresh()

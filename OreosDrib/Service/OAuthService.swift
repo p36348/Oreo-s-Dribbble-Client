@@ -28,7 +28,7 @@ class OAuthService {
     private(set) var accessToken: String = UserDefaults.standard.string(forKey: accessTokenKey) ?? "" {
         didSet {
             (self.rx_accessToken as! PublishSubject).onNext(self.accessToken)
-            (self.has_accessToken as! PublishSubject).onNext(!self.accessToken.isEmpty)
+            (self.rx_hasAccessToken as! PublishSubject).onNext(!self.accessToken.isEmpty)
             self.cacheToken()
         }
     }
