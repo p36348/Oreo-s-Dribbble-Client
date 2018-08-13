@@ -15,12 +15,6 @@ import RxSwift
 
 private let accessTokenKey: String = "OAuth_service_access_token_key"
 
-extension OAuthService {
-    enum TokenType {
-        case authorized, notAuthorized
-    }
-}
-
 class OAuthService {
     
     static let shared: OAuthService = OAuthService()
@@ -59,9 +53,10 @@ class OAuthService {
             print("error", error as NSError)
             (self.rx_accessToken as! PublishSubject).onError(error)
         }
+        let state = generateState(withLength: 20)
         self.oauthswift.authorize(withCallbackURL: GlobalConstant.Authentication.redirect_uri,
                                    scope: "public+write+comment+upload",
-                                   state: generateState(withLength: 20),
+                                   state: state,
                                    success: success,
                                    failure: failure)
     }
@@ -79,7 +74,7 @@ class OAuthService {
     }
     
     fileprivate func cacheToken() {
-        UserDefaults.standard.set(accessToken, forKey: accessTokenKey)
+        UserDefaults.standard.set(self.accessToken, forKey: accessTokenKey)
         
         UserDefaults.standard.synchronize()
     }
