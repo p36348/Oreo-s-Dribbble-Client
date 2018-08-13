@@ -11,12 +11,12 @@ target 'OreosDrib' do
     pod 'RxCocoa'
     pod 'Moya/RxSwift'
     pod 'SwiftyJSON'
-    pod 'CHTCollectionViewWaterfallLayout'
+#    pod 'CHTCollectionViewWaterfallLayout'
     pod 'ESPullToRefresh'
     pod 'SwiftHEXColors'
 #    pod 'Socket.IO-Client-Swift', '~> 10.0.0'
     pod 'RealmSwift'
-    pod 'Kingfisher'
+#    pod 'Kingfisher'
     #pod 'Kanna'
     pod 'OAuthSwift'
     pod 'Texture' #AsyncDisplayKit by Facebook
@@ -24,6 +24,8 @@ target 'OreosDrib' do
 
 #    pod 'SwViewCapture'
     pod 'Toast-Swift'
+    
+#    pod 'PTBaseKit', :git => 'https://github.com/p36348/PTBaseKit.git'
   target 'OreosDribTests' do
     inherit! :search_paths
     # Pods for testing

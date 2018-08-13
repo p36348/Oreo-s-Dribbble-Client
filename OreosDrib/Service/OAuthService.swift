@@ -28,11 +28,18 @@ class OAuthService {
     private(set) var accessToken: String = UserDefaults.standard.string(forKey: accessTokenKey) ?? "" {
         didSet {
             (self.rx_accessToken as! PublishSubject).onNext(self.accessToken)
-            self.saveToken()
+            (self.has_accessToken as! PublishSubject).onNext(!self.accessToken.isEmpty)
+            self.cacheToken()
         }
     }
     
     let rx_accessToken: Observable<String> = PublishSubject<String>()
+    
+    let rx_hasAccessToken: Observable<Bool> = PublishSubject<Bool>()
+    
+    var hasAccessToken: Bool {
+        return !self.accessToken.isEmpty
+    }
     
     private var oauthswift: OAuth2Swift = OAuth2Swift(consumerKey:    GlobalConstant.Client.id,
                                                       consumerSecret: GlobalConstant.Client.secret,
@@ -71,7 +78,7 @@ class OAuthService {
         UserDefaults.standard.synchronize()
     }
     
-    fileprivate func saveToken() {
+    fileprivate func cacheToken() {
         UserDefaults.standard.set(accessToken, forKey: accessTokenKey)
         
         UserDefaults.standard.synchronize()

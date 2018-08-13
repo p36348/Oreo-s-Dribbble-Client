@@ -6,14 +6,14 @@
 //  Copyright © 2017 P36348. All rights reserved.
 //
 
-import Foundation
-import UIKit
-import Kingfisher
-extension UIImageView {
-    
-    func setImage(urlString: String, placeholder: UIImage? = nil) {
-        guard let _url = URL(string: urlString) else {return}
-        
-        self.kf.setImage(with: _url, placeholder: placeholder)
-    }
-}
+//import Foundation
+//import UIKit
+//import Kingfisher
+//extension UIImageView {
+//    
+//    func setImage(urlString: String, placeholder: UIImage? = nil) {
+//        guard let _url = URL(string: urlString) else {return}
+//        
+//        self.kf.setImage(with: _url, placeholder: placeholder)
+//    }
+//}

@@ -33,13 +33,13 @@ class ShotService {
     
     public fileprivate(set) var detailShot: Shot? = nil
     
-    public fileprivate(set) var shotsViewModels: [ShotCell.ViewModel] = []
+//    public fileprivate(set) var shotsViewModels: [ShotCell.ViewModel] = []
     
     // observables
     
     public let rx_shots: Observable<[Shot]> = PublishSubject<[Shot]>()
     
-    public let rx_shotsViewModels: Observable<[ShotCell.ViewModel]> = PublishSubject<[ShotCell.ViewModel]>()
+//    public let rx_shotsViewModels: Observable<[ShotCell.ViewModel]> = PublishSubject<[ShotCell.ViewModel]>()
 
 }
 

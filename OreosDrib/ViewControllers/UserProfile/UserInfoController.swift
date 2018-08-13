@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Kingfisher
+//import Kingfisher
 
 class UserInfoController: UIViewController {
     

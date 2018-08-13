@@ -14,10 +14,6 @@
 		95C7A97B210DC84D0037A1B6 /* OreosDribTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A97A210DC84D0037A1B6 /* OreosDribTests.swift */; };
 		95C7A9D6210E0FD60037A1B6 /* WaterFallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A986210E0FD50037A1B6 /* WaterFallCell.swift */; };
 		95C7A9D7210E0FD60037A1B6 /* ShotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A987210E0FD50037A1B6 /* ShotCell.swift */; };
-		95C7A9D8210E0FD60037A1B6 /* CoreTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A989210E0FD50037A1B6 /* CoreTextView.swift */; };
-		95C7A9D9210E0FD60037A1B6 /* MarkupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A98A210E0FD50037A1B6 /* MarkupParser.swift */; };
-		95C7A9DA210E0FD60037A1B6 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A98B210E0FD50037A1B6 /* HTMLParser.swift */; };
-		95C7A9DB210E0FD60037A1B6 /* CTSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A98C210E0FD50037A1B6 /* CTSettings.swift */; };
 		95C7A9DC210E0FD60037A1B6 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A98F210E0FD60037A1B6 /* RealmManager.swift */; };
 		95C7A9DD210E0FD60037A1B6 /* Image+Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A990210E0FD60037A1B6 /* Image+Handle.swift */; };
 		95C7A9DF210E0FD60037A1B6 /* APIHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A993210E0FD60037A1B6 /* APIHandle.swift */; };
@@ -47,7 +43,7 @@
 		95C7AA00210E0FD60037A1B6 /* ShotDetailController+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9C6210E0FD60037A1B6 /* ShotDetailController+Cell.swift */; };
 		95C7AA01210E0FD60037A1B6 /* ShotDetailController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9C7210E0FD60037A1B6 /* ShotDetailController+Section.swift */; };
 		95C7AA02210E0FD60037A1B6 /* ShotDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9C8210E0FD60037A1B6 /* ShotDetailController.swift */; };
-		95C7AA03210E0FD60037A1B6 /* ShotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9CA210E0FD60037A1B6 /* ShotsController.swift */; };
+		95C7AA03210E0FD60037A1B6 /* ShotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9CA210E0FD60037A1B6 /* ShotsViewController.swift */; };
 		95C7AA04210E0FD60037A1B6 /* ShotsController+Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9CB210E0FD60037A1B6 /* ShotsController+Views.swift */; };
 		95C7AA05210E0FD60037A1B6 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9CD210E0FD60037A1B6 /* UIFont+Extension.swift */; };
 		95C7AA06210E0FD60037A1B6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7A9CE210E0FD60037A1B6 /* UIColor+Extension.swift */; };
@@ -65,6 +61,8 @@
 		95C7AA18210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7AA17210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift */; };
 		95C7AA1A210F10580037A1B6 /* AuthorizeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7AA19210F10580037A1B6 /* AuthorizeAPI.swift */; };
 		95C7AA1E2110A8500037A1B6 /* MoyaProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7AA1D2110A8500037A1B6 /* MoyaProvider+Extensions.swift */; };
+		95FBEED0212141EB00327D06 /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FBEECF212141EB00327D06 /* IndexViewController.swift */; };
+		95FBEED32121602700327D06 /* ESPullToRefresh+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FBEED22121602700327D06 /* ESPullToRefresh+RxSwift.swift */; };
 		F7342932B15925BBFF8F5A21 /* Pods_OreosDribTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3284562AD854AA5FD0C879F7 /* Pods_OreosDribTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,10 +91,6 @@
 		95C7A97C210DC84D0037A1B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95C7A986210E0FD50037A1B6 /* WaterFallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFallCell.swift; sourceTree = "<group>"; };
 		95C7A987210E0FD50037A1B6 /* ShotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotCell.swift; sourceTree = "<group>"; };
-		95C7A989210E0FD50037A1B6 /* CoreTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreTextView.swift; sourceTree = "<group>"; };
-		95C7A98A210E0FD50037A1B6 /* MarkupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupParser.swift; sourceTree = "<group>"; };
-		95C7A98B210E0FD50037A1B6 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
-		95C7A98C210E0FD50037A1B6 /* CTSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTSettings.swift; sourceTree = "<group>"; };
 		95C7A98F210E0FD60037A1B6 /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		95C7A990210E0FD60037A1B6 /* Image+Handle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Handle.swift"; sourceTree = "<group>"; };
 		95C7A993210E0FD60037A1B6 /* APIHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandle.swift; sourceTree = "<group>"; };
@@ -126,7 +120,7 @@
 		95C7A9C6210E0FD60037A1B6 /* ShotDetailController+Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShotDetailController+Cell.swift"; sourceTree = "<group>"; };
 		95C7A9C7210E0FD60037A1B6 /* ShotDetailController+Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShotDetailController+Section.swift"; sourceTree = "<group>"; };
 		95C7A9C8210E0FD60037A1B6 /* ShotDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotDetailController.swift; sourceTree = "<group>"; };
-		95C7A9CA210E0FD60037A1B6 /* ShotsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotsController.swift; sourceTree = "<group>"; };
+		95C7A9CA210E0FD60037A1B6 /* ShotsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotsViewController.swift; sourceTree = "<group>"; };
 		95C7A9CB210E0FD60037A1B6 /* ShotsController+Views.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShotsController+Views.swift"; sourceTree = "<group>"; };
 		95C7A9CD210E0FD60037A1B6 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		95C7A9CE210E0FD60037A1B6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -144,6 +138,8 @@
 		95C7AA17210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+DribbbleAPI.swift"; sourceTree = "<group>"; };
 		95C7AA19210F10580037A1B6 /* AuthorizeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeAPI.swift; sourceTree = "<group>"; };
 		95C7AA1D2110A8500037A1B6 /* MoyaProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Extensions.swift"; sourceTree = "<group>"; };
+		95FBEECF212141EB00327D06 /* IndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
+		95FBEED22121602700327D06 /* ESPullToRefresh+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ESPullToRefresh+RxSwift.swift"; sourceTree = "<group>"; };
 		B2618EF94B5A8BC6C8E705E7 /* Pods-OreosDrib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib.release.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib.release.xcconfig"; sourceTree = "<group>"; };
 		B60C7033E182A50A6D61209E /* Pods-OreosDrib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDrib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,6 +187,7 @@
 		95C7A964210DC84B0037A1B6 /* OreosDrib */ = {
 			isa = PBXGroup;
 			children = (
+				95FBEED12121600C00327D06 /* Extensions */,
 				95C7A9AB210E0FD60037A1B6 /* APIs */,
 				95C7A9D4210E0FD60037A1B6 /* AppDelegate */,
 				95C7A9A4210E0FD60037A1B6 /* Models */,
@@ -221,20 +218,8 @@
 			children = (
 				95C7A986210E0FD50037A1B6 /* WaterFallCell.swift */,
 				95C7A987210E0FD50037A1B6 /* ShotCell.swift */,
-				95C7A988210E0FD50037A1B6 /* CoreTextView */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		95C7A988210E0FD50037A1B6 /* CoreTextView */ = {
-			isa = PBXGroup;
-			children = (
-				95C7A989210E0FD50037A1B6 /* CoreTextView.swift */,
-				95C7A98A210E0FD50037A1B6 /* MarkupParser.swift */,
-				95C7A98B210E0FD50037A1B6 /* HTMLParser.swift */,
-				95C7A98C210E0FD50037A1B6 /* CTSettings.swift */,
-			);
-			path = CoreTextView;
 			sourceTree = "<group>";
 		};
 		95C7A98D210E0FD60037A1B6 /* Vendors */ = {
@@ -354,6 +339,7 @@
 		95C7A9B3210E0FD60037A1B6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				95FBEECE212141DF00327D06 /* Index */,
 				95C7A9BD210E0FD60037A1B6 /* Root */,
 				95C7A9C1210E0FD60037A1B6 /* UserProfile */,
 				95C7A9C4210E0FD60037A1B6 /* Shot */,
@@ -401,7 +387,7 @@
 		95C7A9C9210E0FD60037A1B6 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				95C7A9CA210E0FD60037A1B6 /* ShotsController.swift */,
+				95C7A9CA210E0FD60037A1B6 /* ShotsViewController.swift */,
 				95C7A9CB210E0FD60037A1B6 /* ShotsController+Views.swift */,
 			);
 			path = List;
@@ -427,6 +413,22 @@
 				95C7A9D5210E0FD60037A1B6 /* AppDelegate.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		95FBEECE212141DF00327D06 /* Index */ = {
+			isa = PBXGroup;
+			children = (
+				95FBEECF212141EB00327D06 /* IndexViewController.swift */,
+			);
+			path = Index;
+			sourceTree = "<group>";
+		};
+		95FBEED12121600C00327D06 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				95FBEED22121602700327D06 /* ESPullToRefresh+RxSwift.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C86BD88BE76EB749939DB45E /* Frameworks */ = {
@@ -557,10 +559,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
@@ -580,10 +580,8 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHTCollectionViewWaterfallLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
@@ -650,6 +648,7 @@
 			files = (
 				95C7AA0E210E12380037A1B6 /* DribbbleAPI.swift in Sources */,
 				95C7AA0B210E0FD60037A1B6 /* UIView+RoundCorner.swift in Sources */,
+				95FBEED32121602700327D06 /* ESPullToRefresh+RxSwift.swift in Sources */,
 				95C7A9E5210E0FD60037A1B6 /* runtime+UIControl.swift in Sources */,
 				95C7A9FC210E0FD60037A1B6 /* FollowingController.swift in Sources */,
 				95C7A9DF210E0FD60037A1B6 /* APIHandle.swift in Sources */,
@@ -661,17 +660,15 @@
 				95C7A9EF210E0FD60037A1B6 /* UserService.swift in Sources */,
 				95C7AA1E2110A8500037A1B6 /* MoyaProvider+Extensions.swift in Sources */,
 				95C7AA08210E0FD60037A1B6 /* UIViewController+Alert.swift in Sources */,
-				95C7A9D8210E0FD60037A1B6 /* CoreTextView.swift in Sources */,
 				95C7A9E2210E0FD60037A1B6 /* ReactiveNetwork.swift in Sources */,
 				95C7AA01210E0FD60037A1B6 /* ShotDetailController+Section.swift in Sources */,
 				95C7AA04210E0FD60037A1B6 /* ShotsController+Views.swift in Sources */,
 				95C7A9E1210E0FD60037A1B6 /* Dictionary+Handle.swift in Sources */,
 				95C7A9F3210E0FD60037A1B6 /* ShareService.swift in Sources */,
 				95C7A9D6210E0FD60037A1B6 /* WaterFallCell.swift in Sources */,
+				95FBEED0212141EB00327D06 /* IndexViewController.swift in Sources */,
 				95C7AA10210E18D00037A1B6 /* UserAPI.swift in Sources */,
-				95C7A9D9210E0FD60037A1B6 /* MarkupParser.swift in Sources */,
 				95C7AA1A210F10580037A1B6 /* AuthorizeAPI.swift in Sources */,
-				95C7A9DB210E0FD60037A1B6 /* CTSettings.swift in Sources */,
 				95C7A9ED210E0FD60037A1B6 /* Team.swift in Sources */,
 				95C7A9EB210E0FD60037A1B6 /* Reusable.swift in Sources */,
 				95C7AA12210E19530037A1B6 /* BaseTargetType.swift in Sources */,
@@ -687,9 +684,8 @@
 				95C7AA06210E0FD60037A1B6 /* UIColor+Extension.swift in Sources */,
 				95C7AA16210EC1600037A1B6 /* ShotAPI.swift in Sources */,
 				95C7AA14210E2BD50037A1B6 /* Moya+JSON.swift in Sources */,
-				95C7AA03210E0FD60037A1B6 /* ShotsController.swift in Sources */,
+				95C7AA03210E0FD60037A1B6 /* ShotsViewController.swift in Sources */,
 				95C7A9EE210E0FD60037A1B6 /* Shot.swift in Sources */,
-				95C7A9DA210E0FD60037A1B6 /* HTMLParser.swift in Sources */,
 				95C7A9FB210E0FD60037A1B6 /* PopularShotsController.swift in Sources */,
 				95C7A9E4210E0FD60037A1B6 /* runtime+Utils.swift in Sources */,
 				95C7A9F4210E0FD60037A1B6 /* ShotService.swift in Sources */,
@@ -864,7 +860,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				INFOPLIST_FILE = OreosDrib/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = P36348.OreosDrib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -880,7 +879,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				INFOPLIST_FILE = OreosDrib/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = P36348.OreosDrib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -897,7 +899,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				INFOPLIST_FILE = OreosDribTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.p36348.OreosDribTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -915,7 +921,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				INFOPLIST_FILE = OreosDribTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.p36348.OreosDribTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
