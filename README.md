@@ -30,8 +30,8 @@
  
  Service
  ------
- 直接调用API以及存放数据(network, store)
+ 直接调用API以及存放数据, 副作用通过RxSwift.Observable传递(network, store)
  
  Controller
  ------
- 调用Service的副作用函数, 订阅Service数据变化并作出响应. (与Service产生双向通信)
+ 存储用户输入状态, 调用Service的副作用函数, 订阅Service数据变化并作出响应. (与Service产生双向通信)
