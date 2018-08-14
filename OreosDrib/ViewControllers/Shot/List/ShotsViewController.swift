@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-//import AsyncDisplayKit
 import IGListKit
 import RxSwift
 import RxCocoa
@@ -78,7 +77,7 @@ class ShotsViewController: UIViewController {
     let layout = UICollectionViewFlowLayout()
     
     lazy var collectionView: UICollectionView = {
-       let _item = UICollectionView(frame: .zero, collectionViewLayout: self.layout)
+        let _item = UICollectionView(frame: .zero, collectionViewLayout: self.layout)
         _item.backgroundColor = UIColor.white
         return _item
     }()
@@ -93,7 +92,7 @@ class ShotsViewController: UIViewController {
     }()
     
     let oauthButton: UIButton = {
-       let _item = UIButton(type: UIButtonType.system)
+        let _item = UIButton(type: UIButtonType.system)
         _item.setTitle("Signin from Dribbble.", for: UIControlState.normal)
         return _item
     }()
@@ -158,13 +157,18 @@ extension ShotsViewController {
             .subscribe(onNext: {[weak self] in self?.switchUI(hasToken: $0)})
             .disposed(by: self.disposeBag)
         
-        // service&view -> service
+        // service & view state -> service
         // 收集最新的认证数据, 如果认证通过则刷新数据
-        Observable.combineLatest(OAuthService.shared.rx_hasAccessToken, self.segmented.rx.value)
-            .filter {$0.0}
-            .subscribe(onNext: {[weak self] in self?.reloadList(ShotsDataType(rawValue: $0.1)!)})
+        OAuthService.shared.rx_hasAccessToken
+            .filter {$0}
+            .subscribe(onNext: {[weak self] _ in
+                if let _self = self {
+                    _self.reloadData(_self.currentType)
+                }
+            })
             .disposed(by: self.disposeBag)
         
+        // service&view -> view
         // 收集shots的最新数据以及用户的最新选择, 匹配则更新列表
         Observable.combineLatest(ShotService.shared.rx_shots, self.segmented.rx.value)
             .filter {$0.1 == ShotsDataType.oauthcated.rawValue}
@@ -188,28 +192,37 @@ extension ShotsViewController {
             .disposed(by: self.disposeBag)
         
         self.signoutButton.rx.controlEvent(UIControlEvents.touchUpInside)
-            .subscribe(onNext: { _ in
-                OAuthService.shared.clearToken()
-            })
+            .subscribe(onNext: { _ in OAuthService.shared.clearToken() })
             .disposed(by: self.disposeBag)
         
         // 单独响应用户切换显示类型的操作, 如果对应的类型没有数据, 要尝试从网络加载. (如果已经有数据, 只需要加载内存中的数据, 已经在上方实现)
         self.segmented.rx.value
             .map { ShotsDataType(rawValue: $0)!}
             .subscribe(onNext: { [weak self] type in
-                
+                if
+                    type == ShotsDataType.oauthcated && ShotService.shared.shots.count == 0
+                        ||
+                        type == ShotsDataType.popular && ShotService.shared.shots.count == 0
+                {
+                    self?.collectionView.mj_header?.beginRefreshing()
+                }
             })
+            .disposed(by: self.disposeBag)
+        
+        // 当前正在刷新数据的时候让类型切换交互关闭
+        self.collectionView.rx_refreshing
+            .map{!$0}.bind(to: self.segmented.rx.isEnabled)
             .disposed(by: self.disposeBag)
         
         self.collectionView.rx_pullToRefresh()
             .subscribe(onNext: { [unowned self] in
-                self.reloadList(self.currentType)
+                self.reloadData(self.currentType)
             })
             .disposed(by: self.disposeBag)
         
         self.collectionView.rx_pullToLoadMore()
             .subscribe(onNext: { [unowned self] in
-                self.loadMoreList(self.currentType)
+                self.loadMoreData(self.currentType)
             })
             .disposed(by: self.disposeBag)
     }
@@ -221,12 +234,16 @@ extension ShotsViewController {
         self.navigationItem.rightBarButtonItem = hasToken ? UIBarButtonItem(customView: self.signoutButton) : nil
     }
     
-    func reloadList(_ type: ShotsDataType) {
-        _ = reloader(with: type).subscribe()
+    func reloadData(_ type: ShotsDataType) {
+        _ = reloader(with: type).subscribe(onError: { [weak self] _ in
+            self?.collectionView.stopLoading()
+        })
     }
     
-    func loadMoreList(_ type: ShotsDataType) {
-        _ = loadMoreder(with: type).subscribe()
+    func loadMoreData(_ type: ShotsDataType) {
+        _ = loadMoreder(with: type).subscribe(onError: { [weak self] _ in
+            self?.collectionView.stopLoading()
+        })
     }
     
     func updateList(shots: [Shot]) -> Observable<ShotsViewController> {
@@ -241,7 +258,6 @@ extension ShotsViewController {
             }
             return Disposables.create()
         })
-        
     }
 }
 
@@ -252,12 +268,6 @@ extension ShotsViewController: ListAdapterDataSource {
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-//        switch object {
-//        case <#pattern#>:
-//            return ShotsController()
-//        default:
-//            <#code#>
-//        }
         return ShotsController()
     }
     
@@ -282,55 +292,3 @@ extension Shot: ListDiffable {
         return false
     }
 }
-
-
-/// MARK: - cell config
-
-class ShotNormalCell: UICollectionViewCell {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.contentView.backgroundColor = UIColor.lightGray
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-        super.init(frame: CGRect.zero)
-    }
-}
-
-class ShotLargeCell: UICollectionViewCell {
-    
-}
-
-///// MARK: - cell node config
-//class ShotNormalCellNode: ASCellNode {
-//
-//    var image: ASImageNode = ASImageNode()
-//
-//    var like: ASButtonNode = ASButtonNode()
-//
-//    var tag: ASImageNode = ASImageNode()
-//
-//    override init() {
-//        super.init()
-//        self.backgroundColor = UIColor.white
-//    }
-//}
-//
-//class ShotLargeCellNode: ASCellNode {
-//    var image: ASImageNode = ASImageNode()
-//
-//    var like: ASButtonNode = ASButtonNode()
-//
-//    var tag: ASImageNode = ASImageNode()
-//
-//    var title: ASTextNode = ASTextNode()
-//    override init() {
-//        super.init()
-//        self.backgroundColor = UIColor.white
-//    }
-//
-//    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-//        return ASStackLayoutSpec(direction: ASStackLayoutDirection.vertical, spacing: 5, justifyContent: ASStackLayoutJustifyContent.start, alignItems: ASStackLayoutAlignItems.center, flexWrap: ASStackLayoutFlexWrap.wrap, alignContent: ASStackLayoutAlignContent.start, children: [self.image, self.like, self.tag, self.title])
-//    }
-//}

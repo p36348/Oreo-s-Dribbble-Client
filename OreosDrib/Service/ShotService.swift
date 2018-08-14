@@ -19,13 +19,14 @@ struct ShotsParams {
 
 class ShotService {
     
+    /// singleton
     static var shared: ShotService = ShotService()
     
     // MARK: stores
     
     public fileprivate(set) var shots: [Shot] = [] {
         didSet {
-            (self.rx_shots as! PublishSubject).onNext(self.shots)
+            self.internalShotsPublishSubject.onNext(self.shots)
         }
     }
     
@@ -33,7 +34,7 @@ class ShotService {
     
     public fileprivate(set) var popShots: [Shot] = [] {
         didSet {
-            (self.rx_popShots as! PublishSubject).onNext(self.popShots)
+            self.internalPopShotsPublishSubject.onNext(self.popShots)
         }
     }
     
@@ -41,16 +42,19 @@ class ShotService {
     
     public fileprivate(set) var detailShot: Shot? = nil
     
-    //    public fileprivate(set) var shotsViewModels: [ShotCell.ViewModel] = []
-    
     // observables
     
-    public let rx_shots: Observable<[Shot]> = PublishSubject<[Shot]>()
+    public var rx_shots: Observable<[Shot]> {
+        return self.internalShotsPublishSubject
+    }
     
-    public let rx_popShots: Observable<[Shot]> = PublishSubject<[Shot]>()
+    fileprivate let internalShotsPublishSubject = PublishSubject<[Shot]>()
     
-    public let rx_loading: Observable<Bool> = PublishSubject<Bool>()
+    public var rx_popShots: Observable<[Shot]> {
+        return self.internalPopShotsPublishSubject
+    }
     
+    fileprivate let internalPopShotsPublishSubject = PublishSubject<[Shot]>()
 }
 
 // MARK: - data fetch, no side effect
