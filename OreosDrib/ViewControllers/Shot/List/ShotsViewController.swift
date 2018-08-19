@@ -318,17 +318,11 @@ extension ShotsViewController {
 // MARK: - ShotsViewController extension ListAdapterDataSource
 extension ShotsViewController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-//        return ShotService.shared.popShots
         return [1] as [NSNumber]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        switch object {
-        case is ShotNormalCellViewModel:
-            return ShotsController(viewModels: self.viewModel.normalCellViewModels)
-        default:
-            return ShotsController(viewModels: self.viewModel.normalCellViewModels)
-        }
+        return ShotsController(viewModels: self.viewModel.normalCellViewModels)
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
@@ -346,7 +340,7 @@ class ShotsViewControllerViewModel {
 }
 
 
-class ShotNormalCellViewModel: ListDiffable {
+class ShotNormalCellViewModel {
     var id: String
     // 4:3
     var imageUrl: String
@@ -375,15 +369,5 @@ class ShotNormalCellViewModel: ListDiffable {
         let comment_height = self.comment.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).height
         self.comment_frame = CGRect(x: 0, y: self.title_frame.maxY+10, width: width, height: comment_height)
         self.size = CGSize(width: width, height: self.comment_frame.maxY+10)
-    }
-    func diffIdentifier() -> NSObjectProtocol {
-        return self.id as NSString
-    }
-    
-    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        if let _object = object as? ShotNormalCellViewModel {
-            return id == _object.id
-        }
-        return false
     }
 }
