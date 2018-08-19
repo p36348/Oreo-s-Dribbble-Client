@@ -11,12 +11,33 @@ import SnapKit
 import IGListKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
+class ShotsController: ListSectionController, ListDisplayDelegate {
+    
+    var viewModels: [ShotNormalCellViewModel] = []
+    
+    init(viewModels: [ShotNormalCellViewModel]) {
+        super.init()
+        self.inset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        self.minimumLineSpacing = 5
+        self.displayDelegate = self
+        self.viewModels = viewModels
+    }
+    
+    override func numberOfItems() -> Int {
+        return self.viewModels.count
+    }
+    
+    // MARK: ShotsController: ListSectionController
 
-class ShotsController: ListSectionController {
     
     override func sizeForItem(at index: Int) -> CGSize {
-        return CGSize(width: 20, height: 20)
+        if self.viewModels.count >= index + 1 {
+            return self.viewModels[index].size
+        }else {
+            return CGSize.zero
+        }
     }
     
     override func didSelectItem(at index: Int) {
@@ -24,13 +45,33 @@ class ShotsController: ListSectionController {
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {
-        return collectionContext?.cellForItem(at: index, sectionController: self) ?? ShotNormalCell()
+        return self.collectionContext?.dequeueReusableCell(of: ShotNormalCell.classForCoder(), withReuseIdentifier: "ShotNormalCell", for: self, at: index) ?? ShotNormalCell()
     }
     
-    override func didUpdate(to object: Any) {
+    // MARK: ShotsController: ListDisplayDelegate
+    func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController) {
         
     }
     
+    func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController, cell: UICollectionViewCell, at index: Int) {
+        if let _cell = cell as? ShotNormalCell {
+            let _viewModel = self.viewModels[index]
+            _cell.title_label.attributedText = _viewModel.title
+            _cell.title_label.frame = _viewModel.title_frame
+            _cell.image.kf.setImage(with: URL(string: _viewModel.imageUrl))
+            _cell.image.frame = _viewModel.image_frame
+            _cell.comment_label.attributedText = _viewModel.comment
+            _cell.comment_label.frame = _viewModel.comment_frame
+        }
+    }
+    
+    func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController) {
+        
+    }
+    
+    func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController, cell: UICollectionViewCell, at index: Int) {
+
+    }
 }
 
 class LargeShotsController: ListSectionController {
@@ -38,7 +79,7 @@ class LargeShotsController: ListSectionController {
 }
 
 enum ShotsDataType: Int {
-    case oauthcated = 0, popular
+    case popular = 0, oauthcated = 1
 }
 
 func reloader(with type: ShotsDataType) -> Observable<ShotService> {
@@ -69,7 +110,8 @@ func loadMoreder(with type: ShotsDataType) -> Observable<ShotService> {
 class ShotsViewController: UIViewController {
     
     let segmented: UISegmentedControl = {
-        let item = UISegmentedControl(items: ["My Shots", "Pop Shots"])
+        // let item = UISegmentedControl(items: ["Pop Shots", "My Shots"])
+        let item = UISegmentedControl(items: ["Pop Shots"])
         item.selectedSegmentIndex = 0
         return item
     }()
@@ -91,6 +133,8 @@ class ShotsViewController: UIViewController {
         return _adapter
     }()
     
+    
+    
     let oauthButton: UIButton = {
         let _item = UIButton(type: UIButtonType.system)
         _item.setTitle("Signin from Dribbble.", for: UIControlState.normal)
@@ -108,6 +152,8 @@ class ShotsViewController: UIViewController {
     }
     
     let disposeBag: DisposeBag = DisposeBag()
+    
+    var viewModel: ShotsViewControllerViewModel = ShotsViewControllerViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,17 +216,25 @@ extension ShotsViewController {
         
         // service&view -> view
         // 收集shots的最新数据以及用户的最新选择, 匹配则更新列表
-        Observable.combineLatest(ShotService.shared.rx_shots, self.segmented.rx.value)
-            .filter {$0.1 == ShotsDataType.oauthcated.rawValue}
-            .flatMap { [unowned self] in self.updateList(shots: $0.0) }
-            .flatMap { $0.collectionView.rx_stopLoading() }
-            .subscribe()
-            .disposed(by: self.disposeBag)
+//        Observable.combineLatest(ShotService.shared.rx_shots, self.segmented.rx.value)
+//            .filter {$0.1 == ShotsDataType.oauthcated.rawValue}
+//            .map { [unowned self] params -> [ShotNormalCellViewModel] in
+//                self.viewModel.normalCellViewModels = params.0.map{shot in ShotNormalCellViewModel(shot: shot, width: 200)}
+//                return self.viewModel.normalCellViewModels
+//            }
+//            .flatMap { [unowned self] _ in self.updateList() }
+//            .flatMap { $0.collectionView.rx_stopLoading() }
+//            .subscribe()
+//            .disposed(by: self.disposeBag)
         
         // 收集pop shots的最新数据以及用户的最新选择, 匹配则更新列表
         Observable.combineLatest(ShotService.shared.rx_popShots, self.segmented.rx.value)
             .filter {$0.1 == ShotsDataType.popular.rawValue}
-            .flatMap { [unowned self] in self.updateList(shots: $0.0) }
+            .map { [unowned self] params -> [ShotNormalCellViewModel] in
+                self.viewModel.normalCellViewModels = params.0.map{shot in ShotNormalCellViewModel(shot: shot, width: 200)}
+                return self.viewModel.normalCellViewModels
+            }
+            .flatMap { [unowned self] _ in self.updateList() }
             .flatMap { $0.collectionView.rx_stopLoading() }
             .subscribe()
             .disposed(by: self.disposeBag)
@@ -220,18 +274,18 @@ extension ShotsViewController {
             })
             .disposed(by: self.disposeBag)
         
-        self.collectionView.rx_pullToLoadMore()
-            .subscribe(onNext: { [unowned self] in
-                self.loadMoreData(self.currentType)
-            })
-            .disposed(by: self.disposeBag)
+//        self.collectionView.rx_pullToLoadMore()
+//            .subscribe(onNext: { [unowned self] in
+//                self.loadMoreData(self.currentType)
+//            })
+//            .disposed(by: self.disposeBag)
     }
     
     func switchUI(hasToken: Bool) {
         self.oauthButton.isHidden = hasToken
         self.collectionView.isHidden = !hasToken
         self.navigationItem.titleView = hasToken ? self.segmented : nil
-        self.navigationItem.rightBarButtonItem = hasToken ? UIBarButtonItem(customView: self.signoutButton) : nil
+        self.navigationItem.leftBarButtonItem = hasToken ? UIBarButtonItem(customView: self.signoutButton) : nil
     }
     
     func reloadData(_ type: ShotsDataType) {
@@ -246,7 +300,7 @@ extension ShotsViewController {
         })
     }
     
-    func updateList(shots: [Shot]) -> Observable<ShotsViewController> {
+    func updateList() -> Observable<ShotsViewController> {
         return Observable.create({ [weak self] (observer) -> Disposable in
             self?.adapter.performUpdates(animated: true) { (finished) in
                 
@@ -264,11 +318,17 @@ extension ShotsViewController {
 // MARK: - ShotsViewController extension ListAdapterDataSource
 extension ShotsViewController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return ShotService.shared.shots
+//        return ShotService.shared.popShots
+        return [1] as [NSNumber]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return ShotsController()
+        switch object {
+        case is ShotNormalCellViewModel:
+            return ShotsController(viewModels: self.viewModel.normalCellViewModels)
+        default:
+            return ShotsController(viewModels: self.viewModel.normalCellViewModels)
+        }
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
@@ -278,15 +338,50 @@ extension ShotsViewController: ListAdapterDataSource {
     }
 }
 
+class ShotsViewControllerViewModel {
+    var normalCellViewModels: [ShotNormalCellViewModel] = []
+    
+    var largeCellViewModels: [ShotNormalCellViewModel] = []
 
-// MARK: - Shot extension ListDiffable
-extension Shot: ListDiffable {
+}
+
+
+class ShotNormalCellViewModel: ListDiffable {
+    var id: String
+    // 4:3
+    var imageUrl: String
+    
+    var image_frame: CGRect
+    
+    var title: NSAttributedString
+    
+    var title_frame: CGRect
+    
+    var comment: NSAttributedString
+    
+    var comment_frame: CGRect
+    
+    var size: CGSize
+
+    init(shot: Shot, width: CGFloat) {
+        self.id = shot.id
+        self.imageUrl = shot.images?.teaser ?? ""
+        self.image_frame = CGRect(x: 0, y: 0, width: width, height: width*3/4)
+        self.title = shot.title.attributed()
+        let title_height = self.title.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).height
+        self.title_frame = CGRect(x: 0, y: self.image_frame.maxY+10, width: width, height: title_height)
+        
+        self.comment = shot.comment.attributed()
+        let comment_height = self.comment.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).height
+        self.comment_frame = CGRect(x: 0, y: self.title_frame.maxY+10, width: width, height: comment_height)
+        self.size = CGSize(width: width, height: self.comment_frame.maxY+10)
+    }
     func diffIdentifier() -> NSObjectProtocol {
         return self.id as NSString
     }
     
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        if let _object = object as? Shot {
+        if let _object = object as? ShotNormalCellViewModel {
             return id == _object.id
         }
         return false

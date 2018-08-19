@@ -9,7 +9,14 @@
 /* Begin PBXBuildFile section */
 		3FE0697A1F674BE588D9F52C /* Pods_OreosDrib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249B01236E0B03A4A45B1510 /* Pods_OreosDrib.framework */; };
 		953BDE1A2121E0F00091B98E /* MJRefresh+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BDE192121E0F00091B98E /* MJRefresh+Extension.swift */; };
+		95A73D052129441D002C8421 /* UserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A73D002129441D002C8421 /* UserDefaultsUtils.swift */; };
+		95A73D062129441D002C8421 /* NSAttributedStringFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A73D012129441D002C8421 /* NSAttributedStringFactory.swift */; };
+		95A73D072129441D002C8421 /* DispatchQueue+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A73D022129441D002C8421 /* DispatchQueue+RxSwift.swift */; };
+		95A73D082129441D002C8421 /* BlockOpreation+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A73D032129441D002C8421 /* BlockOpreation+Utils.swift */; };
+		95A73D092129441D002C8421 /* Optional+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A73D042129441D002C8421 /* Optional+RxSwift.swift */; };
 		95BA686E21226CC000FDB7FD /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BA686D21226CC000FDB7FD /* IndexViewController.swift */; };
+		95BA68722122B71900FDB7FD /* FakeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BA68712122B71900FDB7FD /* FakeAPI.swift */; };
+		95BA68742122B75500FDB7FD /* FakeShotAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BA68732122B75500FDB7FD /* FakeShotAPI.swift */; };
 		95C7A96B210DC84B0037A1B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C7A969210DC84B0037A1B6 /* Main.storyboard */; };
 		95C7A96D210DC84D0037A1B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C7A96C210DC84D0037A1B6 /* Assets.xcassets */; };
 		95C7A970210DC84D0037A1B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C7A96E210DC84D0037A1B6 /* LaunchScreen.storyboard */; };
@@ -82,7 +89,14 @@
 		3284562AD854AA5FD0C879F7 /* Pods_OreosDribTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OreosDribTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE98AF91F7B67D18335F5A0 /* Pods-OreosDribTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OreosDribTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OreosDribTests/Pods-OreosDribTests.release.xcconfig"; sourceTree = "<group>"; };
 		953BDE192121E0F00091B98E /* MJRefresh+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Extension.swift"; sourceTree = "<group>"; };
+		95A73D002129441D002C8421 /* UserDefaultsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtils.swift; sourceTree = "<group>"; };
+		95A73D012129441D002C8421 /* NSAttributedStringFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringFactory.swift; sourceTree = "<group>"; };
+		95A73D022129441D002C8421 /* DispatchQueue+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+RxSwift.swift"; sourceTree = "<group>"; };
+		95A73D032129441D002C8421 /* BlockOpreation+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BlockOpreation+Utils.swift"; sourceTree = "<group>"; };
+		95A73D042129441D002C8421 /* Optional+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+RxSwift.swift"; sourceTree = "<group>"; };
 		95BA686D21226CC000FDB7FD /* IndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
+		95BA68712122B71900FDB7FD /* FakeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAPI.swift; sourceTree = "<group>"; };
+		95BA68732122B75500FDB7FD /* FakeShotAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeShotAPI.swift; sourceTree = "<group>"; };
 		95C7A962210DC84B0037A1B6 /* OreosDrib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OreosDrib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C7A96A210DC84B0037A1B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95C7A96C210DC84D0037A1B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -164,12 +178,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95A73CFF212943F4002C8421 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95A73D032129441D002C8421 /* BlockOpreation+Utils.swift */,
+				95A73D022129441D002C8421 /* DispatchQueue+RxSwift.swift */,
+				95A73D012129441D002C8421 /* NSAttributedStringFactory.swift */,
+				95A73D042129441D002C8421 /* Optional+RxSwift.swift */,
+				95A73D002129441D002C8421 /* UserDefaultsUtils.swift */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 		95BA686C21226CB000FDB7FD /* Index */ = {
 			isa = PBXGroup;
 			children = (
 				95BA686D21226CC000FDB7FD /* IndexViewController.swift */,
 			);
 			path = Index;
+			sourceTree = "<group>";
+		};
+		95BA686F2122B65300FDB7FD /* Dribbble */ = {
+			isa = PBXGroup;
+			children = (
+				95C7AA0D210E12380037A1B6 /* DribbbleAPI.swift */,
+				95C7AA17210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift */,
+				95C7AA0F210E18D00037A1B6 /* UserAPI.swift */,
+				95C7AA15210EC1600037A1B6 /* ShotAPI.swift */,
+				95C7AA19210F10580037A1B6 /* AuthorizeAPI.swift */,
+			);
+			path = Dribbble;
+			sourceTree = "<group>";
+		};
+		95BA68702122B67500FDB7FD /* Fake */ = {
+			isa = PBXGroup;
+			children = (
+				95BA68712122B71900FDB7FD /* FakeAPI.swift */,
+				95BA68732122B75500FDB7FD /* FakeShotAPI.swift */,
+			);
+			path = Fake;
 			sourceTree = "<group>";
 		};
 		95C7A959210DC84B0037A1B6 = {
@@ -195,6 +242,7 @@
 		95C7A964210DC84B0037A1B6 /* OreosDrib */ = {
 			isa = PBXGroup;
 			children = (
+				95A73CFF212943F4002C8421 /* Frameworks */,
 				95FBEED12121600C00327D06 /* Extensions */,
 				95C7A9AB210E0FD60037A1B6 /* APIs */,
 				95C7A9D4210E0FD60037A1B6 /* AppDelegate */,
@@ -320,14 +368,11 @@
 		95C7A9AB210E0FD60037A1B6 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
-				95C7AA0D210E12380037A1B6 /* DribbbleAPI.swift */,
 				95C7AA11210E19530037A1B6 /* BaseTargetType.swift */,
-				95C7AA17210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift */,
-				95C7AA1D2110A8500037A1B6 /* MoyaProvider+Extensions.swift */,
 				95C7AA13210E2BD50037A1B6 /* Moya+JSON.swift */,
-				95C7AA0F210E18D00037A1B6 /* UserAPI.swift */,
-				95C7AA15210EC1600037A1B6 /* ShotAPI.swift */,
-				95C7AA19210F10580037A1B6 /* AuthorizeAPI.swift */,
+				95C7AA1D2110A8500037A1B6 /* MoyaProvider+Extensions.swift */,
+				95BA68702122B67500FDB7FD /* Fake */,
+				95BA686F2122B65300FDB7FD /* Dribbble */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -560,6 +605,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-OreosDrib/Pods-OreosDrib-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
@@ -577,6 +623,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
@@ -645,8 +692,11 @@
 				95C7A9DF210E0FD60037A1B6 /* APIHandle.swift in Sources */,
 				95C7A9E3210E0FD60037A1B6 /* ReactiveError.swift in Sources */,
 				95C7A9E6210E0FD60037A1B6 /* GlobalConstants.swift in Sources */,
+				95A73D092129441D002C8421 /* Optional+RxSwift.swift in Sources */,
 				95C7A9E8210E0FD60037A1B6 /* String+Handle.swift in Sources */,
+				95A73D062129441D002C8421 /* NSAttributedStringFactory.swift in Sources */,
 				95C7AA07210E0FD60037A1B6 /* Animation.swift in Sources */,
+				95BA68742122B75500FDB7FD /* FakeShotAPI.swift in Sources */,
 				95C7A9FF210E0FD60037A1B6 /* UserInfoController.swift in Sources */,
 				95C7A9EF210E0FD60037A1B6 /* UserService.swift in Sources */,
 				95C7AA1E2110A8500037A1B6 /* MoyaProvider+Extensions.swift in Sources */,
@@ -667,13 +717,16 @@
 				95C7A9EA210E0FD60037A1B6 /* Date+Handle.swift in Sources */,
 				95C7AA18210F09660037A1B6 /* DateFormatter+DribbbleAPI.swift in Sources */,
 				95C7AA05210E0FD60037A1B6 /* UIFont+Extension.swift in Sources */,
+				95BA68722122B71900FDB7FD /* FakeAPI.swift in Sources */,
 				95C7A9F1210E0FD60037A1B6 /* OAuthService.swift in Sources */,
+				95A73D052129441D002C8421 /* UserDefaultsUtils.swift in Sources */,
 				95C7AA00210E0FD60037A1B6 /* ShotDetailController+Cell.swift in Sources */,
 				95C7A9FD210E0FD60037A1B6 /* TabBarController.swift in Sources */,
 				95C7A9F2210E0FD60037A1B6 /* FileService.swift in Sources */,
 				95C7AA06210E0FD60037A1B6 /* UIColor+Extension.swift in Sources */,
 				95C7AA16210EC1600037A1B6 /* ShotAPI.swift in Sources */,
 				95C7AA14210E2BD50037A1B6 /* Moya+JSON.swift in Sources */,
+				95A73D082129441D002C8421 /* BlockOpreation+Utils.swift in Sources */,
 				95C7AA03210E0FD60037A1B6 /* ShotsViewController.swift in Sources */,
 				95C7A9EE210E0FD60037A1B6 /* Shot.swift in Sources */,
 				953BDE1A2121E0F00091B98E /* MJRefresh+Extension.swift in Sources */,
@@ -687,6 +740,7 @@
 				95C7A9E0210E0FD60037A1B6 /* SystemInfo.swift in Sources */,
 				95C7A9E7210E0FD60037A1B6 /* WKWebView+Handle.swift in Sources */,
 				95C7A9EC210E0FD60037A1B6 /* User.swift in Sources */,
+				95A73D072129441D002C8421 /* DispatchQueue+RxSwift.swift in Sources */,
 				95C7AA09210E0FD60037A1B6 /* UIImageView+Kf.swift in Sources */,
 				95C7AA0C210E0FD60037A1B6 /* AppDelegate.swift in Sources */,
 			);
@@ -852,10 +906,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				INFOPLIST_FILE = OreosDrib/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = P36348.OreosDrib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -871,10 +922,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				INFOPLIST_FILE = OreosDrib/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = P36348.OreosDrib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -891,11 +939,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				INFOPLIST_FILE = OreosDribTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.p36348.OreosDribTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -913,11 +957,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M9P68HAAF;
 				INFOPLIST_FILE = OreosDribTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.p36348.OreosDribTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

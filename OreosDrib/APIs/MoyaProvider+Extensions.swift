@@ -12,6 +12,12 @@ import RxSwift
 
 extension MoyaProvider {
     public func rx_request(_ token: Target) -> Observable<Response> {
-        return self.rx.request(token).asObservable().do(onNext: {res in print(res.debugDescription)})
+        return self.rx.request(token).asObservable()
+            .do(onNext: {
+                let string = try $0.mapString()
+                print("===> request:", $0.request!, "\n===> response:", $0, "\n===> value:", $0.jsonValue ?? string)
+            }, onError: {
+                print("recive error", $0)
+            })
     }
 }

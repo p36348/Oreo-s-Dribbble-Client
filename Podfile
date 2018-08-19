@@ -17,7 +17,7 @@ target 'OreosDrib' do
     pod 'SwiftHEXColors'
 #    pod 'Socket.IO-Client-Swift', '~> 10.0.0'
     pod 'RealmSwift'
-#    pod 'Kingfisher'
+    pod 'Kingfisher'
     #pod 'Kanna'
     pod 'OAuthSwift'
 #    pod 'Texture' #AsyncDisplayKit by Facebook

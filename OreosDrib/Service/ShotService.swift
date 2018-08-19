@@ -71,7 +71,7 @@ extension ShotService {
     fileprivate func fetchPopShots(page: UInt, pageSize: UInt) -> Observable<[Shot]> {
         
         return
-            DribbbleAPI.shot
+            FakeAPI.shot
                 .rx_request(.popularShots(page: page, pageSize: pageSize))
                 .flatMap {$0.rx_jsonValue}
                 .map { mapJsonToShots($0) }

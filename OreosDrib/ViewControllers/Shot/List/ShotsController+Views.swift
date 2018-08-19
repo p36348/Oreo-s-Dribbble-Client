@@ -9,9 +9,24 @@
 import UIKit
 
 class ShotNormalCell: UICollectionViewCell {
+    let image = UIImageView()
+    let view_count_label = UILabel()
+    let comments_count_label = UILabel()
+    let likes_count_label = UILabel()
+    let title_label = UILabel()
+    let comment_label = UILabel()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.contentView.backgroundColor = UIColor.lightGray
+        self.contentView.backgroundColor = UIColor.white
+        self.title_label.numberOfLines = 0
+        self.comment_label.numberOfLines = 0
+        self.contentView.addSubview(self.image)
+//        self.contentView.addSubview(self.view_count_label)
+//        self.contentView.addSubview(self.comments_count_label)
+//        self.contentView.addSubview(self.likes_count_label)
+        self.contentView.addSubview(self.title_label)
+        self.contentView.addSubview(self.comment_label)
     }
     
     required init?(coder aDecoder: NSCoder) {
