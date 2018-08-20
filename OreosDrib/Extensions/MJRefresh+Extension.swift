@@ -48,7 +48,7 @@ extension UIScrollView {
     func rx_pullToLoadMore() -> Observable<Void> {
 
         if self.mj_footer == nil {
-            self.mj_footer = MJRefreshAutoFooter()
+            self.mj_footer = MJRefreshAutoStateFooter()
         }
         
         return Observable.create({ [weak self] (observer) -> Disposable in
