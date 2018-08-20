@@ -112,6 +112,7 @@ class ShotsViewController: UIViewController {
     let segmented: UISegmentedControl = {
         // let item = UISegmentedControl(items: ["Pop Shots", "My Shots"])
         let item = UISegmentedControl(items: ["Pop Shots"])
+        item.tintColor = UIColor.Dribbble.pink
         item.selectedSegmentIndex = 0
         return item
     }()
@@ -133,17 +134,15 @@ class ShotsViewController: UIViewController {
         return _adapter
     }()
     
-    
-    
     let oauthButton: UIButton = {
         let _item = UIButton(type: UIButtonType.system)
-        _item.setTitle("Signin from Dribbble.", for: UIControlState.normal)
+        _item.setAttributedTitle("Signin from Dribbble.".attributed([.textColor(UIColor.Dribbble.pink)]), for: UIControlState.normal)
         return _item
     }()
     
     let signoutButton: UIButton = {
         let _item = UIButton(type: UIButtonType.system)
-        _item.setTitle("Signout", for: UIControlState.normal)
+        _item.setAttributedTitle("Signout".attributed([.textColor(UIColor.Dribbble.pink)]), for: UIControlState.normal)
         return _item
     }()
     
@@ -274,11 +273,11 @@ extension ShotsViewController {
             })
             .disposed(by: self.disposeBag)
         
-//        self.collectionView.rx_pullToLoadMore()
-//            .subscribe(onNext: { [unowned self] in
-//                self.loadMoreData(self.currentType)
-//            })
-//            .disposed(by: self.disposeBag)
+        self.collectionView.rx_pullToLoadMore()
+            .subscribe(onNext: { [unowned self] in
+                self.loadMoreData(self.currentType)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     func switchUI(hasToken: Bool) {

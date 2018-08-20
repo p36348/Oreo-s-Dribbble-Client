@@ -90,7 +90,8 @@ private func mapJsonToShots(_ json: JSON) -> [Shot] {
 extension ShotService {
     
     func reloadShots() -> Observable<ShotService> {
-        let params = self.shotsParams
+        var params = self.shotsParams
+        params.page = 1
         return
             self.fetchShots(page: params.page, pageSize: params.pageSize)
                 .map { [unowned self] in self.shots = $0; return self }
@@ -105,7 +106,8 @@ extension ShotService {
     }
     
     func reloadPopShots() -> Observable<ShotService> {
-        let params = self.popShotsParams
+        var params = self.popShotsParams
+        params.page = 1
         return
             self.fetchPopShots(page: params.page, pageSize: params.pageSize)
                 .map { [unowned self] in self.popShots = $0; return self }
