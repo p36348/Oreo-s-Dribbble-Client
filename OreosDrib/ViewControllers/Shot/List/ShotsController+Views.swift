@@ -7,8 +7,28 @@
 //
 
 import UIKit
-
+import Kingfisher
 class ShotNormalCell: UICollectionViewCell {
+//    let image = AnimatedImageView()
+    let image = UIImageView()
+    let title_label = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.contentView.backgroundColor = UIColor.white
+//        self.image.needsPrescaling = false
+//        self.image.runLoopMode = RunLoopMode.defaultRunLoopMode
+        self.contentView.addSubview(self.image)
+        self.contentView.addSubview(self.title_label)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        //        fatalError("init(coder:) has not been implemented")
+        super.init(frame: CGRect.zero)
+    }
+}
+
+class ShotLargeCell: UICollectionViewCell {
     let image = UIImageView()
     let view_count_label = UILabel()
     let comments_count_label = UILabel()
@@ -22,9 +42,9 @@ class ShotNormalCell: UICollectionViewCell {
         self.title_label.numberOfLines = 0
         self.comment_label.numberOfLines = 0
         self.contentView.addSubview(self.image)
-//        self.contentView.addSubview(self.view_count_label)
-//        self.contentView.addSubview(self.comments_count_label)
-//        self.contentView.addSubview(self.likes_count_label)
+        self.contentView.addSubview(self.view_count_label)
+        self.contentView.addSubview(self.comments_count_label)
+        self.contentView.addSubview(self.likes_count_label)
         self.contentView.addSubview(self.title_label)
         self.contentView.addSubview(self.comment_label)
     }
@@ -33,10 +53,6 @@ class ShotNormalCell: UICollectionViewCell {
         //        fatalError("init(coder:) has not been implemented")
         super.init(frame: CGRect.zero)
     }
-}
-
-class ShotLargeCell: UICollectionViewCell {
-    
 }
 
 
