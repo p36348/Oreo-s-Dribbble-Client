@@ -94,7 +94,7 @@ extension ShotService {
         params.page = 1
         return
             self.fetchShots(page: params.page, pageSize: params.pageSize)
-                .map { [unowned self] in self.shots = $0; return self }
+                .map { [unowned self] in self.shots = $0; self.shotsParams = params; return self }
     }
     
     func loadMoreShots() -> Observable<ShotService> {
@@ -110,7 +110,7 @@ extension ShotService {
         params.page = 1
         return
             self.fetchPopShots(page: params.page, pageSize: params.pageSize)
-                .map { [unowned self] in self.popShots = $0; return self }
+                .map { [unowned self] in self.popShots = $0; self.popShotsParams = params; return self }
     }
     
     func loadMorePopShots() -> Observable<ShotService> {
@@ -118,7 +118,10 @@ extension ShotService {
         params.page += 1
         return
             self.fetchPopShots(page: params.page, pageSize: params.pageSize)
-                .map { [unowned self] in self.popShots = self.popShots + $0; self.popShotsParams = params; return self }
+                .map { [unowned self] in
+                    if $0.count != 0 {self.popShots = self.popShots + $0; self.popShotsParams = params;}
+                    return self
+        }
     }
     
     func reloadShotDetail() {
