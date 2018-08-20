@@ -376,7 +376,7 @@ extension ShotsViewController {
 private var normalCellWidth: CGFloat {
     let screenWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
     if screenWidth <= 500 {return (screenWidth-10-5)/2}
-    else if screenWidth <= 1024 {return (screenWidth-10-15)/4}
+    else if screenWidth <= 1024 {return (screenWidth-10-20)/5}
     else {return 200}
 }
 
