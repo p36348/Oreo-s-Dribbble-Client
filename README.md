@@ -4,7 +4,7 @@
  由于V2API的限制, Popular shots 只能使用从官网拉取的数据做伪请求....
  
  ![效果ip8p](https://github.com/p36348/Oreo-s-Dribbble-Client/blob/master/How_it_looks_like_iPhone8_plus.png?raw=true)
- ![效果ipad_pro](https://github.com/p36348/Oreo-s-Dribbble-Client/blob/master/How_it_looks_like_iPhone8_plus.png?raw=true)
+ ![效果ipad_pro](https://github.com/p36348/Oreo-s-Dribbble-Client/blob/master/How_it_looks_like_iPad_pro.png?raw=true)
  ====
  
  关键三方框架:
