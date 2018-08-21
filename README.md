@@ -3,7 +3,8 @@
  17年中开发了第一版, 由于当时使用的v1API已经过期, 加上17年的结构从现在来看并不好, 故重构. 结合几个比较有意思的框架实现.
  由于V2API的限制, Popular shots 只能使用从官网拉取的数据做伪请求....
  
- ![效果](https://github.com/p36348/Oreo-s-Dribbble-Client/blob/master/How_it_looks_like.png?raw=true)
+ ![效果ip8p](https://github.com/p36348/Oreo-s-Dribbble-Client/blob/master/How_it_looks_like_iPhone8_plus.png?raw=true)
+ ![效果ipad_pro](https://github.com/p36348/Oreo-s-Dribbble-Client/blob/master/How_it_looks_like_iPhone8_plus.png?raw=true)
  ====
  
  关键三方框架:
