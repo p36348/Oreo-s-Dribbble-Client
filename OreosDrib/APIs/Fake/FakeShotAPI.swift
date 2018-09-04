@@ -16,7 +16,7 @@ enum FakeShotAPI {
 extension FakeShotAPI: BaseTargetType {
     
     var baseURL: URL {
-//        return URL(string: "http://10.0.0.8:5000")!
+//        return URL(string: "https://10.0.0.8:5000")!
         return URL(string: "http://localhost:5000")!
     }
     

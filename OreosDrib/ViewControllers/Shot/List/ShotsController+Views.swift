@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+
 class ShotNormalCell: UICollectionViewCell {
     let image = AnimatedImageView()
 //    let image = UIImageView()

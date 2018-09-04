@@ -29,38 +29,62 @@ extension UIScrollView {
         }
     }
     
-    
-    func rx_pullToRefresh() -> Observable<Void> {
-        if self.mj_header == nil {
-            self.mj_header = MJRefreshNormalHeader()
-        }
+    var rx_pullToRefresh: Observable<UIScrollView?> {
         
         return Observable.create({ [weak self] (observer) -> Disposable in
+            
+            if let _self = self, _self.mj_header == nil {
+                _self.mj_header = MJRefreshNormalHeader()
+            }
+            
             self?.mj_header.refreshingBlock = {
                 self?.internal_rx_refreshing.onNext(true)
-                observer.onNext(())
+                observer.onNext(self)
             }
             return Disposables.create()
-        }).do(onDispose: { [weak self] in
-            self?.mj_header = nil
         })
+            .do(onDispose: { [weak self] in
+                self?.mj_header = nil
+            })
     }
-    func rx_pullToLoadMore() -> Observable<Void> {
-
-        if self.mj_footer == nil {
-            self.mj_footer = MJRefreshAutoStateFooter()
-        }
+    
+    var rx_pullToLoadMore: Observable<UIScrollView?> {
         
         return Observable.create({ [weak self] (observer) -> Disposable in
-             self?.mj_footer.refreshingBlock = {
+            
+            if let _self = self, _self.mj_footer == nil {
+                _self.mj_footer = MJRefreshAutoStateFooter()
+            }
+            
+            self?.mj_footer.refreshingBlock = {
                 self?.internal_rx_refreshing.onNext(true)
-                observer.onNext(())
+                observer.onNext(self)
             }
             return Disposables.create()
         })
             .do(onDispose: { [weak self] in
                 self?.mj_footer = nil
             })
+    }
+    
+    func rx_beginReload() -> Observable<UIScrollView> {
+        if let header = self.mj_header, !header.isRefreshing {
+            header.beginRefreshing()
+            return Observable.just(self)
+        }
+        else {
+            return Observable.error(NSError(domain: "没有定义刷新操作", code: 0, userInfo: nil))
+        }
+    }
+    
+    func rx_beginLoadMore() -> Observable<UIScrollView>  {
+        if let footer = self.mj_footer, !footer.isRefreshing {
+            footer.beginRefreshing()
+            return Observable.just(self)
+        }
+        else {
+            return Observable.error(NSError())
+        }
     }
     
     func rx_stopLoading() -> Observable<Void> {

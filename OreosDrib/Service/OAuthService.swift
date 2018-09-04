@@ -15,7 +15,6 @@ import RxSwift
 
 private let accessTokenKey: String = "OAuth_service_access_token_key"
 
-
 class OAuthService {
     
     static let shared: OAuthService = OAuthService()
@@ -41,7 +40,7 @@ class OAuthService {
                                                       authorizeUrl:   GlobalConstant.Authentication.authorizeUrl,
                                                       accessTokenUrl: GlobalConstant.Authentication.accessTokenUrl,
                                                       responseType:   GlobalConstant.Authentication.responseType)
-    
+    /// 执行三方认证
     func doOAuth() {
         
         let success: OAuth2Swift.TokenSuccessHandler = { [unowned self] (credential, response, params) in
@@ -62,9 +61,7 @@ class OAuthService {
                                    failure: failure)
     }
     
-    /**
-     * 重置token
-     */
+    /// 重置token
     func clearToken() {
         
         self.accessToken = ""
