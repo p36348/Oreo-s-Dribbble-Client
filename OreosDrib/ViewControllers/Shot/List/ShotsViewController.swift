@@ -137,11 +137,7 @@ enum ShotsDataType: Int {
     case popular = 0, oauthcated = 1
 }
 
-/**
- 快照列表:
- 用一个collection view来显示两种类型的快照, 需要考虑 <页面操作状态, 页面加载状态, 数据状态> 来更新界面;
- 追求场景严谨, 使用RxSwift进行模块之间的数据通信.
- */
+
 class ShotsViewController: UIViewController {
     
     let layout = UICollectionViewFlowLayout()
