@@ -272,32 +272,6 @@ class NormalShotsSectionViewModel: ListDiffable {
 }
 
 
-struct NormalShotCellViewModel: Equatable {
-    // 4:3
-    var imageUrl: String
-    
-    var image_frame: CGRect
-    
-    var title: NSAttributedString
-    
-    var title_frame: CGRect
-    
-    var size: CGSize
-
-    init(shot: Shot, width: CGFloat) {
-        self.imageUrl = shot.images?.teaser ?? ""
-        self.image_frame = CGRect(x: 0, y: 0, width: width, height: width*3/4)
-        self.title = shot.title.attributed()
-        let title_height = self.title.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).height
-        self.title_frame = CGRect(x: 0, y: self.image_frame.maxY+10, width: width, height: title_height)
-
-        self.size = CGSize(width: width, height: self.title_frame.maxY+10)
-    }
-    public static func == (lhs: NormalShotCellViewModel, rhs: NormalShotCellViewModel) -> Bool {
-        return lhs.imageUrl == rhs.imageUrl && lhs.title == rhs.title && lhs.size == rhs.size
-    }
-}
-
 class LargeShotsSectionViewModel: ListDiffable {
     
     var largeCellViewModels: [ShotLargeCellViewModel] = []
@@ -320,37 +294,3 @@ class LargeShotsSectionViewModel: ListDiffable {
     }
 }
 
-struct ShotLargeCellViewModel: Equatable {
-    // 4:3
-    var imageUrl: String
-    
-    var image_frame: CGRect
-    
-    var title: NSAttributedString
-    
-    var title_frame: CGRect
-    
-    var comment: NSAttributedString
-    
-    var comment_frame: CGRect
-    
-    var size: CGSize
-    
-    init(shot: Shot, width: CGFloat) {
-        self.imageUrl = shot.images?.teaser ?? ""
-        self.image_frame = CGRect(x: 0, y: 0, width: width, height: width*3/4)
-        
-        self.title = shot.title.attributed()
-        let title_height = self.title.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).height
-        self.title_frame = CGRect(x: 0, y: self.image_frame.maxY+10, width: width, height: title_height)
-        
-        self.comment = shot.comment.attributed()
-        let comment_height = self.comment.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).height
-        self.comment_frame = CGRect(x: 0, y: self.title_frame.maxY+10, width: width, height: comment_height)
-        
-        self.size = CGSize(width: width, height: self.title_frame.maxY+10)
-    }
-    public static func == (lhs: ShotLargeCellViewModel, rhs: ShotLargeCellViewModel) -> Bool {
-        return lhs.imageUrl == rhs.imageUrl && lhs.title == rhs.title && lhs.size == rhs.size
-    }
-}

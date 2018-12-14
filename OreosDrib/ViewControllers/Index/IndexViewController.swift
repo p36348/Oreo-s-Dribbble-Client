@@ -79,7 +79,7 @@ class IndexViewController: UIViewController {
     }
     
     func bindObservables() {
-        // service -> view
+        // MARK: service -> view
         // 收集最新的认证数据, 根据是否认证更新可操作UI元素
         OAuthService.shared.rx_hasAccessToken
             .startWith(OAuthService.shared.hasAccessToken)
@@ -94,7 +94,7 @@ class IndexViewController: UIViewController {
             .bind(to: self.oauthcatedUserShotsController.collectionView.rx.isHidden)
             .disposed(by: self.disposeBag)
         
-        // view -> service
+        // MARK: view -> service
         self.popShotsController.rx_pullToReload
             .subscribe(onNext: { _ in
                 _ = ShotService.shared.reloadPopShots().subscribe()
@@ -119,7 +119,7 @@ class IndexViewController: UIViewController {
             })
             .disposed(by: self.disposeBag)
         
-        // service & view state -> service
+        // MARK: service & view state -> service
         // 收集最新的认证数据, 如果认证通过则刷新数据
         OAuthService.shared.rx_hasAccessToken
             .filter({$0})
@@ -130,7 +130,7 @@ class IndexViewController: UIViewController {
         
         // 收集pop shots的最新数据以及用户的最新选择, 匹配则更新列表
         Observable.combineLatest(ShotService.shared.rx_popShots, self.segmented.rx.value)
-            .filter { $0.1 == ShotsDataType.popular.rawValue }
+            .filter  { $0.1 == ShotsDataType.popular.rawValue }
             .flatMap { [unowned self] in self.popShotsController.updateList(with: [createNormalSectionViewModel(shots: $0.0)]) }
             .flatMap { $0.collectionView.rx_stopLoading() }
             .subscribe()
@@ -199,8 +199,6 @@ class IndexViewController: UIViewController {
     }
     
     func switchUI(hasToken: Bool) {
-        self.signinButton.isHidden = hasToken
-//        self.collectionView.isHidden = !hasToken
         self.navigationItem.leftBarButtonItem = hasToken ? UIBarButtonItem(customView: self.signoutButton) : nil
     }
     

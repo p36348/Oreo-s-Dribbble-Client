@@ -83,13 +83,13 @@ extension UIScrollView {
             return Observable.just(self)
         }
         else {
-            return Observable.error(NSError())
+            return Observable.error(NSError(domain: "没有定义刷新操作", code: 0, userInfo: nil))
         }
     }
     
-    func rx_stopLoading() -> Observable<Void> {
+    func rx_stopLoading() -> Observable<UIScrollView> {
         self.stopLoading()
-        return Observable.just(())
+        return Observable.just(self)
     }
     
     func stopLoading() {
